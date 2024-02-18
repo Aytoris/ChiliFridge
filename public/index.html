@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fridge App</title>
+    <meta charset="UTF-8">
+    <style>
+        .container {
+            display: flex;
+        }
+
+        .fridge {
+            flex: 1;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .grocery {
+            flex: 1;
+        }
+        
+    </style>
+<style>
+    #calendar {
+        display: flex;
+        justify-content: space-around;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        padding: 20px;
+        margin: 20px;
+    }
+    #calendar div {
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #e9ecef;
+        color: #495057;
+        font-weight: bold;
+        margin: 5px;
+    }
+    #calendar div:first-child {
+        color: #dc3545;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="fridge">
+            <h1>Chloé's Fridge</h1>
+            <input type="text" id="ingredientInput" list="ingredientList" placeholder="Select food">
+            <datalist id="ingredientList"></datalist>
+            <label for="quantityInput">Quantity:</label>
+            <input type="number" id="quantityInput" min="1" size="8">
+            <span id="unitDisplay"></span>
+            <button onclick="toggleUnit()">Toggle Unit</button>
+            <button onclick="addFood();findMissingIngredients()">Add</button>
+            <h2>Fridge Contents</h2>
+            <ul id="fridgeList"></ul>
+            <button onclick="clearFridge()">Clear Fridge</button>
+
+            <!-- CALENDAR -->
+            <div id="calendar"></div>
+            <label for="peopleCountCalendar">Number of people: </label>
+            <select id="peopleCountCalendar">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <button id="addWeeklyGroceryListButton" onclick="addWeeklyGroceryList()">Add Weekly Grocery List!!!</button>
+        </div>
+        <div class="content">
+            <h2>Cook a Meal</h2>
+            <label for="mealSelect">Select a Meal:</label>
+            <select id="mealSelect" onchange="displayRecipeIngredients();findMissingIngredients()"></select>
+            <button onclick="cookMeal()">Cook</button>
+            <label for="peopleCountMeal">Number of people: </label>
+            <select id="peopleCountMeal" onchange="displayRecipeIngredients();findMissingIngredients()">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <h2>Recipe Ingredients</h2>
+            <ul id="recipeIngredients"></ul>
+            <h2 style="color:red"> Missing Ingredients</h2>
+            <ul id="missingIngredients"></ul>
+            <button onclick="addAllToGroceryList()">Add All Missing Ingredients to Grocery List</button>
+        </div>
+        <div class="grocery">
+            <h2>Grocery List</h2>
+            <ul id="groceryList"></ul>
+            <button onclick="clearGroceryList()">Clear Grocery List</button>
+            <button onclick="sendGroceryListToFridge()">Add food to fridge!</button>
+            <button onclick="saveGroceryListToFile()">Export Grocery List as File</button>
+            <input type="file" id="groceryFile" accept=".json">
+            <button onclick="importGroceryList()">Import Grocery List</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "3": {
+    "name": "Moutarde",
+    "quantity": 1,
+    "unit": ""
+  },
+  "4": {
+    "name": "Artichaut",
+    "quantity": 10,
+    "unit": ""
+  },
+  "1707849478447": {
+    "name": "Carotte",
+    "quantity": 3,
+    "unit": ""
+  },
+  "1707851375208": {
+    "name": "Courgette",
+    "quantity": 1,
+    "unit": ""
+  },
+  "1707851378437": {
+    "name": "Citron vert",
+    "quantity": 2,
+    "unit": ""
+  },
+  "1707851506668": {
+    "name": "Nouille de riz",
+    "quantity": 400,
+    "unit": "g"
+  },
+  "1707852005422": {
+    "name": "Farine pizza",
+    "quantity": 1000,
+    "unit": "g"
+  },
+  "1707852054639": {
+    "name": "Farine pâtisserie",
+    "quantity": 1300,
+    "unit": "g"
+  },
+  "1707852402382": {
+    "name": "Sauce soja",
+    "quantity": 1,
+    "unit": ""
+  },
+  "1707853062646": {
+    "name": "Parmesan",
+    "quantity": 150,
+    "unit": "g"
+  }
+}
