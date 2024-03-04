@@ -321,7 +321,7 @@ function findMissingIngredients() {
 function addToGroceryList(name, quantity, unit) {
     const groceryList = document.getElementById('groceryList');
 
-    let existingItem = Array.from(groceryList.children).find(item => item.textContent.includes(name));
+    let existingItem = Array.from(groceryList.children).find(item => item.textContent.trim() === `${quantity}${unit} ${name}`);
     if (existingItem) {
         let existingQuantity = existingItem.textContent.match(/\d+/);
         if (existingQuantity) {
@@ -493,7 +493,7 @@ function displayCalendar() {
             // Add "Select a meal" as the first option
             let selectOption = document.createElement('option');
             selectOption.value = '';
-            selectOption.text = 'Select a meal';
+            selectOption.text = '';
             selectOption.disabled = true;
             selectOption.selected = true;
             mealSelect.insertBefore(selectOption, mealSelect.firstChild);
@@ -530,23 +530,13 @@ function gatherTotalIngredients(totalIngredients) {
 
 function compareWithFridge(totalIngredients) {
     // Compare the total ingredients with the ingredients in the fridge
-    // Object.values(totalIngredients).forEach(ingredient => {
-    //     let found = Object.values(fridge).find(item => item.name === ingredient.name);
-    //     if (!found) {
-    //         missingIngredients[ingredient.name] = ingredient;
-    //     } else if (found.quantity < ingredient.quantity) {
-    //         missingIngredients[ingredient].quantity = ingredient.quantity - found.quantity; // Update the ingredient quantity
-    //     }
-    // });
-
-
     if (totalIngredients) {
         const totalIngredientsArray = Object.values(totalIngredients);
 
         const missing = totalIngredientsArray.reduce((result, item) => {
 
-            const foundInFridge = Object.values(fridge).find(fridgeItem => fridgeItem.name === item.name);
-            const foundInGroceryList = Object.values(groceryList).find(groceryItem => groceryItem.name === item.name);
+            const foundInFridge = Object.values(fridge).find(fridgeItem => fridgeItem.name.toLowerCase() === item.name.toLowerCase());
+            const foundInGroceryList = Object.values(groceryList).find(groceryItem => groceryItem.name.toLowerCase() === item.name.toLowerCase());
             if (foundInFridge || foundInGroceryList) {
                 const requiredQuantity = item.quantity;
                 const existingFridgeQuantity = foundInFridge ? foundInFridge.quantity : 0;

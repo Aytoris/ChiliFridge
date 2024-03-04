@@ -9,43 +9,68 @@
     "quantity": 10,
     "unit": ""
   },
-  "1707849478447": {
-    "name": "Carotte",
-    "quantity": 3,
-    "unit": ""
-  },
-  "1707851375208": {
-    "name": "Courgette",
-    "quantity": 1,
-    "unit": ""
-  },
   "1707851378437": {
     "name": "Citron vert",
-    "quantity": 2,
+    "quantity": 3,
     "unit": ""
-  },
-  "1707851506668": {
-    "name": "Nouille de riz",
-    "quantity": 400,
-    "unit": "g"
-  },
-  "1707852005422": {
-    "name": "Farine pizza",
-    "quantity": 1000,
-    "unit": "g"
-  },
-  "1707852054639": {
-    "name": "Farine pâtisserie",
-    "quantity": 1300,
-    "unit": "g"
   },
   "1707852402382": {
     "name": "Sauce soja",
     "quantity": 1,
     "unit": ""
   },
-  "1707853062646": {
-    "name": "Parmesan",
+  "1708879441456": {
+    "name": "Poireau",
+    "quantity": 2,
+    "unit": ""
+  },
+  "1708879465137": {
+    "name": "Poivron",
+    "quantity": 1,
+    "unit": ""
+  },
+  "1708879495704": {
+    "name": "Sauce tomate",
+    "quantity": 2,
+    "unit": ""
+  },
+  "1708879514320": {
+    "name": "Bouillon",
+    "quantity": 1,
+    "unit": ""
+  },
+  "1708879522929": {
+    "name": "Olive",
+    "quantity": 50,
+    "unit": ""
+  },
+  "1709477295989": {
+    "name": "Pois chiche",
+    "quantity": 690,
+    "unit": "g"
+  },
+  "1709477298956": {
+    "name": "Haricot rouge",
+    "quantity": 690,
+    "unit": "g"
+  },
+  "1709477643645": {
+    "name": "Cumin",
+    "quantity": 100,
+    "unit": "g"
+  },
+  "1709478589078": {
+    "name": "Oignon rouge",
+    "quantity": 5,
+    "unit": ""
+  },
+  "1709478592366": {
+    "name": "Gousse d'ail",
+    "quantity": 15,
+    "unit": ""
+  },
+  "1709478784270": {
+    "name": "Sésame",
     "quantity": 150,
     "unit": "g"
   }

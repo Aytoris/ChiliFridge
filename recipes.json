@@ -6,37 +6,33 @@
         { "name": "Aubergine", "quantity": 1, "unit": "" }
     ],
     "Avocado toasts": [
-        { "name": "Pain", "quantity": 100, "unit": "g" },
         { "name": "Avocat", "quantity": 1, "unit": "" },
         { "name": "Oeuf", "quantity": 2, "unit": "" },
-        { "name": "Roquette", "quantity": 20, "unit": "g" }
+        { "name": "Roquette", "quantity": 40, "unit": "g" }
     ],
     "Butternut farcie": [
         { "name": "Butternut", "quantity": 0.5, "unit": "" },
         { "name": "Poireau", "quantity": 0.5, "unit": "" },
-        { "name": "Parmesan", "quantity": 25, "unit": "g" },
-        { "name": "Échalotte", "quantity": 1, "unit": "" },
+        { "name": "Parmesan", "quantity": 20, "unit": "g" },
+        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
         { "name": "Quinoa", "quantity": 12.5, "unit": "g" },
         { "name": "Basilic", "quantity": 0.5, "unit": "" }
     ],
     "Chickpeas tacos": [
-        { "name": "Pois chiche", "quantity": 212, "unit": "g" },
+        { "name": "Pois chiche", "quantity": 115, "unit": "g" },
         { "name": "Noix de cajou grillées", "quantity": 35, "unit": "g" },
-        { "name": "Citron", "quantity": 1, "unit": "" },
+        { "name": "Citron vert", "quantity": 1, "unit": "" },
         { "name": "Avocat", "quantity": 1, "unit": "" },
         { "name": "Coriandre", "quantity": 0.5, "unit": "" },
-        { "name": "Farine pâtisserie", "quantity": 110, "unit": "g" },
-        { "name": "Huile", "quantity": 25, "unit": "g" }
-
+        { "name": "Farine pâtisserie", "quantity": 110, "unit": "g" }
     ],
     "Fajitas": [
         { "name": "Poivron", "quantity": 1, "unit": "" },
-        { "name": "Échalotte", "quantity": 1, "unit": "" },
-        { "name": "Champignon", "quantity": 6, "unit": "" },
-        { "name": "Haricot rouge", "quantity": 100, "unit": "g" },
+        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
+        { "name": "Champignon", "quantity": 75, "unit": "g" },
+        { "name": "Haricot rouge", "quantity": 115, "unit": "g" },
         { "name": "Tomate", "quantity": 1, "unit": "" },
-        { "name": "Farine pâtisserie", "quantity": 110, "unit": "g" },
-        { "name": "Huile", "quantity": 25, "unit": "g" }
+        { "name": "Farine pâtisserie", "quantity": 110, "unit": "g" }
     ],
     "Frites": [
         { "name": "Patate", "quantity": 4, "unit": "" }
@@ -45,23 +41,22 @@
         { "name": "Poivron", "quantity": 1, "unit": "" },
         { "name": "Asperge", "quantity": 2, "unit": "" },
         { "name": "Oeuf", "quantity": 2, "unit": "" },
-        { "name": "Échalotte", "quantity": 2, "unit": "" },
+        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
         { "name": "Basilic", "quantity": 0.5, "unit": "" },
-        { "name": "Tomate cerise", "quantity": 2, "unit": "" }
+        { "name": "Tomate cerise", "quantity": 3, "unit": "" }
     ],
     "Gnocchi": [
         { "name": "Courge", "quantity": 0.5, "unit": "" },
         { "name": "Patate", "quantity": 1, "unit": "" },
         { "name": "Farine pâtisserie", "quantity": 100, "unit": "g" },
         { "name": "Oeuf", "quantity": 0.5, "unit": "" },
-        { "name": "Champignon", "quantity": 50, "unit": "g" },
-        { "name": "Roquette", "quantity": 20, "unit": "g" },
-        { "name": "Parmesan", "quantity": 25, "unit": "g" }
+        { "name": "Champignon", "quantity": 75, "unit": "g" },
+        { "name": "Roquette", "quantity": 40, "unit": "g" },
+        { "name": "Parmesan", "quantity": 20, "unit": "g" }
     ],
     "Hummus": [
         { "name": "Sésame", "quantity": 25, "unit": "g" },
         { "name": "Citron", "quantity": 0.5, "unit": "" },
-        { "name": "Huile", "quantity": 18, "unit": "g" },
         { "name": "Cumin", "quantity": 1.25, "unit": "g" },
         { "name": "Pois chiche", "quantity": 115, "unit": "g" },
         { "name": "Gousse d'ail", "quantity": 0.5, "unit": "" }
@@ -70,41 +65,38 @@
         { "name": "Levure (cube bleu)", "quantity": 1.5, "unit": "g" },
         { "name": "Farine pizza", "quantity": 125, "unit": "g" },
         { "name": "Poireau", "quantity": 0.5, "unit": "" },
-        { "name": "Échalotte", "quantity": 1, "unit": "" },
+        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
         { "name": "Sauce tomate", "quantity": 0.25, "unit": "" },
         { "name": "Artichaut", "quantity": 2, "unit": "" },
         { "name": "Feta", "quantity": 35, "unit": "g" }
     ],
     "Quiche (Tomate)": [
         { "name": "Farine pizza", "quantity": 145, "unit": "g" },
-        { "name": "Huile", "quantity": 20, "unit": "g" },
         { "name": "Moutarde", "quantity": 0.1, "unit": "" },
         { "name": "Tomate", "quantity": 2, "unit": "" },
         { "name": "Olive", "quantity": 5, "unit": "" }
     ],
     "Quiche (Courgette)": [
         { "name": "Farine pizza", "quantity": 145, "unit": "g" },
-        { "name": "Huile", "quantity": 20, "unit": "g" },
         { "name": "Courgette", "quantity": 1, "unit": "" },
         { "name": "Oeuf", "quantity": 1, "unit": "" },
         { "name": "Parmesan", "quantity": 20, "unit": "g" },
-        { "name": "Menthe", "quantity": 0.5, "unit": "" }
+        { "name": "Menthe", "quantity": 0.25, "unit": "" }
     ],
     "Potimarron": [
         { "name": "Potimarron", "quantity": 0.5, "unit": "" }
     ],
     "Risotto": [
         { "name": "Riz", "quantity": 100, "unit": "g" },
-        { "name": "Échalotte", "quantity": 1, "unit": "" },
-        { "name": "Vin blanc", "quantity": 0.5, "unit": "" },
+        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
         { "name": "Bouillon", "quantity": 0.5, "unit": "" },
-        { "name": "Parmesan", "quantity": 25, "unit": "g" },
+        { "name": "Parmesan", "quantity": 20, "unit": "g" },
         { "name": "Tomate", "quantity": 1, "unit": "" },
-        { "name": "Champignon", "quantity": 50, "unit": "g" }
+        { "name": "Champignon", "quantity": 75, "unit": "g" }
     ],
     "Salade crevette": [
         { "name": "Avocat", "quantity": 1, "unit": "" },
-        { "name": "Épinard", "quantity": 20, "unit": "g" },
+        { "name": "Épinard", "quantity": 40, "unit": "g" },
         { "name": "Gingembre", "quantity": 15, "unit": "g" },
         { "name": "Edamame", "quantity": 20, "unit": "g" },
         { "name": "Crevette", "quantity": 50, "unit": "g" },
@@ -114,18 +106,17 @@
     "Salade grecque": [
         { "name": "Tomate", "quantity": 1, "unit": "" },
         { "name": "Feta", "quantity": 50, "unit": "g" },
-        { "name": "Pousse de soja", "quantity": 30, "unit": "g" },
         { "name": "Avocat", "quantity": 1, "unit": "" },
         { "name": "Olive", "quantity": 5, "unit": "" },
-        { "name": "Épinard", "quantity": 20, "unit": "g" },
+        { "name": "Épinard", "quantity": 40, "unit": "g" },
         { "name": "Concombre", "quantity": 0.5, "unit": "" },
-        { "name": "Menthe", "quantity": 0.5, "unit": "" }
+        { "name": "Menthe", "quantity": 0.25, "unit": "" }
     ],
     "Saumon": [
-        { "name": "Champignon", "quantity": 50, "unit": "g" },
+        { "name": "Champignon", "quantity": 75, "unit": "g" },
         { "name": "Saumon", "quantity": 100, "unit": "g" },
         { "name": "Pomme de terre", "quantity": 2, "unit": "" },
-        { "name": "Épinard", "quantity": 20, "unit": "g" },
+        { "name": "Épinard", "quantity": 40, "unit": "g" },
         { "name": "Citron", "quantity": 1, "unit": "" },
         { "name": "Tomate cerise", "quantity": 3, "unit": "" },
         { "name": "Ciboulette", "quantity": 0.5, "unit": "" }
@@ -136,18 +127,29 @@
         { "name": "Oignon rouge", "quantity": 1.5, "unit": "" },
         { "name": "Tomate", "quantity": 2, "unit": "" },
         { "name": "Patate", "quantity": 3, "unit": "" },
-        { "name": "Huile", "quantity": 10, "unit": "g" },
         { "name": "Gousse d'ail", "quantity": 1, "unit": "" }
     ],
     "Thai pad": [
         { "name": "Sauce soja", "quantity": 0.1, "unit": "" },
         { "name": "Tofu", "quantity": 150, "unit": "g" },
         { "name": "Edamame", "quantity": 50, "unit": "g" },
-        { "name": "Pousse de soja", "quantity": 30, "unit": "g" },
         { "name": "Nouille de riz", "quantity": 100, "unit": "g" },
         { "name": "Citron vert", "quantity": 1, "unit": "" },
         { "name": "Cacahuète", "quantity": 20, "unit": "g" },
-        { "name": "Épinard", "quantity": 20, "unit": "g" },
+        { "name": "Épinard", "quantity": 40, "unit": "g" },
         { "name": "Coriandre", "quantity": 0.5, "unit": "" }
+    ],
+    "Pancake": [
+        { "name": "Farine pâtisserie", "quantity": 94, "unit": "g" },
+        { "name": "Oeuf", "quantity": 1, "unit": "" },
+        { "name": "Lait", "quantity": 150, "unit": "g" },
+        { "name": "Banane", "quantity": 1, "unit": "" }
+    ],
+    "Omelette": [
+        { "name": "Oeuf", "quantity": 2, "unit": "" },
+        { "name": "Champignon", "quantity": 75, "unit": "g" },
+        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
+        { "name": "Tomate", "quantity": 1, "unit": "" },
+        { "name": "Épinard", "quantity": 40, "unit": "g" }
     ]
 }
