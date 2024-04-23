@@ -19,7 +19,7 @@
         { "name": "Basilic", "quantity": 0.5, "unit": "" }
     ],
     "Chickpeas tacos": [
-        { "name": "Pois chiche", "quantity": 115, "unit": "g" },
+        { "name": "Pois chiche", "quantity": 0.5, "unit": "" },
         { "name": "Noix de cajou grillées", "quantity": 35, "unit": "g" },
         { "name": "Citron vert", "quantity": 1, "unit": "" },
         { "name": "Avocat", "quantity": 1, "unit": "" },
@@ -30,7 +30,7 @@
         { "name": "Poivron", "quantity": 1, "unit": "" },
         { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
         { "name": "Champignon", "quantity": 75, "unit": "g" },
-        { "name": "Haricot rouge", "quantity": 115, "unit": "g" },
+        { "name": "Haricot rouge", "quantity": 0.5, "unit": "" },
         { "name": "Tomate", "quantity": 1, "unit": "" },
         { "name": "Farine pâtisserie", "quantity": 110, "unit": "g" }
     ],
@@ -56,9 +56,9 @@
     ],
     "Hummus": [
         { "name": "Sésame", "quantity": 25, "unit": "g" },
-        { "name": "Citron", "quantity": 0.5, "unit": "" },
+        { "name": "Citron jaune", "quantity": 0.5, "unit": "" },
         { "name": "Cumin", "quantity": 1.25, "unit": "g" },
-        { "name": "Pois chiche", "quantity": 115, "unit": "g" },
+        { "name": "Pois chiche", "quantity": 0.5, "unit": "" },
         { "name": "Gousse d'ail", "quantity": 0.5, "unit": "" }
     ],
     "Pizza": [
@@ -68,6 +68,7 @@
         { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
         { "name": "Sauce tomate", "quantity": 0.25, "unit": "" },
         { "name": "Artichaut", "quantity": 2, "unit": "" },
+        { "name": "Basilic", "quantity": 0.5, "unit": "" },
         { "name": "Feta", "quantity": 35, "unit": "g" }
     ],
     "Quiche (Tomate)": [
@@ -100,7 +101,7 @@
         { "name": "Gingembre", "quantity": 15, "unit": "g" },
         { "name": "Edamame", "quantity": 20, "unit": "g" },
         { "name": "Crevette", "quantity": 50, "unit": "g" },
-        { "name": "Citron", "quantity": 1, "unit": "" },
+        { "name": "Citron jaune", "quantity": 1, "unit": "" },
         { "name": "Ciboulette", "quantity": 0.5, "unit": "" }
     ],
     "Salade grecque": [
@@ -117,10 +118,10 @@
         { "name": "Saumon", "quantity": 100, "unit": "g" },
         { "name": "Pomme de terre", "quantity": 2, "unit": "" },
         { "name": "Épinard", "quantity": 40, "unit": "g" },
-        { "name": "Citron", "quantity": 1, "unit": "" },
+        { "name": "Citron jaune", "quantity": 1, "unit": "" },
         { "name": "Tomate cerise", "quantity": 3, "unit": "" },
         { "name": "Ciboulette", "quantity": 0.5, "unit": "" }
-        
+
     ],
     "Soupe": [
         { "name": "Carotte", "quantity": 1.5, "unit": "" },
@@ -137,13 +138,15 @@
         { "name": "Citron vert", "quantity": 1, "unit": "" },
         { "name": "Cacahuète", "quantity": 20, "unit": "g" },
         { "name": "Épinard", "quantity": 40, "unit": "g" },
-        { "name": "Coriandre", "quantity": 0.5, "unit": "" }
+        { "name": "Coriandre", "quantity": 0.5, "unit": "" },
+        { "name": "Avocat", "quantity": 1, "unit": "" }
     ],
     "Pancake": [
         { "name": "Farine pâtisserie", "quantity": 94, "unit": "g" },
         { "name": "Oeuf", "quantity": 1, "unit": "" },
         { "name": "Lait", "quantity": 150, "unit": "g" },
-        { "name": "Banane", "quantity": 1, "unit": "" }
+        { "name": "Banane", "quantity": 1, "unit": "" },
+        { "name": "Sirop d'érable", "quantity": 0.1, "unit": "" }
     ],
     "Omelette": [
         { "name": "Oeuf", "quantity": 2, "unit": "" },
@@ -151,5 +154,29 @@
         { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
         { "name": "Tomate", "quantity": 1, "unit": "" },
         { "name": "Épinard", "quantity": 40, "unit": "g" }
+    ],
+    "0-Rien": [],
+    "Dumplings": [
+        { "name": "Farine pâtisserie", "quantity": 150, "unit": "g" },
+        { "name": "Champignon", "quantity": 75, "unit": "g" },
+        { "name": "Carotte", "quantity": 1, "unit": "" },
+        { "name": "Poireau", "quantity": 0.5, "unit": "" },
+        { "name": "Gingembre", "quantity": 15, "unit": "g" },
+        { "name": "Ciboulette", "quantity": 0.5, "unit": "" },
+        { "name": "Sauce soja", "quantity": 0.1, "unit": "" },
+        { "name": "Vinaigre de riz", "quantity": 0.1, "unit": "" },
+        { "name": "Gousse d'ail", "quantity": 1, "unit": "" },
+        { "name": "Choux", "quantity": 50, "unit": "g" },
+        { "name": "Échalotte", "quantity": 1, "unit": "" }
+    ],
+    "Seitan": [
+        { "name": "Vital wheat gluten", "quantity": 100, "unit": "g" },
+        { "name": "All-purpose flour", "quantity": 30, "unit": "g" },
+        { "name": "Bouillon", "quantity": 0.5, "unit": "" },
+        { "name": "Sauce soja", "quantity": 0.1, "unit": "" },
+        { "name": "Vinaigre de riz", "quantity": 0.1, "unit": "" },
+        { "name": "Sesame seeds", "quantity": 15, "unit": "g" },
+        { "name": "Gousse d'ail", "quantity": 1, "unit": "" },
+        { "name": "Échalotte", "quantity": 1, "unit": "" }
     ]
 }

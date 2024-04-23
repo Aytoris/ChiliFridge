@@ -1,0 +1,43 @@
+{
+  "Dumplings": {
+    "totalItems": 3,
+    "completedItems": 0,
+    "categories": {
+      "Filling": {
+        "totalItems": 7,
+        "completedItems": 0,
+        "ingredients": [
+          {"Champignons": false},
+          {"Poireau": false},
+          {"Ail": false},
+          {"Échalotte": false},
+          {"Choux": false},
+          {"Carottes": false},
+          {"Ciboulette": false}
+        ]
+      },
+      "Pate (20g/dumpling)": {
+        "totalItems" :2,
+        "completedItems" :0,
+        "ingredients":[
+            {
+                "300g farine" :false
+            },
+            {
+                "160g eau" :false
+            }
+         ]
+      },
+      "Cuisson":{
+        	"totalItems" :1,
+        	"completedItems" :0,
+        	"instructions":[
+            	{
+                	"A la vapeur, thermo 8, 10 min" :false
+            	}
+        	]
+      }
+    }
+  }
+}
+

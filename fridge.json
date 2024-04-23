@@ -4,55 +4,20 @@
     "quantity": 1,
     "unit": ""
   },
-  "4": {
-    "name": "Artichaut",
-    "quantity": 10,
-    "unit": ""
-  },
-  "1707851378437": {
-    "name": "Citron vert",
-    "quantity": 3,
-    "unit": ""
-  },
   "1707852402382": {
     "name": "Sauce soja",
     "quantity": 1,
     "unit": ""
   },
-  "1708879441456": {
-    "name": "Poireau",
-    "quantity": 2,
-    "unit": ""
-  },
-  "1708879465137": {
-    "name": "Poivron",
-    "quantity": 1,
-    "unit": ""
-  },
-  "1708879495704": {
-    "name": "Sauce tomate",
-    "quantity": 2,
-    "unit": ""
-  },
   "1708879514320": {
     "name": "Bouillon",
-    "quantity": 1,
+    "quantity": 6,
     "unit": ""
   },
   "1708879522929": {
     "name": "Olive",
-    "quantity": 50,
+    "quantity": 40,
     "unit": ""
-  },
-  "1709477295989": {
-    "name": "Pois chiche",
-    "quantity": 690,
-    "unit": "g"
-  },
-  "1709477298956": {
-    "name": "Haricot rouge",
-    "quantity": 690,
-    "unit": "g"
   },
   "1709477643645": {
     "name": "Cumin",
@@ -61,17 +26,107 @@
   },
   "1709478589078": {
     "name": "Oignon rouge",
-    "quantity": 5,
+    "quantity": 4,
     "unit": ""
   },
   "1709478592366": {
     "name": "Gousse d'ail",
-    "quantity": 15,
+    "quantity": 11,
     "unit": ""
   },
   "1709478784270": {
     "name": "Sésame",
     "quantity": 150,
     "unit": "g"
+  },
+  "1710265252771": {
+    "name": "Riz",
+    "quantity": 2500,
+    "unit": "g"
+  },
+  "1710265275955": {
+    "name": "Tomate",
+    "quantity": 5,
+    "unit": ""
+  },
+  "1710268777099": {
+    "name": "Farine pâtisserie",
+    "quantity": 3000,
+    "unit": "g"
+  },
+  "1710783104188": {
+    "name": "Pois chiche",
+    "quantity": 3,
+    "unit": ""
+  },
+  "1710783111492": {
+    "name": "Haricot rouge",
+    "quantity": 2,
+    "unit": ""
+  },
+  "1710783118164": {
+    "name": "Lait",
+    "quantity": 1000,
+    "unit": "g"
+  },
+  "1712517310572": {
+    "name": "Farine pizza",
+    "quantity": 1000,
+    "unit": "g"
+  },
+  "1712517317225": {
+    "name": "Sauce tomate",
+    "quantity": 2,
+    "unit": ""
+  },
+  "1712517331557": {
+    "name": "Artichaut",
+    "quantity": 2,
+    "unit": ""
+  },
+  "1712517353996": {
+    "name": "Échalotte (longue)",
+    "quantity": 8,
+    "unit": ""
+  },
+  "1712517430189": {
+    "name": "Carotte",
+    "quantity": 7,
+    "unit": ""
+  },
+  "1712517437516": {
+    "name": "Concombre",
+    "quantity": 2,
+    "unit": ""
+  },
+  "1712517445636": {
+    "name": "Citron vert",
+    "quantity": 2,
+    "unit": ""
+  },
+  "1712517460668": {
+    "name": "Épinard",
+    "quantity": 500,
+    "unit": "g"
+  },
+  "1713284157660": {
+    "name": "Choux",
+    "quantity": 200,
+    "unit": "g"
+  },
+  "1713284181156": {
+    "name": "Citron jaune",
+    "quantity": 1,
+    "unit": ""
+  },
+  "1713284199700": {
+    "name": "Gingembre",
+    "quantity": 30,
+    "unit": "g"
+  },
+  "1713284204028": {
+    "name": "Poivron",
+    "quantity": 1,
+    "unit": ""
   }
 }

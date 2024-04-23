@@ -27,7 +27,7 @@ fetch('/recipes')
         let sortedIngredients = Array.from(ingredients).sort();
 
         let datalist = document.getElementById('ingredientList');
-        
+
         sortedIngredients.forEach(ingredient => {
             let option = document.createElement('option');
             option.value = ingredient;
@@ -42,7 +42,7 @@ fetch('/recipes')
     .catch(error => {
         console.error('Error fetching meal options: ', error);
     });
-    
+
 function getAllIngredients(allRecipes) {
     // Create a Set to store unique ingredients
     let ingredients = new Set();
@@ -121,7 +121,7 @@ function addFood() {
     const food = ingredientInput.value.trim();
     const quantity = parseInt(quantityInput.value.trim());
     const unit = isUnitG ? 'g' : '';
-    
+
 
     if (food !== '' && !isNaN(quantity)) {
         const existingItem = Object.values(fridge).find(item => item.name === food);
@@ -175,9 +175,9 @@ document.getElementById('ingredientInput').addEventListener('keypress', function
 const ingredientInput = document.getElementById('ingredientInput');
 ingredientInput.addEventListener('input', function() {
     const inputValue = this.value.toLowerCase(); // Convert input value to lowercase
-    
+
     let ingredients = getAllIngredients(allRecipes);
-    
+
     let allIngredients = Array.from(ingredients).sort();
     console.log(allIngredients);
     if (inputValue.length > 0) {
@@ -186,7 +186,7 @@ ingredientInput.addEventListener('input', function() {
             this.value = matchingIngredients[0];
             // focus the quantity input
             document.getElementById('quantityInput').focus();
-            
+
             // Auto-select the unit based on the ingredient
             const selectedIngredient = matchingIngredients[0];
             const selectedUnit = getUnitForIngredient(selectedIngredient);
@@ -297,7 +297,7 @@ function findMissingIngredients() {
             }
             return result;
         }, {});
-        
+
         if (Object.keys(missing).length === 0) {
             const li = document.createElement('li');
             li.textContent = "You have all the ingredients for this recipe!";
@@ -433,15 +433,15 @@ function saveGroceryListToFile() {
       groceryContent.push(items[i].textContent);
   }
   var textContent = groceryContent.join("\n");
-  
+
   var element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textContent));
   element.setAttribute('download', 'grocery_list.txt');
   element.style.display = 'none';
   document.body.appendChild(element);
-  
+
   element.click();
-  
+
   document.body.removeChild(element);
 }
 
@@ -476,7 +476,7 @@ function displayCalendar() {
             let mealSelect = document.createElement('select');
 
             mealSelect.id = 'meal' + i + j;
-            
+
             const mealOptions = Object.keys(allRecipes).map(meal => {
                 return { value: meal, text: meal };
             });
@@ -574,11 +574,11 @@ function addWeeklyGroceryList() {
     let totalIngredients = {};
     missingIngredients = {};
 
-    
+
     // fetchFridge();
     gatherTotalIngredients(totalIngredients);
     compareWithFridge(totalIngredients);
-    
+
 }
 
 function importGroceryList() {
