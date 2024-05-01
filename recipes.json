@@ -23,7 +23,7 @@
         { "name": "Noix de cajou grillées", "quantity": 35, "unit": "g" },
         { "name": "Citron vert", "quantity": 1, "unit": "" },
         { "name": "Avocat", "quantity": 1, "unit": "" },
-        { "name": "Coriandre", "quantity": 0.5, "unit": "" },
+        { "name": "Coriandre", "quantity": 0.25, "unit": "" },
         { "name": "Farine pâtisserie", "quantity": 110, "unit": "g" }
     ],
     "Fajitas": [
@@ -75,7 +75,7 @@
         { "name": "Farine pizza", "quantity": 145, "unit": "g" },
         { "name": "Moutarde", "quantity": 0.1, "unit": "" },
         { "name": "Tomate", "quantity": 2, "unit": "" },
-        { "name": "Olive", "quantity": 5, "unit": "" }
+        { "name": "Olive (boîte)", "quantity": 0.25, "unit": "" }
     ],
     "Quiche (Courgette)": [
         { "name": "Farine pizza", "quantity": 145, "unit": "g" },
@@ -102,13 +102,13 @@
         { "name": "Edamame", "quantity": 20, "unit": "g" },
         { "name": "Crevette", "quantity": 50, "unit": "g" },
         { "name": "Citron jaune", "quantity": 1, "unit": "" },
-        { "name": "Ciboulette", "quantity": 0.5, "unit": "" }
+        { "name": "Ciboulette", "quantity": 0.25, "unit": "" }
     ],
     "Salade grecque": [
         { "name": "Tomate", "quantity": 1, "unit": "" },
         { "name": "Feta", "quantity": 50, "unit": "g" },
         { "name": "Avocat", "quantity": 1, "unit": "" },
-        { "name": "Olive", "quantity": 5, "unit": "" },
+        { "name": "Olive (boîte)", "quantity": 0.25, "unit": "" },
         { "name": "Épinard", "quantity": 40, "unit": "g" },
         { "name": "Concombre", "quantity": 0.5, "unit": "" },
         { "name": "Menthe", "quantity": 0.25, "unit": "" }
@@ -120,7 +120,7 @@
         { "name": "Épinard", "quantity": 40, "unit": "g" },
         { "name": "Citron jaune", "quantity": 1, "unit": "" },
         { "name": "Tomate cerise", "quantity": 3, "unit": "" },
-        { "name": "Ciboulette", "quantity": 0.5, "unit": "" }
+        { "name": "Ciboulette", "quantity": 0.25, "unit": "" }
 
     ],
     "Soupe": [
@@ -136,9 +136,10 @@
         { "name": "Edamame", "quantity": 50, "unit": "g" },
         { "name": "Nouille de riz", "quantity": 100, "unit": "g" },
         { "name": "Citron vert", "quantity": 1, "unit": "" },
+        { "name": "Vinaigre de riz", "quantity": 0.1, "unit": "" },
         { "name": "Cacahuète", "quantity": 20, "unit": "g" },
         { "name": "Épinard", "quantity": 40, "unit": "g" },
-        { "name": "Coriandre", "quantity": 0.5, "unit": "" },
+        { "name": "Coriandre", "quantity": 0.25, "unit": "" },
         { "name": "Avocat", "quantity": 1, "unit": "" }
     ],
     "Pancake": [
@@ -162,7 +163,7 @@
         { "name": "Carotte", "quantity": 1, "unit": "" },
         { "name": "Poireau", "quantity": 0.5, "unit": "" },
         { "name": "Gingembre", "quantity": 15, "unit": "g" },
-        { "name": "Ciboulette", "quantity": 0.5, "unit": "" },
+        { "name": "Ciboulette", "quantity": 0.25, "unit": "" },
         { "name": "Sauce soja", "quantity": 0.1, "unit": "" },
         { "name": "Vinaigre de riz", "quantity": 0.1, "unit": "" },
         { "name": "Gousse d'ail", "quantity": 1, "unit": "" },
