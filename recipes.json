@@ -161,7 +161,7 @@
         { "name": "Farine pâtisserie", "quantity": 150, "unit": "g" },
         { "name": "Champignon", "quantity": 75, "unit": "g" },
         { "name": "Carotte", "quantity": 1, "unit": "" },
-        { "name": "Poireau", "quantity": 0.5, "unit": "" },
+        { "name": "Poireau", "quantity": 0.25, "unit": "" },
         { "name": "Gingembre", "quantity": 15, "unit": "g" },
         { "name": "Ciboulette", "quantity": 0.25, "unit": "" },
         { "name": "Sauce soja", "quantity": 0.1, "unit": "" },
