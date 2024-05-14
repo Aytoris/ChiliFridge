@@ -79,7 +79,7 @@
     ],
     "Quiche (Courgette)": [
         { "name": "Farine pizza", "quantity": 145, "unit": "g" },
-        { "name": "Courgette", "quantity": 1, "unit": "" },
+        { "name": "Courgette", "quantity": 0.5, "unit": "" },
         { "name": "Oeuf", "quantity": 1, "unit": "" },
         { "name": "Parmesan", "quantity": 20, "unit": "g" },
         { "name": "Menthe", "quantity": 0.25, "unit": "" }
