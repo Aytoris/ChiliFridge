@@ -64,10 +64,10 @@
     "Pizza": [
         { "name": "Levure (cube bleu)", "quantity": 1.5, "unit": "g" },
         { "name": "Farine pizza", "quantity": 125, "unit": "g" },
-        { "name": "Poireau", "quantity": 0.5, "unit": "" },
+        { "name": "Poireau", "quantity": 0.25, "unit": "" },
         { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
         { "name": "Sauce tomate", "quantity": 0.25, "unit": "" },
-        { "name": "Artichaut", "quantity": 2, "unit": "" },
+        { "name": "Artichaut", "quantity": 0.5, "unit": "" },
         { "name": "Basilic", "quantity": 0.5, "unit": "" },
         { "name": "Feta", "quantity": 35, "unit": "g" }
     ],
@@ -79,7 +79,7 @@
     ],
     "Quiche (Courgette)": [
         { "name": "Farine pizza", "quantity": 145, "unit": "g" },
-        { "name": "Courgette", "quantity": 1, "unit": "" },
+        { "name": "Courgette", "quantity": 0.5, "unit": "" },
         { "name": "Oeuf", "quantity": 1, "unit": "" },
         { "name": "Parmesan", "quantity": 20, "unit": "g" },
         { "name": "Menthe", "quantity": 0.25, "unit": "" }
@@ -134,7 +134,7 @@
         { "name": "Sauce soja", "quantity": 0.1, "unit": "" },
         { "name": "Tofu", "quantity": 150, "unit": "g" },
         { "name": "Edamame", "quantity": 50, "unit": "g" },
-        { "name": "Nouille de riz", "quantity": 100, "unit": "g" },
+        { "name": "Nouille de riz", "quantity": 125, "unit": "g" },
         { "name": "Citron vert", "quantity": 1, "unit": "" },
         { "name": "Vinaigre de riz", "quantity": 0.1, "unit": "" },
         { "name": "Cacahuète", "quantity": 20, "unit": "g" },

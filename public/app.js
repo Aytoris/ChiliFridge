@@ -74,16 +74,19 @@ function displayFridge() {
 
         const plusButton = document.createElement('button');
         plusButton.textContent = '+';
+        plusButton.style.fontSize = '3em'; // Increase font size
         plusButton.onclick = () => increaseQuantity(item[0]);
         li.appendChild(plusButton);
 
         const minusButton = document.createElement('button');
-        minusButton.textContent = '-';
+        minusButton.textContent = '---';
+        minusButton.style.fontSize = '3em'; // Increase font size
         minusButton.onclick = () => decreaseQuantity(item[0]);
         li.appendChild(minusButton);
 
         const nullifyButton = document.createElement('button');
         nullifyButton.textContent = 'X';
+        nullifyButton.style.fontSize = '3em'; // Increase font size
         nullifyButton.onclick = () => DeleteQuantity(item[0]);
         li.appendChild(nullifyButton);
 
