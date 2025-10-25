@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChiliFridge - Test Locally</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196F3;
+        }
+        .success {
+            background: #e8f5e9;
+            border-left-color: #4CAF50;
+        }
+        .warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .center {
+            text-align: center;
+        }
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧊 ChiliFridge - Local Test</h1>
+
+        <div class="info success">
+            <h3>✅ Your app is ready to test!</h3>
+            <p>This is just a test page. The actual app is in the <code>src/public</code> folder.</p>
+        </div>
+
+        <div class="center">
+            <a href="src/public/index.html" class="button">🚀 Launch ChiliFridge</a>
+        </div>
+
+        <div class="info">
+            <h3>📱 How to Install on Your Phone:</h3>
+            <ol>
+                <li><strong>Start a local server:</strong>
+                    <ul>
+                        <li>Run: <code>./test-pwa.ps1</code></li>
+                        <li>Or: <code>python -m http.server 8000</code> in <code>src/public</code></li>
+                    </ul>
+                </li>
+                <li><strong>Find your computer's IP:</strong>
+                    <ul>
+                        <li>Run <code>ipconfig</code> in PowerShell</li>
+                        <li>Look for "IPv4 Address" (e.g., 192.168.1.100)</li>
+                    </ul>
+                </li>
+                <li><strong>On your Android phone:</strong>
+                    <ul>
+                        <li>Connect to same WiFi as your computer</li>
+                        <li>Open Chrome</li>
+                        <li>Go to: <code>http://YOUR-IP:8000</code></li>
+                    </ul>
+                </li>
+                <li><strong>Install as PWA:</strong>
+                    <ul>
+                        <li>Tap the 3-dot menu in Chrome</li>
+                        <li>Tap "Add to Home screen" or "Install app"</li>
+                        <li>Done! 🎉</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="info warning">
+            <h3>⚠️ Note About Local Testing:</h3>
+            <p>When opening the app with <code>file://</code> protocol (double-clicking index.html):</p>
+            <ul>
+                <li>✅ The app will work</li>
+                <li>❌ Service Worker won't register (requires http:// or https://)</li>
+                <li>❌ Can't install as PWA</li>
+                <li>💡 Use a local server for full PWA features</li>
+            </ul>
+        </div>
+
+        <div class="info">
+            <h3>🚀 For Permanent Installation:</h3>
+            <p>Host the <code>src/public</code> folder on a free service:</p>
+            <ul>
+                <li><strong>GitHub Pages</strong> - Best for version control</li>
+                <li><strong>Netlify Drop</strong> - Easiest (drag & drop)</li>
+                <li><strong>Vercel</strong> - Great developer experience</li>
+            </ul>
+            <p>See <code>MOBILE_INSTALL_GUIDE.md</code> for detailed instructions!</p>
+        </div>
+
+        <div class="center" style="margin-top: 30px;">
+            <a href="MOBILE_INSTALL_GUIDE.md" class="button" style="background: #2196F3;">📖 Read Full Guide</a>
+            <a href="QUICKSTART_MOBILE.md" class="button" style="background: #ff9800;">⚡ Quick Start</a>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; text-align: center; color: #888;">
+            <p>ChiliFridge - Fully Offline PWA</p>
+            <p style="font-size: 12px;">No server required • Works on Android • 100% client-side</p>
+        </div>
+    </div>
+</body>
+</html>

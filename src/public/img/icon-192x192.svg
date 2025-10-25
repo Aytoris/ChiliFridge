@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <rect width="192" height="192" fill="#4CAF50"/>
+  <path d="M48 48h96v16H48zm0 24h96v16H48zm0 24h96v64c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96z" fill="white"/>
+  <text x="96" y="140" font-family="Arial, sans-serif" font-size="48" fill="#4CAF50" text-anchor="middle" font-weight="bold">CF</text>
+</svg>

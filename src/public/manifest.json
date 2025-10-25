@@ -1,0 +1,42 @@
+{
+  "name": "ChiliFridge - Fridge & Recipe Manager",
+  "short_name": "ChiliFridge",
+  "description": "Manage your fridge inventory, recipes, and meal planning - Works offline!",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./img/icon-192x192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./img/icon-512x512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["food", "lifestyle", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Fridge",
+      "short_name": "Fridge",
+      "description": "View fridge inventory",
+      "url": "./index.html#fridge",
+      "icons": [{ "src": "./img/icon-192x192.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Grocery List",
+      "short_name": "Grocery",
+      "description": "View grocery list",
+      "url": "./index.html#grocery",
+      "icons": [{ "src": "./img/icon-192x192.svg", "sizes": "192x192" }]
+    }
+  ]
+}
