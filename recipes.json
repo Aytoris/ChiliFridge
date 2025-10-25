@@ -1,183 +1,1218 @@
-﻿{
-    "Asperge verte": [
-        { "name": "Asperge", "quantity": 4, "unit": "" }
-    ],
-    "Aubergine": [
-        { "name": "Aubergine", "quantity": 1, "unit": "" }
-    ],
-    "Avocado toasts": [
-        { "name": "Avocat", "quantity": 1, "unit": "" },
-        { "name": "Oeuf", "quantity": 2, "unit": "" },
-        { "name": "Roquette", "quantity": 40, "unit": "g" }
-    ],
-    "Butternut farcie": [
-        { "name": "Butternut", "quantity": 0.5, "unit": "" },
-        { "name": "Poireau", "quantity": 0.5, "unit": "" },
-        { "name": "Parmesan", "quantity": 20, "unit": "g" },
-        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
-        { "name": "Quinoa", "quantity": 12.5, "unit": "g" },
-        { "name": "Basilic", "quantity": 0.5, "unit": "" }
-    ],
-    "Chickpeas tacos": [
-        { "name": "Pois chiche", "quantity": 0.5, "unit": "" },
-        { "name": "Noix de cajou grillées", "quantity": 35, "unit": "g" },
-        { "name": "Citron vert", "quantity": 1, "unit": "" },
-        { "name": "Avocat", "quantity": 1, "unit": "" },
-        { "name": "Coriandre", "quantity": 0.25, "unit": "" },
-        { "name": "Farine pâtisserie", "quantity": 110, "unit": "g" }
-    ],
-    "Fajitas": [
-        { "name": "Poivron", "quantity": 1, "unit": "" },
-        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
-        { "name": "Champignon", "quantity": 75, "unit": "g" },
-        { "name": "Haricot rouge", "quantity": 0.5, "unit": "" },
-        { "name": "Tomate", "quantity": 1, "unit": "" },
-        { "name": "Farine pâtisserie", "quantity": 110, "unit": "g" }
-    ],
-    "Frites": [
-        { "name": "Patate", "quantity": 4, "unit": "" }
-    ],
-    "Frittata": [
-        { "name": "Poivron", "quantity": 1, "unit": "" },
-        { "name": "Asperge", "quantity": 2, "unit": "" },
-        { "name": "Oeuf", "quantity": 2, "unit": "" },
-        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
-        { "name": "Basilic", "quantity": 0.5, "unit": "" },
-        { "name": "Tomate cerise", "quantity": 3, "unit": "" }
-    ],
-    "Gnocchi": [
-        { "name": "Courge", "quantity": 0.5, "unit": "" },
-        { "name": "Patate", "quantity": 1, "unit": "" },
-        { "name": "Farine pâtisserie", "quantity": 100, "unit": "g" },
-        { "name": "Oeuf", "quantity": 0.5, "unit": "" },
-        { "name": "Champignon", "quantity": 75, "unit": "g" },
-        { "name": "Roquette", "quantity": 40, "unit": "g" },
-        { "name": "Parmesan", "quantity": 20, "unit": "g" }
-    ],
-    "Hummus": [
-        { "name": "Sésame", "quantity": 25, "unit": "g" },
-        { "name": "Citron jaune", "quantity": 0.5, "unit": "" },
-        { "name": "Cumin", "quantity": 1.25, "unit": "g" },
-        { "name": "Pois chiche", "quantity": 0.5, "unit": "" },
-        { "name": "Gousse d'ail", "quantity": 0.5, "unit": "" }
-    ],
-    "Pizza": [
-        { "name": "Levure (cube bleu)", "quantity": 1.5, "unit": "g" },
-        { "name": "Farine pizza", "quantity": 125, "unit": "g" },
-        { "name": "Poireau", "quantity": 0.25, "unit": "" },
-        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
-        { "name": "Sauce tomate", "quantity": 0.25, "unit": "" },
-        { "name": "Artichaut", "quantity": 0.5, "unit": "" },
-        { "name": "Basilic", "quantity": 0.5, "unit": "" },
-        { "name": "Feta", "quantity": 35, "unit": "g" }
-    ],
-    "Quiche (Tomate)": [
-        { "name": "Farine pizza", "quantity": 145, "unit": "g" },
-        { "name": "Moutarde", "quantity": 0.1, "unit": "" },
-        { "name": "Tomate", "quantity": 2, "unit": "" },
-        { "name": "Olive (boîte)", "quantity": 0.25, "unit": "" }
-    ],
-    "Quiche (Courgette)": [
-        { "name": "Farine pizza", "quantity": 145, "unit": "g" },
-        { "name": "Courgette", "quantity": 0.5, "unit": "" },
-        { "name": "Oeuf", "quantity": 1, "unit": "" },
-        { "name": "Parmesan", "quantity": 20, "unit": "g" },
-        { "name": "Menthe", "quantity": 0.25, "unit": "" }
-    ],
-    "Potimarron": [
-        { "name": "Potimarron", "quantity": 0.5, "unit": "" }
-    ],
-    "Risotto": [
-        { "name": "Riz", "quantity": 100, "unit": "g" },
-        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
-        { "name": "Bouillon", "quantity": 0.5, "unit": "" },
-        { "name": "Parmesan", "quantity": 20, "unit": "g" },
-        { "name": "Tomate", "quantity": 1, "unit": "" },
-        { "name": "Champignon", "quantity": 75, "unit": "g" }
-    ],
-    "Salade crevette": [
-        { "name": "Avocat", "quantity": 1, "unit": "" },
-        { "name": "Épinard", "quantity": 40, "unit": "g" },
-        { "name": "Gingembre", "quantity": 15, "unit": "g" },
-        { "name": "Edamame", "quantity": 20, "unit": "g" },
-        { "name": "Crevette", "quantity": 50, "unit": "g" },
-        { "name": "Citron jaune", "quantity": 1, "unit": "" },
-        { "name": "Ciboulette", "quantity": 0.25, "unit": "" }
-    ],
-    "Salade grecque": [
-        { "name": "Tomate", "quantity": 1, "unit": "" },
-        { "name": "Feta", "quantity": 50, "unit": "g" },
-        { "name": "Avocat", "quantity": 1, "unit": "" },
-        { "name": "Olive (boîte)", "quantity": 0.25, "unit": "" },
-        { "name": "Épinard", "quantity": 40, "unit": "g" },
-        { "name": "Concombre", "quantity": 0.5, "unit": "" },
-        { "name": "Menthe", "quantity": 0.25, "unit": "" }
-    ],
-    "Saumon": [
-        { "name": "Champignon", "quantity": 75, "unit": "g" },
-        { "name": "Saumon", "quantity": 100, "unit": "g" },
-        { "name": "Pomme de terre", "quantity": 2, "unit": "" },
-        { "name": "Épinard", "quantity": 40, "unit": "g" },
-        { "name": "Citron jaune", "quantity": 1, "unit": "" },
-        { "name": "Tomate cerise", "quantity": 3, "unit": "" },
-        { "name": "Ciboulette", "quantity": 0.25, "unit": "" }
-
-    ],
-    "Soupe": [
-        { "name": "Carotte", "quantity": 1.5, "unit": "" },
-        { "name": "Oignon rouge", "quantity": 1.5, "unit": "" },
-        { "name": "Tomate", "quantity": 2, "unit": "" },
-        { "name": "Patate", "quantity": 3, "unit": "" },
-        { "name": "Gousse d'ail", "quantity": 1, "unit": "" }
-    ],
-    "Thai pad": [
-        { "name": "Sauce soja", "quantity": 0.1, "unit": "" },
-        { "name": "Tofu", "quantity": 150, "unit": "g" },
-        { "name": "Edamame", "quantity": 50, "unit": "g" },
-        { "name": "Nouille de riz", "quantity": 125, "unit": "g" },
-        { "name": "Citron vert", "quantity": 1, "unit": "" },
-        { "name": "Vinaigre de riz", "quantity": 0.1, "unit": "" },
-        { "name": "Cacahuète", "quantity": 20, "unit": "g" },
-        { "name": "Épinard", "quantity": 40, "unit": "g" },
-        { "name": "Coriandre", "quantity": 0.25, "unit": "" },
-        { "name": "Avocat", "quantity": 1, "unit": "" }
-    ],
-    "Pancake": [
-        { "name": "Farine pâtisserie", "quantity": 94, "unit": "g" },
-        { "name": "Oeuf", "quantity": 1, "unit": "" },
-        { "name": "Lait", "quantity": 150, "unit": "g" },
-        { "name": "Banane", "quantity": 1, "unit": "" },
-        { "name": "Sirop d'érable", "quantity": 0.1, "unit": "" }
-    ],
-    "Omelette": [
-        { "name": "Oeuf", "quantity": 2, "unit": "" },
-        { "name": "Champignon", "quantity": 75, "unit": "g" },
-        { "name": "Échalotte (longue)", "quantity": 1, "unit": "" },
-        { "name": "Tomate", "quantity": 1, "unit": "" },
-        { "name": "Épinard", "quantity": 40, "unit": "g" }
-    ],
-    "0-Rien": [],
-    "Dumplings": [
-        { "name": "Farine pâtisserie", "quantity": 150, "unit": "g" },
-        { "name": "Champignon", "quantity": 75, "unit": "g" },
-        { "name": "Carotte", "quantity": 1, "unit": "" },
-        { "name": "Poireau", "quantity": 0.5, "unit": "" },
-        { "name": "Gingembre", "quantity": 15, "unit": "g" },
-        { "name": "Ciboulette", "quantity": 0.25, "unit": "" },
-        { "name": "Sauce soja", "quantity": 0.1, "unit": "" },
-        { "name": "Vinaigre de riz", "quantity": 0.1, "unit": "" },
-        { "name": "Gousse d'ail", "quantity": 1, "unit": "" },
-        { "name": "Choux", "quantity": 50, "unit": "g" },
-        { "name": "Échalotte", "quantity": 1, "unit": "" }
-    ],
-    "Seitan": [
-        { "name": "Vital wheat gluten", "quantity": 100, "unit": "g" },
-        { "name": "All-purpose flour", "quantity": 30, "unit": "g" },
-        { "name": "Bouillon", "quantity": 0.5, "unit": "" },
-        { "name": "Sauce soja", "quantity": 0.1, "unit": "" },
-        { "name": "Vinaigre de riz", "quantity": 0.1, "unit": "" },
-        { "name": "Sesame seeds", "quantity": 15, "unit": "g" },
-        { "name": "Gousse d'ail", "quantity": 1, "unit": "" },
-        { "name": "Échalotte", "quantity": 1, "unit": "" }
-    ]
+{
+  "Avocado Toasts": [
+    {
+      "name": "Avocado",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Egg",
+      "quantity": 2,
+      "unit": ""
+    }
+  ],
+  "Stuffed Butternut Squash": [
+    {
+      "name": "Butternut Squash",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Leek",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Parmesan",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "Shallot",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Quinoa",
+      "quantity": 12.5,
+      "unit": "g"
+    }
+  ],
+  "Chickpeas Tacos": [
+    {
+      "name": "Chickpeas",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Cashews",
+      "quantity": 35,
+      "unit": "g"
+    },
+    {
+      "name": "Lime",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Avocado",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Coriander (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Flour",
+      "quantity": 110,
+      "unit": "g"
+    }
+  ],
+  "Fajitas": [
+    {
+      "name": "Bell Pepper",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Shallot",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Mushroom",
+      "quantity": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Red Beans",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Tomato",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Flour",
+      "quantity": 110,
+      "unit": "g"
+    }
+  ],
+  "French Fries": [
+    {
+      "name": "Potato (medium)",
+      "quantity": 4,
+      "unit": ""
+    }
+  ],
+  "Gnocchi": [
+    {
+      "name": "Squash",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Potato (medium)",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Flour",
+      "quantity": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Egg",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Mushroom",
+      "quantity": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Arugula",
+      "quantity": 40,
+      "unit": "g"
+    }
+  ],
+  "Hummus": [
+    {
+      "name": "Sesame Seeds",
+      "quantity": 25,
+      "unit": "g"
+    },
+    {
+      "name": "Lemon",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Cumin (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Chickpeas",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Garlic Clove",
+      "quantity": 0.5,
+      "unit": ""
+    }
+  ],
+  "Pizza": [
+    {
+      "name": "Yeast (blue cube)",
+      "quantity": 10,
+      "unit": "g"
+    },
+    {
+      "name": "Flour",
+      "quantity": 125,
+      "unit": "g"
+    },
+    {
+      "name": "Tomato Sauce (piece)",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Olives (can)",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Shallot",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Artichoke",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Egg",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Tofu",
+      "quantity": 25,
+      "unit": "g"
+    }
+  ],
+  "Tomato Quiche": [
+    {
+      "name": "Flour",
+      "quantity": 145,
+      "unit": "g"
+    },
+    {
+      "name": "Mustard",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Tomato",
+      "quantity": 1.5,
+      "unit": ""
+    },
+    {
+      "name": "Olives (can)",
+      "quantity": 0.25,
+      "unit": ""
+    }
+  ],
+  "Sweet potato (oven)": [
+    {
+      "name": "Sweet potato",
+      "quantity": 100,
+      "unit": "g"
+    }
+  ],
+  "Zucchini Quiche": [
+    {
+      "name": "Flour",
+      "quantity": 145,
+      "unit": "g"
+    },
+    {
+      "name": "Zucchini",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Egg",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Tofu",
+      "quantity": 25,
+      "unit": "g"
+    }
+  ],
+  "Risotto": [
+    {
+      "name": "Shallot",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Broth",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Parmesan",
+      "quantity": 30,
+      "unit": "g"
+    },
+    {
+      "name": "Tomato",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Mushroom",
+      "quantity": 40,
+      "unit": "g"
+    }
+  ],
+  "Cloclo Salad": [
+    {
+      "name": "Tomato",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Feta",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Avocado",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Olives (can)",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Salad",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Bell Pepper",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Matvete",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Pear",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Cucumber",
+      "quantity": 0.25,
+      "unit": ""
+    }
+  ],
+  "Salmon (+ mashed potatoes?)": [
+    {
+      "name": "Mushroom",
+      "quantity": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Salmon",
+      "quantity": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Potato (medium)",
+      "quantity": 4,
+      "unit": ""
+    },
+    {
+      "name": "Cherry Tomato",
+      "quantity": 8,
+      "unit": ""
+    },
+    {
+      "name": "Asparagus",
+      "quantity": 4,
+      "unit": ""
+    }
+  ],
+  "Cesar salad": [
+    {
+      "name": "Chicken",
+      "quantity": 62.5,
+      "unit": "g"
+    },
+    {
+      "name": "Bacon",
+      "quantity": 37.5,
+      "unit": "g"
+    },
+    {
+      "name": "Romane Lettuce",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Kale",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Red Onion",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Cherry Tomato",
+      "quantity": 2,
+      "unit": ""
+    },
+    {
+      "name": "Persillade (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Croutons",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Parmesan",
+      "quantity": 12.5,
+      "unit": "g"
+    },
+    {
+      "name": "Mayonnaise",
+      "quantity": 12.5,
+      "unit": "g"
+    },
+    {
+      "name": "Mustard",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Citron",
+      "quantity": 0.25,
+      "unit": ""
+    }
+  ],
+  "Red Curry Lentil": [
+    {
+      "name": "Coconut Oil",
+      "quantity": 0.25,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Garlic Clove",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Ginger",
+      "quantity": 3.75,
+      "unit": "g"
+    },
+    {
+      "name": "Turmeric (powder)",
+      "quantity": 0.025,
+      "unit": ""
+    },
+    {
+      "name": "Cumin (powder)",
+      "quantity": 0.25,
+      "unit": "tsp"
+    },
+    {
+      "name": "Coriander (powder)",
+      "quantity": 0.125,
+      "unit": "tsp"
+    },
+    {
+      "name": "Curry (powder)",
+      "quantity": 0.5,
+      "unit": "tsp"
+    },
+    {
+      "name": "Garam Masala (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Red Lentils",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Broth",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Tomato Sauce (piece)",
+      "quantity": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Coconut Milk",
+      "quantity": 100,
+      "unit": "mL"
+    },
+    {
+      "name": "Peanut Butter",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Lemon",
+      "quantity": 0.125,
+      "unit": ""
+    },
+    {
+      "name": "Coriander (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    }
+  ],
+  "Thai Pad": [
+    {
+      "name": "Soy Sauce",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Tofu",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Edamame",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Rice Noodles",
+      "quantity": 90,
+      "unit": "g"
+    },
+    {
+      "name": "Lime",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Rice Vinegar",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Egg",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Peanuts",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "Salad",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Coriander (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Avocado",
+      "quantity": 1,
+      "unit": ""
+    }
+  ],
+  "Pancake": [
+    {
+      "name": "Flour",
+      "quantity": 94,
+      "unit": "g"
+    },
+    {
+      "name": "Egg",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Milk",
+      "quantity": 150,
+      "unit": "g"
+    },
+    {
+      "name": "Banana",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Maple Syrup",
+      "quantity": 0.1,
+      "unit": ""
+    }
+  ],
+  "Mushroom Omelette (with wheat or rice)": [
+    {
+      "name": "Egg",
+      "quantity": 3,
+      "unit": ""
+    },
+    {
+      "name": "Mushroom",
+      "quantity": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Peas",
+      "quantity": 30,
+      "unit": "g"
+    },
+    {
+      "name": "Matvete",
+      "quantity": 75,
+      "unit": "g"
+    },
+    {
+      "name": "Shallot",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Frozen Spinach",
+      "quantity": 15,
+      "unit": "g"
+    }
+  ],
+  "Zucchini Omelette (with wheat or rice)": [
+    {
+      "name": "Egg",
+      "quantity": 3,
+      "unit": ""
+    },
+    {
+      "name": "Mushroom",
+      "quantity": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Zucchini",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Matvete",
+      "quantity": 75,
+      "unit": "g"
+    },
+    {
+      "name": "Peas",
+      "quantity": 30,
+      "unit": "g"
+    },
+    {
+      "name": "Shallot",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Frozen Spinach",
+      "quantity": 15,
+      "unit": "g"
+    }
+  ],
+  "Dumplings": [
+    {
+      "name": "Flour",
+      "quantity": 150,
+      "unit": "g"
+    },
+    {
+      "name": "Mushroom",
+      "quantity": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Carrot",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Leek",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Ginger",
+      "quantity": 15,
+      "unit": "g"
+    },
+    {
+      "name": "Chives",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Soy Sauce",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Rice Vinegar",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Garlic Clove",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Shallot",
+      "quantity": 1,
+      "unit": ""
+    }
+  ],
+  "Poke Bowl": [
+    {
+      "name": "Mango",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Edamame",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Avocado",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Cucumber",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Soy Sauce",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Candied Ginger",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "Tofu",
+      "quantity": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Mixed Beans",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Lettuce",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "Rice Vinegar",
+      "quantity": 0.1,
+      "unit": ""
+    }
+  ],
+  "Ramen": [
+    {
+      "name": "Ramen Noodles",
+      "quantity": 125,
+      "unit": "g"
+    },
+    {
+      "name": "Mushroom",
+      "quantity": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Carrot",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Ginger",
+      "quantity": 15,
+      "unit": "g"
+    },
+    {
+      "name": "Coriander (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Soy Sauce",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Rice Vinegar",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Sesame Oil",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Garlic Clove",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Sesame Seeds",
+      "quantity": 10,
+      "unit": "g"
+    },
+    {
+      "name": "Broth",
+      "quantity": 1,
+      "unit": ""
+    }
+  ],
+  "Lasagna": [
+    {
+      "name": "Lasagna Pasta",
+      "quantity": 125,
+      "unit": "g"
+    },
+    {
+      "name": "Tomato Sauce (piece)",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Aubergine",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Frozen Spinach",
+      "quantity": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Feta",
+      "quantity": 50,
+      "unit": "g"
+    }
+  ],
+  "Indian Curry (chickpea)": [
+    {
+      "name": "Shallot",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Garlic Clove",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Ginger",
+      "quantity": 10,
+      "unit": "g"
+    },
+    {
+      "name": "Chickpeas",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Frozen Spinach",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Tomato Sauce (piece)",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Cumin (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Curry (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Coriander (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Coconut Milk",
+      "quantity": 40,
+      "unit": "g"
+    }
+  ],
+  "Butternut Squash Soup": [
+    {
+      "name": "Butternut Squash",
+      "quantity": 0.5,
+      "unit": ""
+    }
+  ],
+  "Carrot Soup etc": [
+    {
+      "name": "Carrot",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Tomato",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Potato (medium)",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Zucchini",
+      "quantity": 0.25,
+      "unit": ""
+    }
+  ],
+  "Shrimp Salad": [
+    {
+      "name": "Avocado",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Spinach",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "Ginger",
+      "quantity": 15,
+      "unit": "g"
+    },
+    {
+      "name": "Edamame",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "Shrimp",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Lemon",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Chives",
+      "quantity": 0.25,
+      "unit": ""
+    }
+  ],
+  "Lentil Soup": [
+    {
+      "name": "Shallot",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Carrot",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Garlic Clove",
+      "quantity": 2,
+      "unit": ""
+    },
+    {
+      "name": "Cumin (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Curry (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Thyme (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Tomato",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Lentil",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Broth",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Lemon",
+      "quantity": 0.5,
+      "unit": ""
+    }
+  ],
+  "Lentil Salad": [
+    {
+      "name": "Kale",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Almond",
+      "quantity": 10,
+      "unit": "g"
+    },
+    {
+      "name": "Spring onions",
+      "quantity": 3,
+      "unit": ""
+    },
+    {
+      "name": "Lemon",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Lentils",
+      "quantity": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Cumin (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Olives (can)",
+      "quantity": 0.25,
+      "unit": ""
+    }
+  ],
+  "Lentil Stew": [
+    {
+      "name": "Shallot",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Carrot",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Celery",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Potato (medium)",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Garlic Clove",
+      "quantity": 2,
+      "unit": ""
+    },
+    {
+      "name": "Zucchini",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Coriander (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Cumin (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Turmeric (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Cinnamon (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Parsley",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Tomato",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Broth",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Lemon",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Lentil",
+      "quantity": 100,
+      "unit": "g"
+    }
+  ],
+  "Greek Salad": [
+    {
+      "name": "Tomato",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Feta",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Avocado",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Olives (can)",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Lettuce",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "Cucumber",
+      "quantity": 0.25,
+      "unit": ""
+    }
+  ],
+  "Chili (beans)": [
+    {
+      "name": "Red Onion",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Bell Pepper",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Carrot",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Celery",
+      "quantity": 0.25,
+      "unit": ""
+    },
+    {
+      "name": "Garlic Clove",
+      "quantity": 2,
+      "unit": ""
+    },
+    {
+      "name": "Cumin (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Coriander (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Paprika (powder)",
+      "quantity": 0.1,
+      "unit": ""
+    },
+    {
+      "name": "Tomato",
+      "quantity": 1,
+      "unit": ""
+    },
+    {
+      "name": "Mixed Beans",
+      "quantity": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "Lime",
+      "quantity": 0.5,
+      "unit": ""
+    }
+  ]
 }

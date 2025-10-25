@@ -1,0 +1,887 @@
+/* Main layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.fridge, .content, .grocery {
+    flex: 1;
+    min-width: 300px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Calendar section should be full width */
+.calendar-section {
+    flex-basis: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.calendar-section h2 {
+    color: #333;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+h1, h2 {
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Form controls */
+input, select, button {
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 8px 15px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+}
+
+/* Button styles for secondary actions */
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin: 5px 0;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+/* Calendar */
+.calendar-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#calendar {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 15px;
+}
+
+.day-card {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    color: #495057;
+    margin: 5px;
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.day-name {
+    font-weight: bold;
+    margin-bottom: 15px;
+    background-color: #5a6268;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* Different gradient options for meal containers */
+.meal-container {
+    margin-bottom: 15px;
+    padding: 12px;
+    background: linear-gradient(135deg, #E0F7FA, #80DEEA);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Active state with a more vibrant color */
+.meal-active {
+    background: linear-gradient(135deg, #4FC3F7, #0288D1);
+    box-shadow: 0 5px 10px rgba(2, 136, 209, 0.3);
+    transform: translateY(-2px);
+}
+
+.meal-active label {
+    color: white;
+    font-weight: 600;
+}
+
+.meal-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.meal-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.15), transparent);
+    z-index: 1;
+}
+
+.meal-selector {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    color: #333;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.people-selector {
+    width: 60px;
+    padding: 8px;
+    margin-left: 5px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    color: #333;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+/* Add styles for people label */
+.meal-container label {
+    color: white;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 2;
+}
+
+/* Error messages */
+.error {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Form group */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Smooth transitions for all elements */
+.day-card, .day-name, .meal-container, .meal-selector, .people-selector, button {
+    transition: all 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .fridge, .content, .grocery {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .day-card {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .form-group button, 
+    .form-group input, 
+    .form-group select {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    #calendar div {
+        width: 100%;
+    }
+}
+
+/* Category styling for grocery list */
+.category-header {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    margin-top: 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #495057;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.category-header:first-child {
+    margin-top: 0;
+}
+
+.category-name {
+    font-size: 1.1em;
+}
+
+.category-count {
+    font-size: 0.9em;
+    color: #6c757d;
+    background-color: #e9ecef;
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+
+.grocery-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.grocery-item:hover {
+    background-color: #f8f9fa;
+}
+
+.item-name {
+    flex-grow: 1;
+}
+
+.item-quantity {
+    color: #6c757d;
+    margin-right: 15px;
+    white-space: nowrap;
+}
+
+.delete-item-btn {
+    background-color: transparent;
+    color: #dc3545;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0 5px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.delete-item-btn:hover {
+    opacity: 1;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 600px;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #212529;
+}
+
+.close-modal {
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Sortable list styles */
+.sortable-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.sortable-item {
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.sortable-item:hover {
+    background-color: #e9ecef;
+}
+
+.sortable-item.dragging {
+    opacity: 0.5;
+    background-color: #e2f2ff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.drag-handle {
+    padding-right: 10px;
+    color: #6c757d;
+}
+
+.section-name {
+    flex-grow: 1;
+}
+
+/* Shopping mode styles */
+.shopping-mode .grocery-item {
+    padding-left: 45px;
+    position: relative;
+}
+
+.shopping-checkbox {
+    position: absolute;
+    left: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.item-purchased {
+    background-color: #f8f9fa;
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.shopping-progress {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #28a745;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.current-section {
+    background-color: #cff4fc;
+    border-left: 4px solid #0dcaf0;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(13, 202, 240, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(13, 202, 240, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(13, 202, 240, 0); }
+}
+
+/* Shopping mode button */
+#toggleShoppingModeBtn {
+    background-color: #0d6efd;
+    margin-top: 10px;
+}
+
+#toggleShoppingModeBtn.active {
+    background-color: #dc3545;
+}
+
+/* Quantity input field for fridge items */
+.quantity-input {
+    width: 60px;
+    text-align: center;
+    margin: 0 5px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.quantity-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 3px rgba(76, 175, 80, 0.5);
+}
+
+/* Adjust spacing for fridge items */
+#fridgeList li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+#fridgeList li > span {
+    margin-right: 5px;
+}
+
+#fridgeList li > div {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+
+.calendar-section .form-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.calendar-section .form-group button {
+    min-width: 180px;
+}
+
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background-color: #333;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.3s ease forwards, fadeOut 0.5s ease 2.5s forwards;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+}
+
+.toast.success {
+    background-color: #4CAF50;
+}
+
+.toast.info {
+    background-color: #2196F3;
+}
+
+.toast.warning {
+    background-color: #ff9800;
+}
+
+.toast.error {
+    background-color: #f44336;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Fridge Category Styles */
+.fridge-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+#fridgeList .category-header {
+    background-color: #edf7ee;
+    padding: 10px 15px;
+    margin-top: 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #495057;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-left: 4px solid #4CAF50;
+}
+
+#fridgeList .category-header:first-child {
+    margin-top: 0;
+}
+
+.fridge-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+.fridge-item:hover {
+    background-color: #f8f9fa;
+}
+
+.fridge-item > span {
+    margin-right: 5px;
+}
+
+.item-controls {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.category-select {
+    max-width: 120px;
+    font-size: 0.85em;
+    padding: 4px;
+}
+
+#ingredientCategorySelect {
+    min-width: 120px;
+}
+
+/* Adjust styling for category edit modal */
+.sortable-item .category-name-edit {
+    display: none;
+    margin: 0 5px;
+}
+
+.sortable-item.editing .category-name-edit {
+    display: inline-block;
+}
+
+.sortable-item .handle {
+    cursor: move;
+    padding: 0 5px;
+    color: #6c757d;
+}
+
+/* Fix for existing fridge styles */
+#fridgeList li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+#fridgeList li > span {
+    margin-right: 5px;
+}
+
+#fridgeList li > div {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+
+.empty-message {
+    padding: 15px;
+    color: #6c757d;
+    text-align: center;
+    font-style: italic;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin: 10px 0;
+}
+
+/* Recipe availability styling */
+.recipe-available {
+    color: #28a745 !important;
+    font-weight: bold !important;
+}
+
+.recipe-unavailable {
+    color: #6c757d !important;
+    font-style: italic !important;
+    opacity: 0.7 !important;
+}
+
+/* Style for the meal select dropdown */
+#mealSelect {
+    min-width: 180px;
+    font-size: 1em;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: white;
+}
+
+#mealSelect option {
+    padding: 8px;
+}
+
+#mealSelect option.recipe-available {
+    background-color: #f0f8f0 !important;
+}
+
+#mealSelect option.recipe-unavailable {
+    background-color: #f8f9fa !important;
+}
+
+/* Cooking Mode Styles */
+.cooking-mode-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .cooking-mode-container {
+        flex-direction: row;
+    }
+    
+    .recipe-details, .recipe-instructions {
+        flex: 1;
+    }
+}
+
+.recipe-details, .recipe-instructions {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.cooking-ingredients-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cooking-ingredients-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cooking-ingredients-list li:last-child {
+    border-bottom: none;
+}
+
+.ingredient-name {
+    font-weight: normal;
+}
+
+.ingredient-quantity {
+    color: #666;
+    font-weight: bold;
+}
+
+.cooking-instructions {
+    line-height: 1.6;
+}
+
+.cooking-instructions ol {
+    padding-left: 20px;
+}
+
+.cooking-instructions li {
+    margin-bottom: 15px;
+}
+
+.serving-control {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.serving-control select {
+    width: 60px;
+}
+
+.cook-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-left: 10px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+    z-index: 10;
+    position: relative;
+}
+
+.cook-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Make the cooking mode modal larger */
+#cookingModeModal .modal-content {
+    max-width: 900px;
+    width: 90%;
+}
+
+#cookingModeTitle {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.serving-info {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.1em;
+}
+
+#cookingModeServingsDisplay {
+    font-weight: bold;
+    color: #4CAF50;
+} 

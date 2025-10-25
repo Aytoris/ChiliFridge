@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fridge App</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Calendar Section - Full width -->
+    <div class="calendar-section">
+        <h2>Meal Planner</h2>
+        <div id="calendar" class="calendar-container"></div>
+        <div class="form-group">
+            <button id="addWeeklyGroceryListButton" class="btn-primary">Add Weekly Grocery List</button>
+            <button id="clearCalendarButton" class="btn-secondary">Clear Meal Planner</button>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="fridge">
+            <h1>Chloé's Fridge</h1>
+            <div class="form-group">
+                <input type="text" id="ingredientInput" list="ingredientList" placeholder="Select food">
+                <datalist id="ingredientList"></datalist>
+                <label for="quantityInput">Quantity:</label>
+                <input type="number" id="quantityInput" min="0.1" step="0.1" placeholder="Enter quantity" size="8" inputmode="decimal">
+                <span id="unitDisplay"></span>
+                <button id="toggleUnitBtn">Toggle Unit</button>
+                <select id="ingredientCategorySelect">
+                    <!-- Will be filled dynamically -->
+                </select>
+                <button id="addFoodBtn">Add</button>
+            </div>
+            
+            <h2>Inventory</h2>
+            <div class="fridge-controls">
+                <button id="toggleFridgeCategoriesBtn">Hide Categories</button>
+                <button id="editFridgeCategoriesBtn" class="btn-secondary">Edit Categories</button>
+                <button id="clearFridgeBtn">Clear Fridge</button>
+            </div>
+            <ul id="fridgeList"></ul>
+        </div>
+        
+        <div class="content">
+            <h2>Cook a Meal</h2>
+            <div class="form-group">
+                <label for="mealSelect">Select a Meal:</label>
+                <select id="mealSelect"></select>
+                <button id="cookMealBtn">Cook</button>
+                <label for="peopleCountMeal">Number of people: </label>
+                <select id="peopleCountMeal">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            
+            <h2>Recipe Ingredients</h2>
+            <ul id="recipeIngredients"></ul>
+            
+            <h2 style="color:red">Missing Ingredients</h2>
+            <ul id="missingIngredients"></ul>
+            <button id="addMissingBtn">Add All Missing Ingredients to Grocery List</button>
+        </div>
+        
+        <div class="grocery">
+            <h2>Grocery List</h2>
+            <ul id="groceryList"></ul>
+            <div class="form-group">
+                <button id="clearGroceryBtn">Clear Grocery List</button>
+                <button id="sendToFridgeBtn">Add food to fridge</button>
+            </div>
+            <div class="form-group">
+                <button id="toggleShoppingModeBtn">Enter Shopping Mode</button>
+                <button id="storeLayoutBtn" class="btn-secondary">Store Layout</button>
+            </div>
+            <div class="form-group">
+                <button id="exportGroceryBtn">Export Grocery List</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Store Layout Modal (hidden by default) -->
+    <div id="storeLayoutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Store Layout Settings</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Drag and drop categories to match your grocery store layout:</p>
+                
+                <ul id="storeSectionsList" class="sortable-list">
+                    <!-- Will be filled dynamically -->
+                </ul>
+                
+                <div class="form-group">
+                    <button id="resetStoreLayout" class="btn-secondary">Reset to Default</button>
+                    <button id="saveStoreLayout" class="btn-primary">Save Layout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Fridge Categories Modal (hidden by default) -->
+    <div id="fridgeCategoriesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Fridge Storage Locations</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Drag and drop categories to match your kitchen storage locations:</p>
+                
+                <div id="fridgeCategoriesModalList" class="sortable-list">
+                    <!-- Will be filled dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cooking Mode Modal (hidden by default) -->
+    <div id="cookingModeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="cookingModeTitle">Cooking Mode</h3>
+                <span class="close-modal" id="closeCookingMode">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="cooking-mode-container">
+                    <div class="recipe-details">
+                        <h4>Ingredients</h4>
+                        <div class="serving-info">
+                            <span>Servings: </span><span id="cookingModeServingsDisplay">1</span>
+                        </div>
+                        <ul id="cookingModeIngredients" class="cooking-ingredients-list"></ul>
+                    </div>
+                    <div class="recipe-instructions">
+                        <h4>Instructions</h4>
+                        <div id="cookingModeInstructions" class="cooking-instructions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Module -->
+    <script src="js/api.js"></script>
+    
+    <!-- Utility Module -->
+    <script src="js/utility.js"></script>
+    
+    <!-- Feature Modules -->
+    <script src="js/storeCategoriesData.js"></script>
+    <script src="js/fridge.js"></script>
+    <script src="js/meal.js"></script>
+    <script src="js/grocery.js"></script>
+    <script src="js/calendar.js"></script>
+    
+    <!-- Sortable Library for drag-and-drop -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+    
+    <!-- Main Script -->
+    <script>
+        // Initialize all modules when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, initializing modules');
+            
+            // Make sure modules don't throw errors if other modules are not ready
+            window.onerror = function(message, source, lineno, colno, error) {
+                console.log('Error caught:', message);
+                // Return true to prevent the error from being displayed in the console
+                return true;
+            };
+            
+            // Initialize modules in proper sequence with error handling
+            try {
+                // First initialize MealModule which others depend on
+                MealModule.init().catch(err => console.log('MealModule init error:', err));
+
+                // Then initialize other modules with small delays to ensure proper order
+                setTimeout(() => {
+                    try { FridgeModule.init(); } catch (e) { console.log('FridgeModule init error:', e); }
+                }, 100);
+
+                setTimeout(() => {
+                    try { GroceryModule.init(); } catch (e) { console.log('GroceryModule init error:', e); }
+                }, 200);
+
+                setTimeout(() => {
+                    try { CalendarModule.init(); } catch (e) { console.log('CalendarModule init error:', e); }
+                }, 300);
+            } catch (e) {
+                console.log('Module initialization error:', e);
+            }
+            
+            console.log('All modules initialization started');
+        });
+    </script>
+    
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+</body>
+</html> 
