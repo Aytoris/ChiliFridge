@@ -95,6 +95,11 @@ const CalendarModule = (() => {
       dayCard.className = 'day-card';
       dayCard.id = `day-${i}`;
 
+      // Mark the current day (i === 0 means today)
+      if (i === 0) {
+        dayCard.classList.add('current-day');
+      }
+
       // Add day name
       const dayNameDiv = document.createElement('div');
       dayNameDiv.className = 'day-name';
@@ -208,6 +213,9 @@ const CalendarModule = (() => {
 
       calendarEl.appendChild(dayCard);
     }
+
+    // Scroll to current day after rendering
+    scrollToCurrentDay();
   };
 
   /**
@@ -413,6 +421,32 @@ const CalendarModule = (() => {
 
       Utility.showToast('Meal planner has been cleared!', 'info');
     }
+  };
+
+  /**
+   * Scroll to the current day in the calendar
+   */
+  const scrollToCurrentDay = () => {
+    // Use setTimeout to ensure the DOM is fully rendered
+    setTimeout(() => {
+      const currentDayCard = document.querySelector('.day-card.current-day');
+      const calendarContainer = document.querySelector('.calendar-container');
+
+      if (currentDayCard && calendarContainer) {
+        // Calculate the scroll position to center the current day
+        const cardLeft = currentDayCard.offsetLeft;
+        const cardWidth = currentDayCard.offsetWidth;
+        const containerWidth = calendarContainer.offsetWidth;
+
+        // Center the card in the viewport
+        const scrollPosition = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+
+        calendarContainer.scrollTo({
+          left: scrollPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   /**

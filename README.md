@@ -1,234 +1,117 @@
-# 🧊 ChiliFridge - Fridge & Recipe Manager# Fridge Recipe Manager
+# 🧊 ChiliFridge - Fridge & Recipe Manager
 
+**A fully offline Progressive Web App to manage your fridge inventory, recipes, and grocery lists.**
 
+> 📱 **No server required!** Runs completely on your phone. Works 100% offline.
 
-**A fully offline Progressive Web App to manage your fridge inventory, recipes, and grocery lists.**A local application to manage your fridge inventory, recipes, and grocery lists.
+---
 
+## ✨ Features
 
-
-> 📱 **No server required!** Runs completely on your phone. Works 100% offline.## Features
-
-
-
----- **Fridge Management**: Keep track of what's in your fridge
-
-- **Recipe Catalog**: Store and browse your favorite recipes
-
-## ✨ Features- **Meal Planning**: Plan your meals for the week
-
-- **Grocery List**: Generate grocery lists based on missing ingredients
-
-- 🥗 **Fridge Management** - Track what's in your fridge- **Calendar**: Plan your meals for the week
-
+- 🥗 **Fridge Management** - Track what's in your fridge
 - 📖 **40+ Built-in Recipes** - All embedded in the app
-
-- 📅 **Meal Planning** - Weekly meal calendar## Project Structure
-
+- 📅 **Meal Planning** - Weekly meal calendar
 - 🛒 **Smart Grocery Lists** - Auto-generate from meal plans
-
-- 🏪 **Shopping Mode** - Organize by store layoutThe project follows a modular architecture:
-
+- 🏪 **Shopping Mode** - Organize by store layout
 - 📱 **Progressive Web App** - Install like a native app
+- ✈️ **Works Offline** - No internet needed
+- 🔒 **Privacy First** - All data stored locally
 
-- ✈️ **Works Offline** - No internet needed```
+---
 
-- 🔒 **Privacy First** - All data stored locally├── data/                 # Database storage
+## 🚀 Quick Start
 
-│   └── fridge.sqlite     # SQLite database file
+### Access the Live App:
 
----├── recipes.json          # Recipe data storage
+**Deployed on GitHub Pages:** `https://Aytoris.github.io/ChiliFridge`
 
-├── server.js             # Main server file
+### Install on Your Phone:
 
-## 🚀 Quick Start├── package.json          # Project dependencies
+1. **On Android**:
+   - Open the URL above in Chrome
+   - Tap menu (⋮) → "Add to Home screen" or "Install app"
 
-└── src/
+2. **On iOS**:
+   - Open the URL above in Safari
+   - Tap Share button → "Add to Home Screen"
 
-### For Mobile (Android/iOS):    ├── controllers/      # Business logic
+3. **Done!** 🎉 The app icon appears on your home screen
 
-    ├── database/         # Database configuration and models
+See **[MOBILE_INSTALL_GUIDE.md](MOBILE_INSTALL_GUIDE.md)** for detailed instructions.
 
-1. **Host the app** (choose one):    │   ├── config.js     # Database configuration
-
-   - **Netlify**: Drag `src/public` to [Netlify Drop](https://app.netlify.com/drop)    │   ├── index.js      # Database initialization
-
-   - **GitHub Pages**: Push to GitHub, enable Pages    │   ├── migrate.js    # Migration script
-
-   - **Vercel**: Deploy with `vercel --prod`    │   └── models/       # Sequelize models
-
-    │       └── FridgeItem.js # Fridge item model
-
-2. **Install on your phone**:    ├── models/           # Data models
-
-   - Open the hosted URL in Chrome    ├── routes/           # API routes
-
-   - Tap menu → "Add to Home screen"    ├── utils/            # Utility functions
-
-   - Done! 🎉    └── public/           # Frontend files
-
-        ├── css/          # Stylesheets
-
-See **[MOBILE_INSTALL_GUIDE.md](MOBILE_INSTALL_GUIDE.md)** for detailed instructions.        ├── js/           # JavaScript modules
-
-        ├── img/          # Images
-
----        └── index.html    # Main HTML file
-
-```
+---
 
 ## 📂 Project Structure
 
-## Getting Started
-
 ```
-
-ChiliFridge/### Prerequisites
-
-├── src/public/              ← YOUR APP (deploy this folder!)
-
-│   ├── index.html           Main app- Node.js (v12 or higher)
-
+ChiliFridge/
+├── src/public/              ← THE APP (deployed to GitHub Pages)
+│   ├── index.html           Main app
 │   ├── manifest.json        PWA config
-
-│   ├── sw.js               Service worker### Installation
-
+│   ├── sw.js               Service worker
 │   ├── css/
-
-│   │   └── styles.css1. Clone the repository
-
-│   ├── js/2. Install dependencies:
-
-│   │   ├── recipesData.js   40+ embedded recipes   ```
-
-│   │   ├── api.js           localStorage API   npm install
-
-│   │   ├── fridge.js        Fridge management   ```
-
-│   │   ├── meal.js          Meal planning3. Start the server:
-
-│   │   ├── grocery.js       Grocery lists   ```
-
-│   │   ├── calendar.js      Week planner   npm start
-
-│   │   └── ...   # OR
-
-│   └── img/   node server.js
-
-│       ├── icon-192x192.svg   ```
-
-│       └── icon-512x512.svg4. Open your browser and navigate to `http://localhost:3000`
-
+│   │   └── styles.css
+│   ├── js/
+│   │   ├── recipesData.js   40+ embedded recipes
+│   │   ├── api.js           localStorage API
+│   │   ├── fridge.js        Fridge management
+│   │   ├── meal.js          Meal planning
+│   │   ├── grocery.js       Grocery lists
+│   │   ├── calendar.js      Week planner
+│   │   └── ...
+│   └── img/
+│       ├── icon-192x192.svg
+│       └── icon-512x512.svg
 ├── MOBILE_INSTALL_GUIDE.md  ← Installation guide
-
-├── QUICKSTART_MOBILE.md      Quick reference## Development
-
-├── DEPLOYMENT_CHECKLIST.md   Deploy steps
-
-├── CLEANUP_GUIDE.md          Remove old filesFor development with auto-restart:
-
-└── test-local.html           Test locally
-
-``````
-
-npm run dev
-
----```
-
-
-
-## 🎯 How It Works## How It Works
-
-
-
-### All Client-Side:1. **Fridge Management**: Add items to your fridge with quantities
-
-- ✅ **No Node.js server** - Just HTML/CSS/JavaScript2. **Recipe Browsing**: Select recipes to see required ingredients
-
-- ✅ **No database server** - Uses browser localStorage3. **Missing Ingredients**: The app shows what ingredients you're missing
-
-- ✅ **No API calls** - All data is local4. **Grocery List**: Add missing ingredients to your grocery list
-
-- ✅ **No internet needed** - Works completely offline5. **Meal Planning**: Plan your meals for the week and generate a grocery list
-
-
-
-### Data Storage:## Data Storage
-
-- All data stored in browser's localStorage
-
-- Recipes embedded in JavaScriptThe application uses a SQLite database for storing fridge items:
-
-- No external dependencies- Fridge items are stored in a SQLite database (`data/fridge.sqlite`)
-
-- Private and secure- Recipes are still stored in `recipes.json`
-
-
-
----### Migration
-
-
-
-## 📱 InstallationIf you're upgrading from a previous version that used JSON files, you can migrate your data:
-
-
-
-### Option 1: Quick Deploy (Recommended)```
-
-npm run migrate
-
-**Netlify Drop (2 minutes):**```
-
-```bash
-
-1. Go to https://app.netlify.com/dropThis will transfer data from the old `fridge.json` to the new SQLite database.
-
-2. Drag the 'src/public' folder
-
-3. Get your URL## License
-
-4. Install as PWA on phone
-
-```MIT
-
-### Option 2: GitHub Pages
-
-```bash
-1. Push src/public to GitHub
-2. Settings → Pages → Enable
-3. Visit https://yourusername.github.io/chilifridge
-4. Install as PWA
-```
-
-### Option 3: Test Locally
-
-```powershell
-# PowerShell
-.\test-pwa.ps1
-
-# Or Python
-cd src/public
-python -m http.server 8000
-
-# Then visit http://localhost:8000
+├── QUICKSTART_MOBILE.md      Quick reference
+├── DEPLOYMENT_CHECKLIST.md   GitHub Pages info
+└── README.md                This file
 ```
 
 ---
 
-## 🧹 Cleanup Old Server Files
+## 🎯 How It Works
 
-If you have server files from a previous version:
+### All Client-Side:
+- ✅ **No Node.js server** - Just HTML/CSS/JavaScript
+- ✅ **No database server** - Uses browser localStorage
+- ✅ **No API calls** - All data is local
+- ✅ **No internet needed** - Works completely offline
 
-```powershell
-.\cleanup.ps1
-```
+### User Flow:
+1. **Fridge Management**: Add items to your fridge with quantities
+2. **Recipe Browsing**: Select recipes to see required ingredients
+3. **Missing Ingredients**: The app shows what ingredients you're missing
+4. **Grocery List**: Add missing ingredients to your grocery list
+5. **Meal Planning**: Plan your meals for the week and generate a grocery list
 
-This removes:
-- ❌ Node.js server files
-- ❌ Database files
-- ❌ Server dependencies
-- ✅ Keeps only the PWA in `src/public`
+---
 
-See **[CLEANUP_GUIDE.md](CLEANUP_GUIDE.md)** for details.
+## 💾 Data Storage
+
+All data stored in browser's localStorage:
+- 🥗 **Fridge items** → `chilifridge_fridge`
+- 📖 **Custom recipes** → `chilifridge_custom_recipes`
+- 📅 **Meal calendar** → `mealCalendar`
+- 🛒 **Grocery list** → `groceryList`
+- 📁 **Categories** → `fridgeCategories`
+- 🏪 **Store layout** → `storeLayout`
+
+**Important:** Recipes are embedded in JavaScript. No external dependencies. Private and secure.
+
+---
+
+## 🌐 Deployment
+
+**Currently deployed on GitHub Pages**
+
+- **Live URL**: `https://Aytoris.github.io/ChiliFridge`
+- **Repository**: `Aytoris/ChiliFridge`
+- **Deployment folder**: `src/public`
+
+The GitHub Pages deployment automatically serves all files from the `src/public` folder with HTTPS, enabling PWA installation.
+
+---
 
 ---
 
@@ -263,32 +146,71 @@ Data is stored in browser's localStorage. To backup:
 
 ---
 
-## 📖 Documentation
+## � For Developers
+
+### Test Locally:
+
+```powershell
+# Navigate to the app folder
+cd src/public
+
+# Start a local server (Python)
+python -m http.server 8000
+
+# Or use Node.js
+npx http-server -p 8000
+
+# Then visit http://localhost:8000
+```
+
+### Make Changes & Deploy:
+
+1. **Edit files** in `src/public/`
+2. **Test locally** using the commands above
+3. **Commit changes**:
+   ```powershell
+   git add .
+   git commit -m "Description of changes"
+   ```
+4. **Push to GitHub**:
+   ```powershell
+   git push origin main
+   ```
+5. **Wait 1-2 minutes** - GitHub Pages auto-deploys
+6. **Changes are live** at `https://Aytoris.github.io/ChiliFridge`
+
+### Check Deployment Status:
+- Visit: `https://github.com/Aytoris/ChiliFridge/actions`
+- Look for green checkmark ✅ on latest workflow
+
+---
+
+## �📖 Documentation
 
 - **[MOBILE_INSTALL_GUIDE.md](MOBILE_INSTALL_GUIDE.md)** - Complete installation guide
 - **[QUICKSTART_MOBILE.md](QUICKSTART_MOBILE.md)** - Quick reference
-- **[DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)** - Step-by-step deploy
-- **[CLEANUP_GUIDE.md](CLEANUP_GUIDE.md)** - Remove unused files
-- **[CONVERSION_SUMMARY.md](CONVERSION_SUMMARY.md)** - Technical details
+- **[DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)** - GitHub Pages deployment info
 
 ---
 
 ## 🔧 Troubleshooting
 
 **Can't install as PWA?**
-- Must use HTTPS (hosting provides this)
-- Use Chrome browser
+- Make sure you're using the GitHub Pages URL (HTTPS)
+- Use Chrome (Android) or Safari (iOS)
 - Wait for page to fully load
+- Look for "Install" prompt or menu option
 
 **Lost data?**
-- Data is browser-specific
+- Data is stored in browser's localStorage
 - Clearing browser data = losing everything
-- Keep the app installed
+- Keep the app installed to preserve data
 
 **App not working?**
-- Check browser console for errors
-- Verify all files in `src/public`
-- Try refreshing the page
+- Check browser console for errors (F12)
+- Ensure you're accessing via HTTPS
+- Try clearing cache and reloading
+- Verify internet connection for first load
 
 ---
 
@@ -326,11 +248,31 @@ This is a personal project, but feel free to:
 - Fork it
 - Customize it
 - Share improvements
-- Report issues
+- Report issues on GitHub
 
 ---
 
-## 📄 License
+## 📤 Sharing ChiliFridge
+
+Want to share this app with others?
+
+**Simply share the URL**: `https://Aytoris.github.io/ChiliFridge`
+
+Anyone can:
+- Visit the link
+- Install it as a PWA on their device
+- Have their own independent data
+- Use it completely offline
+
+Perfect for sharing with:
+- 👨‍👩‍�‍👦 Family members
+- 🏠 Roommates
+- 👫 Friends
+- 🎓 Students
+
+---
+
+## �📄 License
 
 MIT License - Use it however you want!
 
@@ -341,3 +283,13 @@ MIT License - Use it however you want!
 Built with vanilla JavaScript. No frameworks needed!
 
 **ChiliFridge** - Your fridge, your recipes, your way. 🥗📱✨
+
+---
+
+## 📞 Support
+
+- **Live App**: `https://Aytoris.github.io/ChiliFridge`
+- **Repository**: `https://github.com/Aytoris/ChiliFridge`
+- **Issues**: Report bugs or request features on GitHub
+
+Enjoy managing your fridge like a pro! 🎊

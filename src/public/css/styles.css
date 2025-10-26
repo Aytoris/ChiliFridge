@@ -116,20 +116,44 @@ li:last-child {
 /* Calendar */
 .calendar-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    overflow-x: auto;
+    overflow-y: hidden;
     width: 100%;
     gap: 10px;
     background-color: #f8f9fa;
     padding: 15px;
     border-radius: 8px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.3) transparent;
+}
+
+/* For Webkit browsers - make scrollbar more subtle */
+.calendar-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.calendar-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.calendar-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 4px;
+}
+
+.calendar-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0,0,0,0.5);
 }
 
 #calendar {
     display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+    flex-wrap: nowrap;
+    width: auto;
     gap: 15px;
+    min-width: 100%;
 }
 
 .day-card {
@@ -138,13 +162,19 @@ li:last-child {
     border-radius: 10px;
     background-color: #f8f9fa;
     color: #495057;
-    margin: 5px;
-    flex: 1;
-    min-width: 200px;
+    flex: 0 0 280px;
+    min-width: 280px;
+    max-width: 280px;
     margin-bottom: 15px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     border: 1px solid #e9ecef;
     transition: all 0.3s ease;
+}
+
+.day-card.current-day {
+    border: 3px solid #4CAF50;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e9 100%);
 }
 
 .day-name {
@@ -265,24 +295,25 @@ li:last-child {
     .container {
         flex-direction: column;
     }
-    
+
     .fridge, .content, .grocery {
         width: 100%;
         margin-bottom: 20px;
     }
-    
+
     .day-card {
-        width: 100%;
-        min-width: 100%;
+        flex: 0 0 85vw;
+        min-width: 85vw;
+        max-width: 85vw;
     }
-    
+
     .form-group {
         flex-direction: column;
         align-items: flex-start;
     }
-    
-    .form-group button, 
-    .form-group input, 
+
+    .form-group button,
+    .form-group input,
     .form-group select {
         width: 100%;
         margin: 5px 0;
@@ -290,8 +321,10 @@ li:last-child {
 }
 
 @media (max-width: 480px) {
-    #calendar div {
-        width: 100%;
+    .day-card {
+        flex: 0 0 90vw;
+        min-width: 90vw;
+        max-width: 90vw;
     }
 }
 
@@ -778,7 +811,7 @@ li:last-child {
     .cooking-mode-container {
         flex-direction: row;
     }
-    
+
     .recipe-details, .recipe-instructions {
         flex: 1;
     }
@@ -884,4 +917,4 @@ li:last-child {
 #cookingModeServingsDisplay {
     font-weight: bold;
     color: #4CAF50;
-} 
+}
