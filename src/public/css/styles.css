@@ -162,9 +162,9 @@ li:last-child {
     border-radius: 10px;
     background-color: #f8f9fa;
     color: #495057;
-    flex: 0 0 280px;
-    min-width: 280px;
-    max-width: 280px;
+    flex: 0 0 252px;
+    min-width: 252px;
+    max-width: 252px;
     margin-bottom: 15px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     border: 1px solid #e9ecef;
@@ -302,9 +302,9 @@ li:last-child {
     }
 
     .day-card {
-        flex: 0 0 85vw;
-        min-width: 85vw;
-        max-width: 85vw;
+        flex: 0 0 80vw;
+        min-width: 80vw;
+        max-width: 80vw;
     }
 
     .form-group {
@@ -322,9 +322,9 @@ li:last-child {
 
 @media (max-width: 480px) {
     .day-card {
-        flex: 0 0 90vw;
-        min-width: 90vw;
-        max-width: 90vw;
+        flex: 0 0 85vw;
+        min-width: 85vw;
+        max-width: 85vw;
     }
 }
 
