@@ -456,6 +456,39 @@ li:last-child {
     opacity: 1;
 }
 
+/* Grocery menu styles */
+.grocery-menu {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.grocery-menu button {
+    width: 100%;
+    text-align: left;
+}
+
+#groceryMenuBtn {
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 4px 12px;
+    min-width: 40px;
+}
+
+#clearGroceryBtn {
+    background-color: #ff9800;
+}
+
+#clearGroceryBtn:hover {
+    background-color: #e68900;
+}
+
 /* Modal styles */
 .modal {
     display: none;
@@ -615,7 +648,6 @@ li:last-child {
 /* Shopping mode button */
 #toggleShoppingModeBtn {
     background-color: #0d6efd;
-    margin-top: 10px;
 }
 
 #toggleShoppingModeBtn.active {

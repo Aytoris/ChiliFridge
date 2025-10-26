@@ -34,6 +34,22 @@
 
     <!-- Main Content -->
     <div class="container">
+        <div class="grocery">
+            <h2>Grocery List</h2>
+            <div class="form-group">
+                <button id="toggleShoppingModeBtn">Enter Shopping Mode</button>
+                <button id="exportGroceryBtn">Export Grocery List</button>
+                <button id="clearGroceryBtn">Clear Grocery List</button>
+                <button id="groceryMenuBtn" class="btn-secondary">⋯</button>
+            </div>
+            <!-- Hidden menu for additional options -->
+            <div id="groceryMenu" class="grocery-menu" style="display: none;">
+                <button id="sendToFridgeBtn">Add food to fridge</button>
+                <button id="storeLayoutBtn">Store Layout</button>
+            </div>
+            <ul id="groceryList"></ul>
+        </div>
+
         <div class="fridge">
             <h1>Chloé's Fridge</h1>
             <div class="form-group">
@@ -79,22 +95,6 @@
             <h2 style="color:red">Missing Ingredients</h2>
             <ul id="missingIngredients"></ul>
             <button id="addMissingBtn">Add All Missing Ingredients to Grocery List</button>
-        </div>
-
-        <div class="grocery">
-            <h2>Grocery List</h2>
-            <ul id="groceryList"></ul>
-            <div class="form-group">
-                <button id="clearGroceryBtn">Clear Grocery List</button>
-                <button id="sendToFridgeBtn">Add food to fridge</button>
-            </div>
-            <div class="form-group">
-                <button id="toggleShoppingModeBtn">Enter Shopping Mode</button>
-                <button id="storeLayoutBtn" class="btn-secondary">Store Layout</button>
-            </div>
-            <div class="form-group">
-                <button id="exportGroceryBtn">Export Grocery List</button>
-            </div>
         </div>
     </div>
 

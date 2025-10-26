@@ -108,6 +108,9 @@ const GroceryModule = (() => {
     document.getElementById('sendToFridgeBtn').addEventListener('click', sendGroceryListToFridge);
     document.getElementById('exportGroceryBtn').addEventListener('click', saveGroceryListToFile);
 
+    // Grocery menu toggle button
+    document.getElementById('groceryMenuBtn').addEventListener('click', toggleGroceryMenu);
+
     // Store Layout button
     document.getElementById('storeLayoutBtn').addEventListener('click', openStoreLayoutModal);
 
@@ -127,6 +130,13 @@ const GroceryModule = (() => {
     window.addEventListener('click', (e) => {
       if (e.target === document.getElementById('storeLayoutModal')) {
         closeStoreLayoutModal();
+      }
+
+      // Close grocery menu when clicking outside
+      const groceryMenu = document.getElementById('groceryMenu');
+      const groceryMenuBtn = document.getElementById('groceryMenuBtn');
+      if (groceryMenu && !groceryMenu.contains(e.target) && e.target !== groceryMenuBtn) {
+        groceryMenu.style.display = 'none';
       }
     });
   };
@@ -432,6 +442,18 @@ const GroceryModule = (() => {
    */
   const closeStoreLayoutModal = () => {
     document.getElementById('storeLayoutModal').style.display = 'none';
+  };
+
+  /**
+   * Toggle the grocery menu visibility
+   */
+  const toggleGroceryMenu = () => {
+    const groceryMenu = document.getElementById('groceryMenu');
+    if (groceryMenu.style.display === 'none' || groceryMenu.style.display === '') {
+      groceryMenu.style.display = 'block';
+    } else {
+      groceryMenu.style.display = 'none';
+    }
   };
 
   /**
