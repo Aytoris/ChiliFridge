@@ -248,6 +248,49 @@ const CalendarModule = (() => {
 
     // Save the updated data
     saveCalendarData();
+
+    // Update the "Cook This" button immediately
+    updateCookButton(dayIndex, mealIndex, recipeName);
+  };
+
+  /**
+   * Update or create the "Cook This" button for a meal
+   * @param {number} dayIndex - Day index (0-6)
+   * @param {number} mealIndex - Meal index (0-2)
+   * @param {string} recipeName - Selected recipe name
+   */
+  const updateCookButton = (dayIndex, mealIndex, recipeName) => {
+    const peopleContainer = document.querySelector(`#people-day-${dayIndex}-${mealIndex}`).parentElement;
+
+    // Remove existing cook button if any
+    const existingButton = peopleContainer.querySelector('.cook-button');
+    if (existingButton) {
+      existingButton.remove();
+    }
+
+    // Add new cook button if a recipe is selected
+    if (recipeName) {
+      const cookButton = document.createElement('button');
+      cookButton.className = 'cook-button';
+      cookButton.textContent = 'Cook This';
+      cookButton.setAttribute('data-day', dayIndex);
+      cookButton.setAttribute('data-meal', mealIndex);
+      cookButton.setAttribute('data-recipe', recipeName);
+
+      // Get the current people count
+      const peopleCount = calendarData[dayIndex][mealIndex].peopleCount || 2;
+      cookButton.setAttribute('data-people', peopleCount);
+
+      // Add click handler
+      cookButton.onclick = function() {
+        const recipe = this.getAttribute('data-recipe');
+        const people = parseInt(this.getAttribute('data-people'), 10);
+        console.log(`Cook button clicked for ${recipe} for ${people} people`);
+        openCookingMode(recipe, people);
+      };
+
+      peopleContainer.appendChild(cookButton);
+    }
   };
 
   /**
