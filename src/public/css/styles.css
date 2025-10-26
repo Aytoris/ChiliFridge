@@ -365,6 +365,7 @@ li:last-child {
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.2s ease;
+    gap: 10px;
 }
 
 .grocery-item:hover {
@@ -373,12 +374,71 @@ li:last-child {
 
 .item-name {
     flex-grow: 1;
+    min-width: 120px;
 }
 
 .item-quantity {
     color: #6c757d;
     margin-right: 15px;
     white-space: nowrap;
+}
+
+/* Quantity controls for grocery items */
+.grocery-item .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.grocery-item .quantity-input {
+    width: 60px;
+    text-align: center;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.grocery-item .quantity-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 3px rgba(76, 175, 80, 0.5);
+}
+
+.grocery-item .increase-btn,
+.grocery-item .decrease-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    font-size: 1.1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.2s ease;
+}
+
+.grocery-item .increase-btn:hover,
+.grocery-item .decrease-btn:hover {
+    background-color: #45a049;
+}
+
+.grocery-item .decrease-btn {
+    background-color: #ff9800;
+}
+
+.grocery-item .decrease-btn:hover {
+    background-color: #e68900;
+}
+
+.grocery-item .unit-text {
+    color: #6c757d;
+    font-size: 0.9em;
+    min-width: 30px;
 }
 
 .delete-item-btn {
