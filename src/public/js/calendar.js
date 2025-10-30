@@ -370,8 +370,16 @@ const CalendarModule = (() => {
         const recipe = recipes[meal.recipe];
         const peopleCount = meal.peopleCount || 2;
 
+        // Handle both old format (array) and new format (object with ingredients property)
+        const ingredients = Array.isArray(recipe) ? recipe : recipe.ingredients;
+
+        if (!ingredients) {
+          console.error('No ingredients found for recipe:', meal.recipe);
+          return;
+        }
+
         // Add each ingredient to the total
-        recipe.forEach(recipeIngredient => {
+        ingredients.forEach(recipeIngredient => {
           const existingIngredient = totalIngredients.find(ing =>
             ing.name.toLowerCase() === recipeIngredient.name.toLowerCase()
           );
@@ -523,28 +531,46 @@ const CalendarModule = (() => {
     // Populate instructions
     populateCookingModeInstructions(recipe);
 
+    // Populate timers
+    populateCookingModeTimers(recipe);
+
     // Show the modal
     const modal = document.getElementById('cookingModeModal');
     modal.style.display = 'block';
+    document.body.classList.add('modal-open'); // Prevent background scrolling
 
     // Add event listener for close button
-    document.getElementById('closeCookingMode').addEventListener('click', () => {
+    const closeModal = () => {
       modal.style.display = 'none';
-    });
+      document.body.classList.remove('modal-open'); // Re-enable background scrolling
+
+      // Clear all active timers when closing the modal
+      activeTimers.forEach(timer => {
+        if (timerIntervals[timer.id]) {
+          clearInterval(timerIntervals[timer.id]);
+          delete timerIntervals[timer.id];
+        }
+      });
+      activeTimers = [];
+    };    document.getElementById('closeCookingMode').onclick = closeModal;
 
     // Close modal when clicking outside
-    window.addEventListener('click', (event) => {
+    window.onclick = (event) => {
       if (event.target === modal) {
-        modal.style.display = 'none';
+        closeModal();
       }
-    });
+    };
 
     // Add escape key listener to close modal
-    document.addEventListener('keydown', (event) => {
+    const handleEscape = (event) => {
       if (event.key === 'Escape' && modal.style.display === 'block') {
-        modal.style.display = 'none';
+        closeModal();
       }
-    });
+    };
+
+    // Remove old listener if exists and add new one
+    document.removeEventListener('keydown', handleEscape);
+    document.addEventListener('keydown', handleEscape);
   };
 
   /**
@@ -568,12 +594,12 @@ const CalendarModule = (() => {
         quantity: item.quantity,
         unit: item.unit
       }));
-    } else if (recipe.ingredients) {
-      // New format - object with ingredients property
-      ingredients = Object.entries(recipe.ingredients).map(([name, details]) => ({
-        name,
-        quantity: details.quantity,
-        unit: details.unit
+    } else if (recipe.ingredients && Array.isArray(recipe.ingredients)) {
+      // New format - object with ingredients array property
+      ingredients = recipe.ingredients.map(item => ({
+        name: item.name,
+        quantity: item.quantity,
+        unit: item.unit
       }));
     } else {
       console.error('Unsupported recipe format:', recipe);
@@ -670,6 +696,329 @@ const CalendarModule = (() => {
     instructionsDiv.appendChild(ol);
   };
 
+  /**
+   * Populate cooking mode timers
+   * @param {Object} recipe - Recipe object
+   */
+  const populateCookingModeTimers = (recipe) => {
+    const timersContainer = document.getElementById('cookingTimersContainer');
+    const timersSection = document.getElementById('cookingTimersSection');
+
+    timersContainer.innerHTML = '';
+
+    // Check if recipe has timers
+    if (!recipe.timers || !Array.isArray(recipe.timers) || recipe.timers.length === 0) {
+      timersSection.style.display = 'none';
+      return;
+    }
+
+    timersSection.style.display = 'block';
+
+    // Add each timer as a button
+    recipe.timers.forEach((timer, index) => {
+      const timerBtn = document.createElement('button');
+      timerBtn.className = 'timer-button';
+      timerBtn.dataset.timerId = index;
+      timerBtn.dataset.duration = timer.duration;
+      timerBtn.dataset.label = timer.label;
+
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'timer-label';
+      labelSpan.textContent = timer.label;
+
+      const durationSpan = document.createElement('span');
+      durationSpan.className = 'timer-duration';
+      const minutes = Math.floor(timer.duration);
+      const seconds = Math.round((timer.duration % 1) * 60);
+      if (seconds > 0) {
+        durationSpan.textContent = `${minutes}m ${seconds}s`;
+      } else {
+        durationSpan.textContent = `${minutes} min`;
+      }
+
+      timerBtn.appendChild(labelSpan);
+      timerBtn.appendChild(durationSpan);
+
+      timerBtn.addEventListener('click', () => {
+        startTimer(timer.label, timer.duration);
+      });
+
+      timersContainer.appendChild(timerBtn);
+    });
+  };
+
+    // Active timers tracking
+  let activeTimers = [];
+  let timerIntervals = {};
+
+  /**
+   * Start a new timer
+   * @param {string} label - Timer label
+   * @param {number} duration - Duration in minutes
+   */
+  const startTimer = (label, duration) => {
+    // Check if timer with same label is already running
+    if (activeTimers.find(t => t.label === label)) {
+      Utility.showToast(`Timer "${label}" is already running!`, 'warning');
+      return;
+    }
+
+    const timerId = `timer-${Date.now()}`;
+    const durationInSeconds = duration * 60;
+    const endTime = Date.now() + (durationInSeconds * 1000);
+
+    const timer = {
+      id: timerId,
+      label: label,
+      duration: durationInSeconds,
+      endTime: endTime,
+      remainingSeconds: durationInSeconds
+    };
+
+    activeTimers.push(timer);
+    transformTimerButton(timer);
+    startTimerInterval(timer);
+
+    Utility.showToast(`Timer "${label}" started for ${duration} minutes`, 'success');
+  };
+
+  /**
+   * Transform the timer button into an active countdown display
+   * @param {Object} timer - Timer object
+   */
+  const transformTimerButton = (timer) => {
+    // Find the timer button by label
+    const timersContainer = document.getElementById('cookingTimersContainer');
+    const buttons = timersContainer.querySelectorAll('.timer-button');
+
+    let timerBtn = null;
+    buttons.forEach(btn => {
+      if (btn.dataset.label === timer.label && !btn.classList.contains('timer-active')) {
+        timerBtn = btn;
+      }
+    });
+
+    if (!timerBtn) return;
+
+    // Store the timer ID on the button
+    timerBtn.dataset.activeTimerId = timer.id;
+
+    // Add active class
+    timerBtn.classList.add('timer-active');
+
+    // Create header with label and stop button
+    const headerDiv = document.createElement('div');
+    headerDiv.className = 'timer-active-header';
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'timer-active-label';
+    labelSpan.textContent = timer.label;
+
+    const stopBtn = document.createElement('button');
+    stopBtn.className = 'timer-stop-btn';
+    stopBtn.textContent = 'Stop';
+    stopBtn.onclick = (e) => {
+      e.stopPropagation();
+      stopTimer(timer.id);
+    };
+
+    headerDiv.appendChild(labelSpan);
+    headerDiv.appendChild(stopBtn);
+
+    // Create countdown display
+    const displayDiv = document.createElement('div');
+    displayDiv.className = 'timer-countdown-display';
+    displayDiv.id = `${timer.id}-display`;
+    displayDiv.textContent = formatTime(timer.remainingSeconds);
+
+    // Create progress bar
+    const progressBarContainer = document.createElement('div');
+    progressBarContainer.className = 'timer-progress-bar';
+
+    const progressBar = document.createElement('div');
+    progressBar.className = 'timer-progress';
+    progressBar.id = `${timer.id}-progress`;
+    progressBar.style.width = '100%';
+
+    progressBarContainer.appendChild(progressBar);
+
+    // Add all new elements to button
+    timerBtn.appendChild(headerDiv);
+    timerBtn.appendChild(displayDiv);
+    timerBtn.appendChild(progressBarContainer);
+  };
+
+  /**
+   * Start the interval for a timer
+   * @param {Object} timer - Timer object
+   */
+  const startTimerInterval = (timer) => {
+    const interval = setInterval(() => {
+      const now = Date.now();
+      const remainingMs = timer.endTime - now;
+      const remainingSeconds = Math.max(0, Math.ceil(remainingMs / 1000));
+
+      timer.remainingSeconds = remainingSeconds;
+
+      // Find the button
+      const timersContainer = document.getElementById('cookingTimersContainer');
+      const timerBtn = timersContainer.querySelector(`[data-active-timer-id="${timer.id}"]`);
+
+      if (!timerBtn) {
+        clearInterval(interval);
+        delete timerIntervals[timer.id];
+        return;
+      }
+
+      // Update display
+      const displayDiv = document.getElementById(`${timer.id}-display`);
+      const progressBar = document.getElementById(`${timer.id}-progress`);
+
+      if (displayDiv) {
+        displayDiv.textContent = formatTime(remainingSeconds);
+      }
+
+      if (progressBar) {
+        const percentage = (remainingSeconds / timer.duration) * 100;
+        progressBar.style.width = `${percentage}%`;
+      }
+
+      // Update button styling based on remaining time
+      if (remainingSeconds <= 10) {
+        timerBtn.classList.remove('timer-warning');
+        timerBtn.classList.add('timer-critical');
+      } else if (remainingSeconds <= 60) {
+        timerBtn.classList.remove('timer-critical');
+        timerBtn.classList.add('timer-warning');
+      } else {
+        timerBtn.classList.remove('timer-warning', 'timer-critical');
+      }
+
+      // Timer finished
+      if (remainingSeconds <= 0) {
+        clearInterval(interval);
+        delete timerIntervals[timer.id];
+        timerComplete(timer);
+      }
+    }, 1000);
+
+    timerIntervals[timer.id] = interval;
+  };
+
+  /**
+   * Format seconds into MM:SS format
+   * @param {number} seconds - Total seconds
+   * @returns {string} Formatted time
+   */
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  /**
+   * Stop a timer
+   * @param {string} timerId - Timer ID
+   */
+  const stopTimer = (timerId) => {
+    // Clear interval
+    if (timerIntervals[timerId]) {
+      clearInterval(timerIntervals[timerId]);
+      delete timerIntervals[timerId];
+    }
+
+    // Remove from active timers
+    const timer = activeTimers.find(t => t.id === timerId);
+    activeTimers = activeTimers.filter(t => t.id !== timerId);
+
+    // Reset the button
+    const timersContainer = document.getElementById('cookingTimersContainer');
+    const timerBtn = timersContainer.querySelector(`[data-active-timer-id="${timerId}"]`);
+
+    if (timerBtn && timer) {
+      resetTimerButton(timerBtn, timer.label);
+    }
+
+    Utility.showToast('Timer stopped', 'info');
+  };
+
+  /**
+   * Reset timer button to original state
+   * @param {HTMLElement} timerBtn - Timer button element
+   * @param {string} label - Timer label
+   */
+  const resetTimerButton = (timerBtn, label) => {
+    // Remove active classes and ID
+    timerBtn.classList.remove('timer-active', 'timer-warning', 'timer-critical', 'timer-complete');
+    delete timerBtn.dataset.activeTimerId;
+
+    // Remove all child elements
+    while (timerBtn.firstChild) {
+      timerBtn.removeChild(timerBtn.firstChild);
+    }
+
+    // Restore original content
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'timer-label';
+    labelSpan.textContent = label;
+
+    const durationSpan = document.createElement('span');
+    durationSpan.className = 'timer-duration';
+    const duration = parseFloat(timerBtn.dataset.duration);
+    const minutes = Math.floor(duration);
+    const seconds = Math.round((duration % 1) * 60);
+    if (seconds > 0) {
+      durationSpan.textContent = `${minutes}m ${seconds}s`;
+    } else {
+      durationSpan.textContent = `${minutes} min`;
+    }
+
+    timerBtn.appendChild(labelSpan);
+    timerBtn.appendChild(durationSpan);
+  };
+
+  /**
+   * Handle timer completion
+   * @param {Object} timer - Timer object
+   */
+  const timerComplete = (timer) => {
+    // Remove from active timers
+    activeTimers = activeTimers.filter(t => t.id !== timer.id);
+
+    // Find and update the button
+    const timersContainer = document.getElementById('cookingTimersContainer');
+    const timerBtn = timersContainer.querySelector(`[data-active-timer-id="${timer.id}"]`);
+
+    if (timerBtn) {
+      // Show complete state
+      timerBtn.classList.remove('timer-warning', 'timer-critical');
+      timerBtn.classList.add('timer-complete');
+
+      const displayDiv = timerBtn.querySelector('.timer-countdown-display');
+      if (displayDiv) {
+        displayDiv.textContent = '00:00';
+      }
+    }
+
+    // Show notification
+    Utility.showToast(`⏰ Timer "${timer.label}" is complete!`, 'success');
+
+    // Play notification sound if available
+    try {
+      const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZRQ0PVKvi7rdkHAU7k9jy2H0nBSV7yO/glEILElyx6+OmUxEKR5/f8r9vIAU1jtHy1oU2Bhxps+7mnEYODlOp4O67aB4FO5PY8tx+KAYle8jv45JDCw9crejjo1QRCkef3/LAbx8GM4nR8tiENAYbaLLu56FCDQxTqeDvwGseBS2ByO/hlEIKElSv6OSiUREKSJ/f88BwHgY1jtHy1oU1Bhxosu7mnEYODlOp4O67aB4FO5PY8tx+KAYle8jv45JDCw9crejjo1QRCkef3/LAbx8GM4nR8tiENAYbaLLu56FCDQxTqeDvwGseBS2ByO/hlEIKElSv6OSiUREKSJ/f88BwHgY1jtHy1oU1Bhxosu7mnEYODlOp4O67aB4FO5PY8tx+KAYle8jv45JDCw9crejjo1QRCkef3/LAbx8GM4nR8tiENAYbaLLu56FCDQxTqeDvwGseBS2ByO/hlEIKElSv6OSiUREKSJ/f88BwHgY1jtHy1oU1Bhxosu7mnEYODlOp4O67aB4FO5PY8tx+KAYle8jv45JDCw9crejjo1QRCkef3/LAbx8GM4nR8tiENAYbaLLu56FCDQxTqeDvwGseBS2ByO/hlEIKElSv6OSiUREKSJ/f88BwHgY1jtHy1oU1Bhxosu7mnEYODlOp4O67aB4FO5PY8tx+KAYle8jv45JDCw9crejjo1QRCkef3/LAbx8GM4nR8tiENAYbaLLu56FCDQxTqeDvwGseBS2ByO/hlEIKElSv6OSiUREKSJ/f88BwHgY1jtHy1oU1Bhxosu7mnEYODlOp4O67aB4FO5PY8tx+KAYle8jv45JDCw9crejjo1QRCkef3/LAbx8GM4nR8tiENAYbaLLu56FCDQxTqeDvwGseBS2ByO/hlEIKElSv6OSiUREKSJ/f88BwHgY1jtHy1oU1Bhxosu7mnEYODlOp4O67aB4FO5PY8tx+KAYle8jv45JDCw9crejjo1QRCkef3/LAbx8GM4nR8tiENAYbaLLu56FCDQxTqeDvwGseBS2ByO/hlEIKElSv6OSiUREKSJ/f88BwHgY=');
+      audio.play().catch(e => console.log('Could not play notification sound:', e));
+    } catch (e) {
+      console.log('Audio notification not available:', e);
+    }
+
+    // Reset button after 3 seconds
+    setTimeout(() => {
+      if (timerBtn) {
+        resetTimerButton(timerBtn, timer.label);
+      }
+    }, 3000);
+  };
+
   // Public API
   return {
     init,
@@ -680,3 +1029,4 @@ const CalendarModule = (() => {
     openCookingMode
   };
 })();
+    timerDiv.className = 'active-timer';

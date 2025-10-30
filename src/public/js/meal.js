@@ -126,8 +126,13 @@ const MealModule = (() => {
 
     const recipe = allRecipes[recipeName];
 
+    // Handle both old format (array) and new format (object with ingredients property)
+    const ingredients = Array.isArray(recipe) ? recipe : recipe.ingredients;
+
+    if (!ingredients) return false;
+
     // Check if all ingredients are available in sufficient quantities
-    for (const recipeIngredient of recipe) {
+    for (const recipeIngredient of ingredients) {
       const scaledQuantity = recipeIngredient.quantity * peopleCount;
       const fridgeIngredient = FridgeModule.findIngredient(recipeIngredient.name);
 
@@ -218,7 +223,15 @@ const MealModule = (() => {
       return;
     }
 
-    selectedRecipe.forEach(ingredient => {
+    // Handle both old format (array) and new format (object with ingredients property)
+    const ingredients = Array.isArray(selectedRecipe) ? selectedRecipe : selectedRecipe.ingredients;
+
+    if (!ingredients) {
+      console.error('No ingredients found for recipe:', mealSelect.value);
+      return;
+    }
+
+    ingredients.forEach(ingredient => {
       const li = document.createElement('li');
       const scaledQuantity = ingredient.quantity * peopleCount;
       li.textContent = `${ingredient.name}: ${scaledQuantity} ${ingredient.unit}`;
@@ -242,8 +255,16 @@ const MealModule = (() => {
     const fridge = FridgeModule.getFridge();
     const missingIngredients = [];
 
+    // Handle both old format (array) and new format (object with ingredients property)
+    const ingredients = Array.isArray(selectedRecipe) ? selectedRecipe : selectedRecipe.ingredients;
+
+    if (!ingredients) {
+      alert('Recipe ingredients not found');
+      return;
+    }
+
     // Check if all ingredients are available
-    selectedRecipe.forEach(recipeIngredient => {
+    ingredients.forEach(recipeIngredient => {
       const scaledQuantity = recipeIngredient.quantity * peopleCount;
       const fridgeIngredient = FridgeModule.findIngredient(recipeIngredient.name);
 
@@ -258,7 +279,7 @@ const MealModule = (() => {
     }
 
     // Remove ingredients from fridge
-    selectedRecipe.forEach(recipeIngredient => {
+    ingredients.forEach(recipeIngredient => {
       const scaledQuantity = recipeIngredient.quantity * peopleCount;
       const fridgeIngredient = FridgeModule.findIngredient(recipeIngredient.name);
 
@@ -302,7 +323,15 @@ const MealModule = (() => {
     const selectedRecipe = allRecipes[mealSelect.value];
     const missing = [];
 
-    selectedRecipe.forEach(recipeIngredient => {
+    // Handle both old format (array) and new format (object with ingredients property)
+    const ingredients = Array.isArray(selectedRecipe) ? selectedRecipe : selectedRecipe.ingredients;
+
+    if (!ingredients) {
+      console.error('No ingredients found for recipe:', mealSelect.value);
+      return;
+    }
+
+    ingredients.forEach(recipeIngredient => {
       const scaledQuantity = recipeIngredient.quantity * peopleCount;
       const fridgeIngredient = FridgeModule.findIngredient(recipeIngredient.name);
 
