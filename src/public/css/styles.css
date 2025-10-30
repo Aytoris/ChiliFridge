@@ -1,49 +1,106 @@
 /* Main layout */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
-    background-color: #f5f5f5;
+    padding: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+/* Add padding only for desktop */
+@media (min-width: 769px) {
+    body {
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
 }
 
 .container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 0;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .fridge, .content, .grocery {
     flex: 1;
-    min-width: 300px;
+    min-width: 0;
+    width: 100%;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+
+/* Add border radius and gaps for desktop */
+@media (min-width: 769px) {
+    .container {
+        gap: 20px;
+    }
+
+    .fridge, .content, .grocery {
+        min-width: 300px;
+        width: auto;
+        border-radius: 8px;
+        border-bottom: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 }
 
 /* Calendar section should be full width */
 .calendar-section {
     flex-basis: 100%;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 0;
+    padding: 15px;
+    box-shadow: none;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .calendar-section h2 {
     color: #333;
     border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-    font-size: 1.8em;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+/* Add spacing and styling for desktop */
+@media (min-width: 769px) {
+    .calendar-section {
+        margin-bottom: 20px;
+        border-radius: 10px;
+        padding: 20px;
+        border-bottom: none;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .calendar-section h2 {
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+    }
 }
 
 h1, h2 {
     color: #333;
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
+    margin: 0 0 15px 0;
 }
 
 /* Form controls */
@@ -130,6 +187,16 @@ li:last-child {
     scrollbar-color: rgba(0,0,0,0.3) transparent;
 }
 
+/* Optimize calendar container for mobile */
+@media (max-width: 768px) {
+    .calendar-container {
+        padding: 10px;
+        gap: 8px;
+        border-radius: 0;
+        background-color: transparent;
+    }
+}
+
 /* For Webkit browsers - make scrollbar more subtle */
 .calendar-container::-webkit-scrollbar {
     height: 8px;
@@ -158,7 +225,7 @@ li:last-child {
 
 .day-card {
     text-align: center;
-    padding: 15px;
+    padding: 12px;
     border-radius: 10px;
     background-color: #f8f9fa;
     color: #495057;
@@ -169,6 +236,25 @@ li:last-child {
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     border: 1px solid #e9ecef;
     transition: all 0.3s ease;
+}
+
+/* Optimize day cards for mobile */
+@media (max-width: 768px) {
+    .day-card {
+        flex: 0 0 75vw;
+        min-width: 75vw;
+        max-width: 75vw;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .day-card {
+        flex: 0 0 82vw;
+        min-width: 82vw;
+        max-width: 82vw;
+        padding: 8px;
+    }
 }
 
 .day-card.current-day {
@@ -189,6 +275,15 @@ li:last-child {
     transition: all 0.3s ease;
 }
 
+/* Smaller day name for mobile */
+@media (max-width: 768px) {
+    .day-name {
+        font-size: 1em;
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+}
+
 /* Different gradient options for meal containers */
 .meal-container {
     margin-bottom: 15px;
@@ -200,6 +295,14 @@ li:last-child {
     border: 1px solid rgba(255,255,255,0.2);
     position: relative;
     overflow: hidden;
+}
+
+/* Compact meal containers for mobile */
+@media (max-width: 768px) {
+    .meal-container {
+        padding: 8px;
+        margin-bottom: 10px;
+    }
 }
 
 /* Active state with a more vibrant color */
@@ -260,6 +363,20 @@ li:last-child {
     transition: all 0.3s ease;
 }
 
+/* Smaller selectors for mobile */
+@media (max-width: 768px) {
+    .meal-selector {
+        padding: 7px;
+        font-size: 0.9em;
+    }
+
+    .people-selector {
+        width: 50px;
+        padding: 6px;
+        font-size: 0.9em;
+    }
+}
+
 /* Add styles for people label */
 .meal-container label {
     color: white;
@@ -267,6 +384,13 @@ li:last-child {
     text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
     position: relative;
     z-index: 2;
+}
+
+/* Smaller labels for mobile */
+@media (max-width: 768px) {
+    .meal-container label {
+        font-size: 0.9em;
+    }
 }
 
 /* Error messages */
@@ -283,6 +407,8 @@ li:last-child {
     flex-wrap: wrap;
     align-items: center;
     gap: 5px;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* Smooth transitions for all elements */
@@ -298,13 +424,7 @@ li:last-child {
 
     .fridge, .content, .grocery {
         width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .day-card {
-        flex: 0 0 80vw;
-        min-width: 80vw;
-        max-width: 80vw;
+        margin-bottom: 0;
     }
 
     .form-group {
@@ -318,13 +438,10 @@ li:last-child {
         width: 100%;
         margin: 5px 0;
     }
-}
 
-@media (max-width: 480px) {
-    .day-card {
-        flex: 0 0 85vw;
-        min-width: 85vw;
-        max-width: 85vw;
+    h1, h2 {
+        font-size: 1.4em;
+        margin-top: 0;
     }
 }
 
@@ -712,12 +829,36 @@ body.modal-open {
     min-width: 180px;
 }
 
+/* Stack calendar buttons on mobile */
+@media (max-width: 768px) {
+    .calendar-section .form-group {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .calendar-section .form-group button {
+        min-width: 100%;
+        width: 100%;
+    }
+}
+
 /* Toast Notifications */
 #toast-container {
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 1000;
+}
+
+/* Center toast on mobile */
+@media (max-width: 768px) {
+    #toast-container {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        bottom: 10px;
+    }
 }
 
 .toast {

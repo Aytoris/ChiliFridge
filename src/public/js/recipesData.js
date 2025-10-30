@@ -316,12 +316,12 @@ const RECIPES_DATA = {
       { "name": "Lentil", "quantity": 100, "unit": "g" },
       { "name": "Broth", "quantity": 0.5, "unit": "" },
       // Pita bread
-      { "name": "Flour", "quantity": 250, "unit": "g" },
+      { "name": "Flour", "quantity": 300, "unit": "g" },
       { "name": "Water", "quantity": 200, "unit": "g" },
       { "name": "Baking soda", "quantity": 2, "unit": "tsp" },
     ],
     instructions: [
-      "Add "
+      "Pot: butter, tomato paste, tomato, onion",
     ],
     servings: 2
   },
