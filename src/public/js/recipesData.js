@@ -317,11 +317,11 @@ const RECIPES_DATA = {
       { "name": "Broth", "quantity": 0.5, "unit": "" },
       // Pita bread
       { "name": "Flour", "quantity": 250, "unit": "g" },
-      { "name": "Water", "quantity": 250, "unit": "g" },
+      { "name": "Water", "quantity": 200, "unit": "g" },
       { "name": "Baking soda", "quantity": 2, "unit": "tsp" },
     ],
     instructions: [
-      "zzz"
+      "Add "
     ],
     servings: 2
   },
