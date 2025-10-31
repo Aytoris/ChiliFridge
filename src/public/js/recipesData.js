@@ -8,6 +8,7 @@
  * - ingredients: Array of {name, quantity, unit}
  * - instructions: Array of step-by-step cooking instructions
  * - servings: Default number of servings (used for scaling)
+ * - protein: Optional protein type (tofu, lentils, chickpeas, beans, eggs, fish, chicken, dairy, mixed, none)
  */
 const RECIPES_DATA = {
   "Avocado Toasts": {
@@ -22,7 +23,8 @@ const RECIPES_DATA = {
       "Spread mashed avocado on toasted bread",
       "Top with cooked eggs and serve immediately"
     ],
-    servings: 2
+    servings: 2,
+    protein: "eggs"
   },
   "Stuffed Butternut Squash": {
     ingredients: [
@@ -42,7 +44,8 @@ const RECIPES_DATA = {
       "Flip squash halves and fill with quinoa mixture",
       "Top with remaining parmesan and bake for 10 more minutes"
     ],
-    servings: 2
+    servings: 2,
+    protein: "dairy"
   },
   "Chickpeas Tacos": {
     ingredients: [
@@ -63,7 +66,8 @@ const RECIPES_DATA = {
       "Assemble tacos: fill tortillas with roasted chickpeas, avocado, and cashew cream",
       "Garnish with fresh coriander if available"
     ],
-    servings: 2
+    servings: 2,
+    protein: "chickpeas"
   },
   "Fajitas": {
     ingredients: [
@@ -85,7 +89,8 @@ const RECIPES_DATA = {
       "Cook until heated through",
       "Serve hot filling in warm tortillas with your favorite toppings"
     ],
-    servings: 2
+    servings: 2,
+    protein: "beans"
   },
   "French Fries": {
     ingredients: [
@@ -101,7 +106,8 @@ const RECIPES_DATA = {
       "For frying: fry in batches for 4-5 minutes until golden and crispy",
       "Season with salt immediately after cooking and serve hot"
     ],
-    servings: 2
+    servings: 2,
+    protein: "none"
   },
   "Gnocchi": {
     ingredients: [
@@ -125,6 +131,7 @@ const RECIPES_DATA = {
       "Drizzle with olive oil and season with salt and pepper"
     ],
     servings: 2,
+    protein: "eggs",
     timers: [
       { "label": "Roast vegetables", "duration": 45, "step": 1 },
       { "label": "Cook gnocchi batch", "duration": 3, "step": 7 }
@@ -147,7 +154,8 @@ const RECIPES_DATA = {
       "Season with salt to taste",
       "Serve drizzled with olive oil and garnish with paprika or parsley"
     ],
-    servings: 2
+    servings: 2,
+    protein: "chickpeas"
   },
   "Pizza": {
     ingredients: [
@@ -172,6 +180,7 @@ const RECIPES_DATA = {
       "Carefully transfer to hot oven and bake for 10-12 minutes until crust is golden"
     ],
     servings: 2,
+    protein: ["tofu", "eggs"],
     timers: [
       { "label": "Dough rising", "duration": 60, "step": 3 },
       { "label": "Pizza baking", "duration": 12, "step": 9 }
@@ -195,7 +204,8 @@ const RECIPES_DATA = {
       "Bake for 30-35 minutes until pastry is golden",
       "Let cool slightly before serving"
     ],
-    servings: 2
+    servings: 2,
+    protein: "none"
   },
   "Sweet potato (oven)": {
     ingredients: [
@@ -210,7 +220,8 @@ const RECIPES_DATA = {
       "Let cool for a few minutes before serving",
       "Cut open and serve with butter, salt, and your favorite toppings"
     ],
-    servings: 2
+    servings: 2,
+    protein: "none"
   },
   "Zucchini Quiche": {
     ingredients: [
@@ -231,7 +242,8 @@ const RECIPES_DATA = {
       "Bake for 30-35 minutes until set and golden",
       "Let cool before slicing"
     ],
-    servings: 2
+    servings: 2,
+    protein: ["eggs", "tofu"]
   },
   "Risotto": {
     ingredients: [
@@ -254,6 +266,7 @@ const RECIPES_DATA = {
       "Season with salt and pepper, serve immediately"
     ],
     servings: 2,
+    protein: "dairy",
     timers: [
       { "label": "Toast rice", "duration": 2, "step": 2 },
       { "label": "Simmer after tomato", "duration": 10, "step": 7 },
@@ -282,7 +295,8 @@ const RECIPES_DATA = {
       "Dress with olive oil, lemon juice, salt, and pepper",
       "Toss gently and serve immediately"
     ],
-    servings: 2
+    servings: 2,
+    protein: "dairy"
   },
   "Salmon (+ mashed potatoes?)": {
     ingredients: [
@@ -302,7 +316,8 @@ const RECIPES_DATA = {
       "Meanwhile, sauté sliced mushrooms in butter until golden",
       "Serve salmon with mashed potatoes, roasted vegetables, and mushrooms"
     ],
-    servings: 2
+    servings: 2,
+    protein: "fish"
   },
   "Misir Wat (Ethopian lentils)": {
     // test
@@ -323,7 +338,8 @@ const RECIPES_DATA = {
     instructions: [
       "Pot: butter, tomato paste, tomato, onion",
     ],
-    servings: 2
+    servings: 2,
+    protein: "lentils"
   },
   "Cesar salad": {
     ingredients: [
@@ -351,7 +367,8 @@ const RECIPES_DATA = {
       "Top salad with chicken, bacon, croutons, and extra parmesan",
       "Serve immediately"
     ],
-    servings: 2
+    servings: 2,
+    protein: "chicken"
   },
   "Red Curry Lentil": {
     ingredients: [
@@ -382,6 +399,7 @@ const RECIPES_DATA = {
       "Serve hot over rice, garnished with fresh coriander"
     ],
     servings: 2,
+    protein: "lentils",
     timers: [
       { "label": "Sauté aromatics", "duration": 1, "step": 2 },
       { "label": "Simmer lentils", "duration": 25, "step": 5 }
@@ -412,7 +430,8 @@ const RECIPES_DATA = {
       "Pour sauce over and toss everything together",
       "Serve topped with chopped peanuts, fresh coriander, sliced avocado, and salad greens"
     ],
-    servings: 2
+    servings: 2,
+    protein: ["tofu", "eggs"]
   },
   "Pancake": {
     ingredients: [
@@ -433,6 +452,7 @@ const RECIPES_DATA = {
       "Serve topped with sliced banana and drizzled with maple syrup"
     ],
     servings: 2,
+    protein: "eggs",
     timers: [
       { "label": "Rest batter", "duration": 10, "step": 2 },
       { "label": "Cook first side", "duration": 3, "step": 5 },
@@ -460,7 +480,8 @@ const RECIPES_DATA = {
       "Fold omelette in half and cook for another minute",
       "Serve with cooked matvete or rice on the side"
     ],
-    servings: 2
+    servings: 2,
+    protein: "eggs"
   },
   "Zucchini Omelette (with wheat or rice)": {
     ingredients: [
@@ -484,7 +505,8 @@ const RECIPES_DATA = {
       "Fold omelette in half and cook for another minute",
       "Serve with cooked matvete or rice on the side"
     ],
-    servings: 2
+    servings: 2,
+    protein: "eggs"
   },
   "Dumplings": {
     ingredients: [
@@ -510,7 +532,8 @@ const RECIPES_DATA = {
       "Steam dumplings in a steamer basket for 12-15 minutes, or pan-fry until golden on bottom then add water and cover to steam",
       "Serve with dipping sauce made from soy sauce, rice vinegar, and chili oil"
     ],
-    servings: 2
+    servings: 2,
+    protein: "none"
   },
   "Poke Bowl": {
     ingredients: [
@@ -537,7 +560,8 @@ const RECIPES_DATA = {
       "Top with candied ginger and shredded lettuce",
       "Serve immediately"
     ],
-    servings: 2
+    servings: 2,
+    protein: "tofu"
   },
   "Ramen": {
     ingredients: [
@@ -564,6 +588,7 @@ const RECIPES_DATA = {
       "Serve immediately while hot"
     ],
     servings: 2,
+    protein: "none",
     timers: [
       { "label": "Simmer vegetables", "duration": 5, "step": 2 },
       { "label": "Cook noodles", "duration": 4, "step": 4 }
@@ -589,7 +614,8 @@ const RECIPES_DATA = {
       "Remove foil and bake for 10 more minutes until golden",
       "Let rest for 10 minutes before serving"
     ],
-    servings: 2
+    servings: 2,
+    protein: "dairy"
   },
   "Indian Curry (chickpea)": {
     ingredients: [
@@ -615,7 +641,8 @@ const RECIPES_DATA = {
       "Season with salt to taste",
       "Serve hot over rice or with naan bread"
     ],
-    servings: 2
+    servings: 2,
+    protein: "chickpeas"
   },
   "Butternut Squash Soup": {
     ingredients: [
@@ -631,7 +658,8 @@ const RECIPES_DATA = {
       "Season with salt, pepper, and a pinch of nutmeg",
       "Serve hot, optionally garnished with cream and toasted seeds"
     ],
-    servings: 2
+    servings: 2,
+    protein: "none"
   },
   "Carrot Soup etc": {
     ingredients: [
@@ -650,7 +678,8 @@ const RECIPES_DATA = {
       "Adjust consistency with more broth if needed",
       "Serve hot with crusty bread"
     ],
-    servings: 2
+    servings: 2,
+    protein: "none"
   },
   "Shrimp Salad": {
     ingredients: [
@@ -674,7 +703,8 @@ const RECIPES_DATA = {
       "Drizzle dressing over salad and garnish with chives",
       "Serve immediately"
     ],
-    servings: 2
+    servings: 2,
+    protein: "fish"
   },
   "Lentil Soup": {
     ingredients: [
@@ -701,7 +731,8 @@ const RECIPES_DATA = {
       "Stir in lemon juice and season with salt and pepper",
       "Serve hot with crusty bread"
     ],
-    servings: 2
+    servings: 2,
+    protein: "lentils"
   },
   "Lentil Salad": {
     ingredients: [
@@ -724,7 +755,8 @@ const RECIPES_DATA = {
       "Top with toasted almonds",
       "Serve at room temperature or chilled"
     ],
-    servings: 2
+    servings: 2,
+    protein: "lentils"
   },
   "Lentil Stew": {
     ingredients: [
@@ -756,7 +788,8 @@ const RECIPES_DATA = {
       "Season with salt and pepper to taste",
       "Serve hot with bread or over rice"
     ],
-    servings: 2
+    servings: 2,
+    protein: "lentils"
   },
   "Greek Salad": {
     ingredients: [
@@ -778,7 +811,8 @@ const RECIPES_DATA = {
       "Top with crumbled feta",
       "Serve immediately"
     ],
-    servings: 2
+    servings: 2,
+    protein: "dairy"
   },
   "Chili (beans)": {
     ingredients: [
@@ -806,6 +840,7 @@ const RECIPES_DATA = {
       "Add chili powder or hot sauce if desired for extra heat",
       "Serve hot with rice, tortilla chips, or topped with avocado and sour cream"
     ],
-    servings: 2
+    servings: 2,
+    protein: "beans"
   }
 };

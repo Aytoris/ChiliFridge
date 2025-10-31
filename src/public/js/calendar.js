@@ -145,10 +145,15 @@ const CalendarModule = (() => {
           // Add a class if a recipe is selected to highlight it visually
           if (calendarData[i][mealIndex].recipe) {
             mealContainer.classList.add('meal-active');
-          }
-        }
 
-        mealContainer.appendChild(selectElement);
+            // Add protein-specific styling based on recipe
+            const selectedRecipe = calendarData[i][mealIndex].recipe;
+            if (recipes && recipes[selectedRecipe] && recipes[selectedRecipe].protein) {
+              applyProteinStyling(mealContainer, recipes[selectedRecipe].protein, true);
+              applyProteinSelectorStyling(selectElement, recipes[selectedRecipe].protein);
+            }
+          }
+        }        mealContainer.appendChild(selectElement);
 
         // Add people count selector
         const peopleContainer = document.createElement('div');
@@ -219,6 +224,104 @@ const CalendarModule = (() => {
   };
 
   /**
+   * Get protein color for a given protein type
+   * @param {string} proteinType - Protein type
+   * @param {boolean} isActive - Whether the meal is active/selected
+   * @returns {string} - Color code
+   */
+  const getProteinColor = (proteinType, isActive = false) => {
+    const colors = {
+      'tofu': { base: '#FFF59D', active: '#FFD54F' },
+      'lentils': { base: '#FFAB91', active: '#FF7043' },
+      'chickpeas': { base: '#FFCC80', active: '#FFA726' },
+      'beans': { base: '#BCAAA4', active: '#8D6E63' },
+      'eggs': { base: '#F48FB1', active: '#EC407A' },
+      'fish': { base: '#81D4FA', active: '#29B6F6' },
+      'chicken': { base: '#EF9A9A', active: '#EF5350' },
+      'dairy': { base: '#CE93D8', active: '#AB47BC' },
+      'none': { base: '#BDBDBD', active: '#9E9E9E' }
+    };
+
+    const color = colors[proteinType] || colors['none'];
+    return isActive ? color.active : color.base;
+  };
+
+  /**
+   * Apply protein styling to a meal container
+   * @param {HTMLElement} mealContainer - The meal container element
+   * @param {string|array} protein - Protein type(s) from recipe
+   * @param {boolean} isActive - Whether the meal is active/selected
+   */
+  const applyProteinStyling = (mealContainer, protein, isActive = false) => {
+    // Remove all existing protein classes
+    mealContainer.classList.remove(
+      'protein-tofu', 'protein-lentils', 'protein-chickpeas', 'protein-beans',
+      'protein-eggs', 'protein-fish', 'protein-chicken', 'protein-dairy', 'protein-none'
+    );
+
+    // Clear any inline background style
+    mealContainer.style.background = '';
+
+    if (!protein) return;
+
+    // Handle array of proteins (multi-protein)
+    if (Array.isArray(protein)) {
+      if (protein.length === 0) return;
+
+      // Always create striped pattern for arrays, even with 1 item
+      const stripeWidth = 100 / protein.length;
+      const stripes = protein.map((p, index) => {
+        const color = getProteinColor(p, isActive);
+        const start = index * stripeWidth;
+        const end = (index + 1) * stripeWidth;
+        return `${color} ${start}%, ${color} ${end}%`;
+      }).join(', ');
+
+      mealContainer.style.background = `linear-gradient(90deg, ${stripes})`;
+    } else {
+      // Single protein string - use solid color instead of CSS class
+      const color = getProteinColor(protein, isActive);
+      mealContainer.style.background = color;
+    }
+  };  /**
+   * Apply protein color to meal selector
+   * @param {HTMLElement} selectElement - The select element
+   * @param {string|array} protein - Protein type(s) from recipe
+   */
+  const applyProteinSelectorStyling = (selectElement, protein) => {
+    selectElement.classList.remove('has-protein');
+    selectElement.style.borderLeft = '';
+    selectElement.style.borderImage = '';
+    selectElement.style.borderImageSlice = '';
+
+    if (!protein) return;
+
+    selectElement.classList.add('has-protein');
+
+    // Handle array of proteins (multi-protein)
+    if (Array.isArray(protein)) {
+      if (protein.length === 0) return;
+
+      // Always create striped border for arrays
+      const stripeHeight = 100 / protein.length;
+      const stripes = protein.map((p, index) => {
+        const color = getProteinColor(p, false);
+        const start = index * stripeHeight;
+        const end = (index + 1) * stripeHeight;
+        return `${color} ${start}%, ${color} ${end}%`;
+      }).join(', ');
+
+      selectElement.style.borderLeft = '6px solid';
+      selectElement.style.borderImage = `linear-gradient(180deg, ${stripes}) 1`;
+    } else {
+      // Single protein string
+      const color = getProteinColor(protein, false);
+      selectElement.style.borderLeft = `6px solid ${color}`;
+    }
+  };
+
+  /**
+   * Update meal selection for a specific day and meal  /**
    * Update meal selection for a specific day and meal
    * @param {number} dayIndex - Day index (0-6)
    * @param {number} mealIndex - Meal index (0-2)
@@ -239,11 +342,22 @@ const CalendarModule = (() => {
     calendarData[dayIndex][mealIndex].recipe = recipeName;
 
     // Update the visual highlight based on selection
-    const mealContainer = document.getElementById(`meal-day-${dayIndex}-${mealIndex}`).closest('.meal-container');
+    const selectElement = document.getElementById(`meal-day-${dayIndex}-${mealIndex}`);
+    const mealContainer = selectElement.closest('.meal-container');
+
     if (recipeName) {
       mealContainer.classList.add('meal-active');
+
+      // Get the protein type from the recipe and apply styling
+      const recipes = MealModule.getAllRecipes();
+      if (recipes[recipeName] && recipes[recipeName].protein) {
+        applyProteinStyling(mealContainer, recipes[recipeName].protein, true);
+        applyProteinSelectorStyling(selectElement, recipes[recipeName].protein);
+      }
     } else {
       mealContainer.classList.remove('meal-active');
+      applyProteinStyling(mealContainer, null, false);
+      applyProteinSelectorStyling(selectElement, null);
     }
 
     // Save the updated data
@@ -251,9 +365,7 @@ const CalendarModule = (() => {
 
     // Update the "Cook This" button immediately
     updateCookButton(dayIndex, mealIndex, recipeName);
-  };
-
-  /**
+  };  /**
    * Update or create the "Cook This" button for a meal
    * @param {number} dayIndex - Day index (0-6)
    * @param {number} mealIndex - Meal index (0-2)

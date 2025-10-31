@@ -297,6 +297,83 @@ li:last-child {
     overflow: hidden;
 }
 
+/* Protein-based background colors for meal planning
+ * This helps visualize protein diversity across the week:
+ * - Tofu: Light Yellow (#FFF9C4 → #FFF59D active: #FFF176 → #FFD54F)
+ * - Lentils: Light Coral (#FFCCBC → #FFAB91 active: #FF8A65 → #FF7043)
+ * - Chickpeas: Light Orange (#FFE0B2 → #FFCC80 active: #FFB74D → #FFA726)
+ * - Beans: Brown/Tan (#D7CCC8 → #BCAAA4 active: #A1887F → #8D6E63)
+ * - Eggs: Pink (#F8BBD0 → #F48FB1 active: #F06292 → #EC407A)
+ * - Fish: Light Blue (#B3E5FC → #81D4FA active: #4FC3F7 → #29B6F6)
+ * - Chicken: Light Red (#FFCDD2 → #EF9A9A active: #E57373 → #EF5350)
+ * - Dairy: Purple (#E1BEE7 → #CE93D8 active: #BA68C8 → #AB47BC)
+ * - None: Gray (#E0E0E0 → #BDBDBD active: #BDBDBD → #9E9E9E)
+ *
+ * Multi-protein recipes use striped patterns with equal divisions
+ */
+
+/* Single protein colors - base state */
+.meal-container.protein-tofu {
+.meal-container.protein-tofu {
+    background: linear-gradient(135deg, #FFF9C4, #FFF59D);
+}
+
+.meal-container.protein-lentils {
+    background: linear-gradient(135deg, #FFCCBC, #FFAB91);
+}
+
+.meal-container.protein-chickpeas {
+    background: linear-gradient(135deg, #FFE0B2, #FFCC80);
+}
+
+.meal-container.protein-beans {
+    background: linear-gradient(135deg, #D7CCC8, #BCAAA4);
+}
+
+.meal-container.protein-eggs {
+    background: linear-gradient(135deg, #F8BBD0, #F48FB1);
+}
+
+.meal-container.protein-fish {
+    background: linear-gradient(135deg, #B3E5FC, #81D4FA);
+}
+
+.meal-container.protein-chicken {
+    background: linear-gradient(135deg, #FFCDD2, #EF9A9A);
+}
+
+.meal-container.protein-dairy {
+    background: linear-gradient(135deg, #E1BEE7, #CE93D8);
+}
+
+.meal-container.protein-none {
+    background: linear-gradient(135deg, #E0E0E0, #BDBDBD);
+}
+
+/* Multi-protein stripe patterns - generated dynamically via inline styles */
+/* Base colors for stripe generation */
+:root {
+    --protein-tofu: #FFF59D;
+    --protein-lentils: #FFAB91;
+    --protein-chickpeas: #FFCC80;
+    --protein-beans: #BCAAA4;
+    --protein-eggs: #F48FB1;
+    --protein-fish: #81D4FA;
+    --protein-chicken: #EF9A9A;
+    --protein-dairy: #CE93D8;
+    --protein-none: #BDBDBD;
+
+    --protein-tofu-active: #FFD54F;
+    --protein-lentils-active: #FF7043;
+    --protein-chickpeas-active: #FFA726;
+    --protein-beans-active: #8D6E63;
+    --protein-eggs-active: #EC407A;
+    --protein-fish-active: #29B6F6;
+    --protein-chicken-active: #EF5350;
+    --protein-dairy-active: #AB47BC;
+    --protein-none-active: #9E9E9E;
+}
+
 /* Compact meal containers for mobile */
 @media (max-width: 768px) {
     .meal-container {
@@ -307,9 +384,46 @@ li:last-child {
 
 /* Active state with a more vibrant color */
 .meal-active {
-    background: linear-gradient(135deg, #4FC3F7, #0288D1);
-    box-shadow: 0 5px 10px rgba(2, 136, 209, 0.3);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
     transform: translateY(-2px);
+    border: 2px solid rgba(0,0,0,0.15);
+}
+
+/* Enhanced colors when meal is active (selected) */
+.meal-active.protein-tofu {
+    background: linear-gradient(135deg, #FFF176, #FFD54F);
+}
+
+.meal-active.protein-lentils {
+    background: linear-gradient(135deg, #FF8A65, #FF7043);
+}
+
+.meal-active.protein-chickpeas {
+    background: linear-gradient(135deg, #FFB74D, #FFA726);
+}
+
+.meal-active.protein-beans {
+    background: linear-gradient(135deg, #A1887F, #8D6E63);
+}
+
+.meal-active.protein-eggs {
+    background: linear-gradient(135deg, #F06292, #EC407A);
+}
+
+.meal-active.protein-fish {
+    background: linear-gradient(135deg, #4FC3F7, #29B6F6);
+}
+
+.meal-active.protein-chicken {
+    background: linear-gradient(135deg, #E57373, #EF5350);
+}
+
+.meal-active.protein-dairy {
+    background: linear-gradient(135deg, #BA68C8, #AB47BC);
+}
+
+.meal-active.protein-none {
+    background: linear-gradient(135deg, #BDBDBD, #9E9E9E);
 }
 
 .meal-active label {
@@ -346,6 +460,12 @@ li:last-child {
     z-index: 2;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
+}
+
+/* Meal selector with protein color indicator */
+.meal-selector.has-protein {
+    border-left: 6px solid transparent;
+    padding-left: 8px;
 }
 
 .people-selector {
