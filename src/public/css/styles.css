@@ -314,7 +314,6 @@ li:last-child {
 
 /* Single protein colors - base state */
 .meal-container.protein-tofu {
-.meal-container.protein-tofu {
     background: linear-gradient(135deg, #FFF9C4, #FFF59D);
 }
 
@@ -445,27 +444,153 @@ li:last-child {
     height: 100%;
     background: linear-gradient(45deg, rgba(255,255,255,0.15), transparent);
     z-index: 1;
+    pointer-events: none; /* Don't block clicks on buttons */
 }
 
-.meal-selector {
+/* Recipe Selection Modal */
+.recipe-selection-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    pointer-events: none; /* Don't block clicks when inactive */
+}
+
+.recipe-selection-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto; /* Allow clicks when active */
+}
+
+.recipe-selection-content {
+    background-color: white;
+    border-radius: 12px;
+    padding: 12px 16px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.recipe-selection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.recipe-selection-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+.recipe-selection-close {
+    background: none;
+    border: none;
+    font-size: 1.6em;
+    cursor: pointer;
+    color: #999;
+    line-height: 1;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.recipe-selection-close:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.recipe-selection-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    column-gap: 8px;
+}
+
+.recipe-selection-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
     border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.5);
-    background-color: rgba(255,255,255,0.9);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.recipe-selection-item:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.02);
+    border-color: #4CAF50;
+}
+
+.recipe-selection-item.selected {
+    background-color: #e8f5e9;
+    border-color: #4CAF50;
+    font-weight: 600;
+}
+
+.recipe-selection-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.recipe-selection-name {
+    flex: 1;
+    font-size: 0.9em;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Simple display for selected meal */
+.meal-display {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 5px 0;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    background-color: white;
     font-weight: 500;
     color: #333;
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    cursor: pointer;
+    text-align: left;
     transition: all 0.3s ease;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
 }
 
-/* Meal selector with protein color indicator */
-.meal-selector.has-protein {
-    border-left: 6px solid transparent;
-    padding-left: 8px;
+.meal-display:hover {
+    border-color: #4CAF50;
+    box-shadow: 0 3px 8px rgba(76,175,80,0.2);
+}
+
+.meal-display.empty {
+    color: #999;
+    font-style: italic;
 }
 
 .people-selector {
@@ -485,11 +610,6 @@ li:last-child {
 
 /* Smaller selectors for mobile */
 @media (max-width: 768px) {
-    .meal-selector {
-        padding: 7px;
-        font-size: 0.9em;
-    }
-
     .people-selector {
         width: 50px;
         padding: 6px;
@@ -532,7 +652,7 @@ li:last-child {
 }
 
 /* Smooth transitions for all elements */
-.day-card, .day-name, .meal-container, .meal-selector, .people-selector, button {
+.day-card, .day-name, .meal-container, .people-selector, button {
     transition: all 0.3s ease;
 }
 

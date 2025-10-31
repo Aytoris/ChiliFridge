@@ -1,5 +1,5 @@
 // Service Worker for ChiliFridge PWA - Client-Side Only
-const CACHE_NAME = 'chilifridge-v2-standalone';
+const CACHE_NAME = 'chilifridge-v21-two-columns';
 const urlsToCache = [
   './',
   './index.html',

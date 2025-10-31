@@ -45,7 +45,7 @@ const RECIPES_DATA = {
       "Top with remaining parmesan and bake for 10 more minutes"
     ],
     servings: 2,
-    protein: "dairy"
+    protein: "none"
   },
   "Chickpeas Tacos": {
     ingredients: [
@@ -266,7 +266,7 @@ const RECIPES_DATA = {
       "Season with salt and pepper, serve immediately"
     ],
     servings: 2,
-    protein: "dairy",
+    protein: "none",
     timers: [
       { "label": "Toast rice", "duration": 2, "step": 2 },
       { "label": "Simmer after tomato", "duration": 10, "step": 7 },
@@ -296,7 +296,7 @@ const RECIPES_DATA = {
       "Toss gently and serve immediately"
     ],
     servings: 2,
-    protein: "dairy"
+    protein: "none"
   },
   "Salmon (+ mashed potatoes?)": {
     ingredients: [
@@ -459,7 +459,7 @@ const RECIPES_DATA = {
       { "label": "Cook second side", "duration": 2, "step": 6 }
     ]
   },
-  "Mushroom Omelette (with wheat or rice)": {
+  "Mushroom Omelette": {
     ingredients: [
       { "name": "Egg", "quantity": 3, "unit": "" },
       { "name": "Mushroom", "quantity": 40, "unit": "g" },
@@ -615,7 +615,7 @@ const RECIPES_DATA = {
       "Let rest for 10 minutes before serving"
     ],
     servings: 2,
-    protein: "dairy"
+    protein: "none"
   },
   "Indian Curry (chickpea)": {
     ingredients: [
@@ -812,7 +812,7 @@ const RECIPES_DATA = {
       "Serve immediately"
     ],
     servings: 2,
-    protein: "dairy"
+    protein: "none"
   },
   "Chili (beans)": {
     ingredients: [

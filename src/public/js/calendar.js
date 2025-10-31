@@ -66,10 +66,321 @@ const CalendarModule = (() => {
   };
 
   /**
+   * Get protein color for a given protein type
+   * @param {string} proteinType - Protein type
+   * @param {boolean} isActive - Whether the meal is active/selected
+   * @returns {string} - Color code
+   */
+  const getProteinColor = (proteinType, isActive = false) => {
+    const colors = {
+      'tofu': { base: '#FFF59D', active: '#FFD54F' },
+      'lentils': { base: '#FFAB91', active: '#FF7043' },
+      'chickpeas': { base: '#FFCC80', active: '#FFA726' },
+      'beans': { base: '#BCAAA4', active: '#8D6E63' },
+      'eggs': { base: '#F48FB1', active: '#EC407A' },
+      'fish': { base: '#81D4FA', active: '#29B6F6' },
+      'chicken': { base: '#EF9A9A', active: '#EF5350' },
+      'dairy': { base: '#CE93D8', active: '#AB47BC' },
+      'none': { base: '#BDBDBD', active: '#9E9E9E' }
+    };
+
+    const color = colors[proteinType] || colors['none'];
+    return isActive ? color.active : color.base;
+  };
+
+  /**
+   * Apply protein styling to a meal container
+   * @param {HTMLElement} mealContainer - The meal container element
+   * @param {string|array} protein - Protein type(s) from recipe
+   * @param {boolean} isActive - Whether the meal is active/selected
+   */
+  const applyProteinStyling = (mealContainer, protein, isActive = false) => {
+    // Remove all existing protein classes
+    mealContainer.classList.remove(
+      'protein-tofu', 'protein-lentils', 'protein-chickpeas', 'protein-beans',
+      'protein-eggs', 'protein-fish', 'protein-chicken', 'protein-dairy', 'protein-none'
+    );
+
+    // Clear any inline background style
+    mealContainer.style.background = '';
+
+    if (!protein) return;
+
+    // Handle array of proteins (multi-protein)
+    if (Array.isArray(protein)) {
+      if (protein.length === 0) return;
+
+      // Always create striped pattern for arrays, even with 1 item
+      const stripeWidth = 100 / protein.length;
+      const stripes = protein.map((p, index) => {
+        const color = getProteinColor(p, isActive);
+        const start = index * stripeWidth;
+        const end = (index + 1) * stripeWidth;
+        return `${color} ${start}%, ${color} ${end}%`;
+      }).join(', ');
+
+      mealContainer.style.background = `linear-gradient(90deg, ${stripes})`;
+    } else {
+      // Single protein string - use solid color instead of CSS class
+      const color = getProteinColor(protein, isActive);
+      mealContainer.style.background = color;
+    }
+  };
+
+  /**
+   * Apply protein color to meal selector
+   * @param {HTMLElement} selectElement - The select element
+   * @param {string|array} protein - Protein type(s) from recipe
+   */
+  const applyProteinSelectorStyling = (selectElement, protein) => {
+    selectElement.classList.remove('has-protein');
+    selectElement.style.borderLeft = '';
+    selectElement.style.borderImage = '';
+    selectElement.style.borderImageSlice = '';
+    selectElement.style.background = '';
+
+    if (!protein) return;
+
+    selectElement.classList.add('has-protein');
+
+    // Handle array of proteins (multi-protein)
+    if (Array.isArray(protein)) {
+      if (protein.length === 0) return;
+
+      // Create striped background for the select element
+      const stripeWidth = 100 / protein.length;
+      const stripes = protein.map((p, index) => {
+        const color = getProteinColor(p, false);
+        const start = index * stripeWidth;
+        const end = (index + 1) * stripeWidth;
+        return `${color} ${start}%, ${color} ${end}%`;
+      }).join(', ');
+
+      selectElement.style.background = `linear-gradient(90deg, ${stripes})`;
+      selectElement.style.borderLeft = '6px solid rgba(0,0,0,0.2)';
+    } else {
+      // Single protein string - solid background
+      const color = getProteinColor(protein, false);
+      selectElement.style.background = color;
+      selectElement.style.borderLeft = '6px solid rgba(0,0,0,0.2)';
+    }
+  };
+
+  /**
+   * Apply protein styling to the protein indicator bar
+   */
+  /**
+   * Apply protein color to meal display button
+   */
+  const applyProteinToMealDisplay = (mealDisplay, protein) => {
+    mealDisplay.style.background = '';
+
+    if (!protein) {
+      mealDisplay.style.background = 'white';
+      return;
+    }
+
+    // Handle array of proteins (multi-protein)
+    if (Array.isArray(protein)) {
+      if (protein.length === 0) {
+        mealDisplay.style.background = 'white';
+        return;
+      }
+
+      // Create horizontal striped background
+      const stripeWidth = 100 / protein.length;
+      const stripes = protein.map((p, index) => {
+        const color = getProteinColor(p, false);
+        const start = index * stripeWidth;
+        const end = (index + 1) * stripeWidth;
+        return `${color} ${start}%, ${color} ${end}%`;
+      }).join(', ');
+
+      mealDisplay.style.background = `linear-gradient(90deg, ${stripes})`;
+    } else {
+      // Single protein string - solid background
+      const color = getProteinColor(protein, false);
+      mealDisplay.style.background = color;
+    }
+  };
+
+  /**
+   * Open recipe selection modal
+   */
+  const openRecipeSelectionModal = (dayIndex, mealIndex) => {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('recipeSelectionModal');
+    if (!modal) {
+      modal = createRecipeSelectionModal();
+      document.body.appendChild(modal);
+    }
+
+    // Get current selection
+    const currentRecipe = calendarData[dayIndex]?.[mealIndex]?.recipe || '';
+
+    // Populate modal with recipes
+    const recipeList = modal.querySelector('.recipe-selection-list');
+    recipeList.innerHTML = '';
+
+    // Add "Clear selection" option
+    const clearItem = document.createElement('div');
+    clearItem.className = 'recipe-selection-item';
+    if (!currentRecipe) {
+      clearItem.classList.add('selected');
+    }
+
+    const clearColor = document.createElement('div');
+    clearColor.className = 'recipe-selection-color';
+    clearColor.style.background = '#f0f0f0';
+    clearColor.style.border = '2px dashed #ccc';
+
+    const clearName = document.createElement('div');
+    clearName.className = 'recipe-selection-name';
+    clearName.textContent = 'Clear selection';
+    clearName.style.fontStyle = 'italic';
+    clearName.style.color = '#999';
+
+    clearItem.appendChild(clearColor);
+    clearItem.appendChild(clearName);
+    clearItem.addEventListener('click', () => {
+      selectRecipeFromModal(dayIndex, mealIndex, '');
+      closeRecipeSelectionModal();
+    });
+
+    recipeList.appendChild(clearItem);
+
+    // Add all recipes
+    const recipes = MealModule.getAllRecipes();
+    if (recipes && Object.keys(recipes).length > 0) {
+      Object.keys(recipes)
+        .sort()
+        .forEach(recipeName => {
+          const item = document.createElement('div');
+          item.className = 'recipe-selection-item';
+          if (recipeName === currentRecipe) {
+            item.classList.add('selected');
+          }
+
+          // Create color indicator
+          const colorIndicator = document.createElement('div');
+          colorIndicator.className = 'recipe-selection-color';
+
+          if (recipes[recipeName] && recipes[recipeName].protein) {
+            const protein = recipes[recipeName].protein;
+
+            if (Array.isArray(protein) && protein.length > 0) {
+              // Multi-protein: create striped background
+              const stripeHeight = 100 / protein.length;
+              const stripes = protein.map((p, index) => {
+                const color = getProteinColor(p, false);
+                const start = index * stripeHeight;
+                const end = (index + 1) * stripeHeight;
+                return `${color} ${start}%, ${color} ${end}%`;
+              }).join(', ');
+              colorIndicator.style.background = `linear-gradient(180deg, ${stripes})`;
+            } else if (!Array.isArray(protein)) {
+              // Single protein: solid color
+              const color = getProteinColor(protein, false);
+              colorIndicator.style.background = color;
+            }
+          } else {
+            // No protein info
+            colorIndicator.style.background = '#e0e0e0';
+          }
+
+          const name = document.createElement('div');
+          name.className = 'recipe-selection-name';
+          name.textContent = recipeName;
+
+          item.appendChild(colorIndicator);
+          item.appendChild(name);
+
+          item.addEventListener('click', () => {
+            selectRecipeFromModal(dayIndex, mealIndex, recipeName);
+            closeRecipeSelectionModal();
+          });
+
+          recipeList.appendChild(item);
+        });
+    }
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  };
+
+  /**
+   * Create recipe selection modal element
+   */
+  const createRecipeSelectionModal = () => {
+    const modal = document.createElement('div');
+    modal.id = 'recipeSelectionModal';
+    modal.className = 'recipe-selection-modal';
+
+    const content = document.createElement('div');
+    content.className = 'recipe-selection-content';
+
+    const header = document.createElement('div');
+    header.className = 'recipe-selection-header';
+
+    const title = document.createElement('div');
+    title.className = 'recipe-selection-title';
+    title.textContent = 'Select a Recipe';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'recipe-selection-close';
+    closeBtn.innerHTML = '×';
+    closeBtn.addEventListener('click', closeRecipeSelectionModal);
+
+    header.appendChild(title);
+    header.appendChild(closeBtn);
+
+    const list = document.createElement('div');
+    list.className = 'recipe-selection-list';
+
+    content.appendChild(header);
+    content.appendChild(list);
+    modal.appendChild(content);
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeRecipeSelectionModal();
+      }
+    });
+
+    return modal;
+  };
+
+  /**
+   * Close recipe selection modal
+   */
+  const closeRecipeSelectionModal = () => {
+    const modal = document.getElementById('recipeSelectionModal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scroll
+    }
+  };
+
+  // Add keyboard handler for ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeRecipeSelectionModal();
+    }
+  });
+
+  /**
+   * Select a recipe from the modal
+   */
+  const selectRecipeFromModal = (dayIndex, mealIndex, recipeName) => {
+    updateMealSelection(dayIndex, mealIndex, recipeName);
+  };
+
+  /**
    * Display the calendar with days of the week
    */
   const displayCalendar = () => {
-    console.log('Display calendar called');
     const calendarEl = document.getElementById('calendar');
 
     if (!calendarEl) {
@@ -111,49 +422,36 @@ const CalendarModule = (() => {
         const mealContainer = document.createElement('div');
         mealContainer.className = 'meal-container';
 
-        // Create select dropdown with recipe options
-        const selectElement = document.createElement('select');
-        selectElement.className = 'meal-selector';
-        selectElement.id = `meal-day-${i}-${mealIndex}`;
-        selectElement.setAttribute('data-day', i);
-        selectElement.setAttribute('data-meal', mealIndex);
-        selectElement.addEventListener('change', (e) => updateMealSelection(i, mealIndex, e.target.value));
+        // Create meal display button
+        const mealDisplay = document.createElement('button');
+        mealDisplay.className = 'meal-display';
+        mealDisplay.id = `meal-display-day-${i}-${mealIndex}`;
+        mealDisplay.setAttribute('data-day', i);
+        mealDisplay.setAttribute('data-meal', mealIndex);
 
-        // Add default option
-        const defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.textContent = '...';
-        selectElement.appendChild(defaultOption);
+        // Set initial text
+        const selectedRecipe = calendarData[i]?.[mealIndex]?.recipe;
+        if (selectedRecipe) {
+          mealDisplay.textContent = selectedRecipe;
+          mealContainer.classList.add('meal-active');
 
-        // Add recipe options if available
-        const recipes = MealModule.getAllRecipes();
-        if (recipes && Object.keys(recipes).length > 0) {
-          Object.keys(recipes)
-            .sort()
-            .forEach(recipe => {
-              const option = document.createElement('option');
-              option.value = recipe;
-              option.textContent = recipe;
-              selectElement.appendChild(option);
-            });
+          // Apply protein styling
+          const recipes = MealModule.getAllRecipes();
+          if (recipes && recipes[selectedRecipe] && recipes[selectedRecipe].protein) {
+            applyProteinStyling(mealContainer, recipes[selectedRecipe].protein, true);
+            applyProteinToMealDisplay(mealDisplay, recipes[selectedRecipe].protein);
+          }
+        } else {
+          mealDisplay.textContent = 'Select meal...';
+          mealDisplay.classList.add('empty');
         }
 
-        // Set the selected value if there's saved data
-        if (calendarData[i] && calendarData[i][mealIndex]) {
-          selectElement.value = calendarData[i][mealIndex].recipe || '';
+        // Open modal on click
+        mealDisplay.addEventListener('click', () => {
+          openRecipeSelectionModal(i, mealIndex);
+        });
 
-          // Add a class if a recipe is selected to highlight it visually
-          if (calendarData[i][mealIndex].recipe) {
-            mealContainer.classList.add('meal-active');
-
-            // Add protein-specific styling based on recipe
-            const selectedRecipe = calendarData[i][mealIndex].recipe;
-            if (recipes && recipes[selectedRecipe] && recipes[selectedRecipe].protein) {
-              applyProteinStyling(mealContainer, recipes[selectedRecipe].protein, true);
-              applyProteinSelectorStyling(selectElement, recipes[selectedRecipe].protein);
-            }
-          }
-        }        mealContainer.appendChild(selectElement);
+        mealContainer.appendChild(mealDisplay);
 
         // Add people count selector
         const peopleContainer = document.createElement('div');
@@ -224,104 +522,6 @@ const CalendarModule = (() => {
   };
 
   /**
-   * Get protein color for a given protein type
-   * @param {string} proteinType - Protein type
-   * @param {boolean} isActive - Whether the meal is active/selected
-   * @returns {string} - Color code
-   */
-  const getProteinColor = (proteinType, isActive = false) => {
-    const colors = {
-      'tofu': { base: '#FFF59D', active: '#FFD54F' },
-      'lentils': { base: '#FFAB91', active: '#FF7043' },
-      'chickpeas': { base: '#FFCC80', active: '#FFA726' },
-      'beans': { base: '#BCAAA4', active: '#8D6E63' },
-      'eggs': { base: '#F48FB1', active: '#EC407A' },
-      'fish': { base: '#81D4FA', active: '#29B6F6' },
-      'chicken': { base: '#EF9A9A', active: '#EF5350' },
-      'dairy': { base: '#CE93D8', active: '#AB47BC' },
-      'none': { base: '#BDBDBD', active: '#9E9E9E' }
-    };
-
-    const color = colors[proteinType] || colors['none'];
-    return isActive ? color.active : color.base;
-  };
-
-  /**
-   * Apply protein styling to a meal container
-   * @param {HTMLElement} mealContainer - The meal container element
-   * @param {string|array} protein - Protein type(s) from recipe
-   * @param {boolean} isActive - Whether the meal is active/selected
-   */
-  const applyProteinStyling = (mealContainer, protein, isActive = false) => {
-    // Remove all existing protein classes
-    mealContainer.classList.remove(
-      'protein-tofu', 'protein-lentils', 'protein-chickpeas', 'protein-beans',
-      'protein-eggs', 'protein-fish', 'protein-chicken', 'protein-dairy', 'protein-none'
-    );
-
-    // Clear any inline background style
-    mealContainer.style.background = '';
-
-    if (!protein) return;
-
-    // Handle array of proteins (multi-protein)
-    if (Array.isArray(protein)) {
-      if (protein.length === 0) return;
-
-      // Always create striped pattern for arrays, even with 1 item
-      const stripeWidth = 100 / protein.length;
-      const stripes = protein.map((p, index) => {
-        const color = getProteinColor(p, isActive);
-        const start = index * stripeWidth;
-        const end = (index + 1) * stripeWidth;
-        return `${color} ${start}%, ${color} ${end}%`;
-      }).join(', ');
-
-      mealContainer.style.background = `linear-gradient(90deg, ${stripes})`;
-    } else {
-      // Single protein string - use solid color instead of CSS class
-      const color = getProteinColor(protein, isActive);
-      mealContainer.style.background = color;
-    }
-  };  /**
-   * Apply protein color to meal selector
-   * @param {HTMLElement} selectElement - The select element
-   * @param {string|array} protein - Protein type(s) from recipe
-   */
-  const applyProteinSelectorStyling = (selectElement, protein) => {
-    selectElement.classList.remove('has-protein');
-    selectElement.style.borderLeft = '';
-    selectElement.style.borderImage = '';
-    selectElement.style.borderImageSlice = '';
-
-    if (!protein) return;
-
-    selectElement.classList.add('has-protein');
-
-    // Handle array of proteins (multi-protein)
-    if (Array.isArray(protein)) {
-      if (protein.length === 0) return;
-
-      // Always create striped border for arrays
-      const stripeHeight = 100 / protein.length;
-      const stripes = protein.map((p, index) => {
-        const color = getProteinColor(p, false);
-        const start = index * stripeHeight;
-        const end = (index + 1) * stripeHeight;
-        return `${color} ${start}%, ${color} ${end}%`;
-      }).join(', ');
-
-      selectElement.style.borderLeft = '6px solid';
-      selectElement.style.borderImage = `linear-gradient(180deg, ${stripes}) 1`;
-    } else {
-      // Single protein string
-      const color = getProteinColor(protein, false);
-      selectElement.style.borderLeft = `6px solid ${color}`;
-    }
-  };
-
-  /**
-   * Update meal selection for a specific day and meal  /**
    * Update meal selection for a specific day and meal
    * @param {number} dayIndex - Day index (0-6)
    * @param {number} mealIndex - Meal index (0-2)
@@ -341,23 +541,27 @@ const CalendarModule = (() => {
     // Update the recipe
     calendarData[dayIndex][mealIndex].recipe = recipeName;
 
-    // Update the visual highlight based on selection
-    const selectElement = document.getElementById(`meal-day-${dayIndex}-${mealIndex}`);
-    const mealContainer = selectElement.closest('.meal-container');
+    // Update the visual display
+    const mealDisplay = document.getElementById(`meal-display-day-${dayIndex}-${mealIndex}`);
+    const mealContainer = mealDisplay.closest('.meal-container');
 
     if (recipeName) {
+      mealDisplay.textContent = recipeName;
+      mealDisplay.classList.remove('empty');
       mealContainer.classList.add('meal-active');
 
       // Get the protein type from the recipe and apply styling
       const recipes = MealModule.getAllRecipes();
       if (recipes[recipeName] && recipes[recipeName].protein) {
         applyProteinStyling(mealContainer, recipes[recipeName].protein, true);
-        applyProteinSelectorStyling(selectElement, recipes[recipeName].protein);
+        applyProteinToMealDisplay(mealDisplay, recipes[recipeName].protein);
       }
     } else {
+      mealDisplay.textContent = 'Select meal...';
+      mealDisplay.classList.add('empty');
       mealContainer.classList.remove('meal-active');
       applyProteinStyling(mealContainer, null, false);
-      applyProteinSelectorStyling(selectElement, null);
+      applyProteinToMealDisplay(mealDisplay, null);
     }
 
     // Save the updated data
@@ -1141,4 +1345,3 @@ const CalendarModule = (() => {
     openCookingMode
   };
 })();
-    timerDiv.className = 'active-timer';
