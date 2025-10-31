@@ -114,6 +114,9 @@ const GroceryModule = (() => {
     // Store Layout button
     document.getElementById('storeLayoutBtn').addEventListener('click', openStoreLayoutModal);
 
+    // Get Grocery Links button
+    document.getElementById('getGroceryLinksBtn').addEventListener('click', exportGroceryLinks);
+
     // Modal close button
     document.querySelector('.close-modal').addEventListener('click', closeStoreLayoutModal);
 
@@ -423,6 +426,48 @@ const GroceryModule = (() => {
     a.click();
 
     URL.revokeObjectURL(url);
+  };
+
+  /**
+   * Export grocery list as website links
+   * BASE_URL can be modified to use any search engine or store website
+   */
+  const exportGroceryLinks = () => {
+    if (groceryList.length === 0) {
+      alert('Your grocery list is empty!');
+      return;
+    }
+
+    // Hard-coded base URL - modify this to change the search engine/website
+    // Examples:
+    // - Google: 'https://www.google.com/search?q='
+    // - DuckDuckGo: 'https://duckduckgo.com/?q='
+    // - Amazon: 'https://www.amazon.com/s?k='
+    // - Walmart: 'https://www.walmart.com/search?q='
+    const BASE_URL = 'https://www.google.com/search?q=';
+
+    // Generate URLs for each item
+    let textContent = '';
+
+    groceryList.forEach(item => {
+      // URL encode the item name (replaces spaces with %20, etc.)
+      const encodedItemName = encodeURIComponent(item.name);
+      const itemUrl = BASE_URL + encodedItemName;
+      textContent += itemUrl + '\n';
+    });
+
+    // Create and trigger download
+    const blob = new Blob([textContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'grocery-links.txt';
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+    Utility.showToast('Grocery links file downloaded!', 'success');
   };
 
   /**
