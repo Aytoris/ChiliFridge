@@ -9,12 +9,13 @@
  * - instructions: Array of step-by-step cooking instructions
  * - servings: Default number of servings (used for scaling)
  * - protein: Optional protein type (tofu, lentils, chickpeas, beans, eggs, fish, chicken, dairy, mixed, none)
+ * - cookingTime: Cooking duration in minutes
  */
 const RECIPES_DATA = {
   "Avocado Toasts": {
     ingredients: [
-      { "name": "Avocado", "quantity": 1, "unit": "" },
-      { "name": "Egg", "quantity": 2, "unit": "" }
+      { "name": "Avokado", "quantity": 1, "unit": "" },
+      { "name": "Ägg", "quantity": 2, "unit": "" }
     ],
     instructions: [
       "Toast your bread slices until golden brown",
@@ -24,14 +25,15 @@ const RECIPES_DATA = {
       "Top with cooked eggs and serve immediately"
     ],
     servings: 2,
-    protein: "eggs"
+    protein: "eggs",
+    cookingTime: 15
   },
   "Stuffed Butternut Squash": {
     ingredients: [
-      { "name": "Butternut Squash", "quantity": 0.5, "unit": "" },
-      { "name": "Leek", "quantity": 0.5, "unit": "" },
+      { "name": "Butternutpumpa", "quantity": 0.5, "unit": "" },
+      { "name": "Purjolök", "quantity": 0.5, "unit": "" },
       { "name": "Parmesan", "quantity": 20, "unit": "g" },
-      { "name": "Shallot", "quantity": 1, "unit": "" },
+      { "name": "Schalottenlök", "quantity": 1, "unit": "" },
       { "name": "Quinoa", "quantity": 12.5, "unit": "g" }
     ],
     instructions: [
@@ -45,16 +47,17 @@ const RECIPES_DATA = {
       "Top with remaining parmesan and bake for 10 more minutes"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 60
   },
   "Chickpeas Tacos": {
     ingredients: [
-      { "name": "Chickpeas", "quantity": 0.5, "unit": "" },
-      { "name": "Cashews", "quantity": 35, "unit": "g" },
+      { "name": "Kikärtor", "quantity": 0.5, "unit": "" },
+      { "name": "Cashewnötter", "quantity": 35, "unit": "g" },
       { "name": "Lime", "quantity": 0.5, "unit": "" },
-      { "name": "Avocado", "quantity": 1, "unit": "" },
-      { "name": "Coriander (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Flour", "quantity": 110, "unit": "g" }
+      { "name": "Avokado", "quantity": 1, "unit": "" },
+      { "name": "Koriander (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Mjöl", "quantity": 110, "unit": "g" }
     ],
     instructions: [
       "Drain and rinse chickpeas, then pat dry",
@@ -67,16 +70,17 @@ const RECIPES_DATA = {
       "Garnish with fresh coriander if available"
     ],
     servings: 2,
-    protein: "chickpeas"
+    protein: "chickpeas",
+    cookingTime: 25
   },
   "Fajitas": {
     ingredients: [
-      { "name": "Bell Pepper", "quantity": 0.5, "unit": "" },
-      { "name": "Shallot", "quantity": 1, "unit": "" },
-      { "name": "Mushroom", "quantity": 40, "unit": "g" },
-      { "name": "Red Beans", "quantity": 0.5, "unit": "" },
-      { "name": "Tomato", "quantity": 1, "unit": "" },
-      { "name": "Flour", "quantity": 110, "unit": "g" }
+      { "name": "Paprika", "quantity": 0.5, "unit": "" },
+      { "name": "Schalottenlök", "quantity": 1, "unit": "" },
+      { "name": "Svamp", "quantity": 40, "unit": "g" },
+      { "name": "Röda bönor", "quantity": 0.5, "unit": "" },
+      { "name": "Tomat", "quantity": 1, "unit": "" },
+      { "name": "Mjöl", "quantity": 110, "unit": "g" }
     ],
     instructions: [
       "Make tortillas: mix flour with water and salt to form a dough, roll thin and cook in a dry pan",
@@ -90,11 +94,12 @@ const RECIPES_DATA = {
       "Serve hot filling in warm tortillas with your favorite toppings"
     ],
     servings: 2,
-    protein: "beans"
+    protein: "beans",
+    cookingTime: 40
   },
   "French Fries": {
     ingredients: [
-      { "name": "Potato (medium)", "quantity": 4, "unit": "" }
+      { "name": "Potatis (medelstor)", "quantity": 4, "unit": "" }
     ],
     instructions: [
       "Wash and peel potatoes (optional to keep skin on)",
@@ -107,16 +112,17 @@ const RECIPES_DATA = {
       "Season with salt immediately after cooking and serve hot"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 45
   },
   "Gnocchi": {
     ingredients: [
-      { "name": "Squash", "quantity": 0.5, "unit": "" },
-      { "name": "Potato (medium)", "quantity": 1, "unit": "" },
-      { "name": "Flour", "quantity": 100, "unit": "g" },
-      { "name": "Egg", "quantity": 0.5, "unit": "" },
-      { "name": "Mushroom", "quantity": 40, "unit": "g" },
-      { "name": "Arugula", "quantity": 40, "unit": "g" }
+      { "name": "Pumpa", "quantity": 0.5, "unit": "" },
+      { "name": "Potatis (medelstor)", "quantity": 1, "unit": "" },
+      { "name": "Mjöl", "quantity": 100, "unit": "g" },
+      { "name": "Ägg", "quantity": 0.5, "unit": "" },
+      { "name": "Svamp", "quantity": 40, "unit": "g" },
+      { "name": "Rucola", "quantity": 40, "unit": "g" }
     ],
     instructions: [
       "Roast squash and potato at 200°C until very soft (40-45 minutes)",
@@ -132,6 +138,7 @@ const RECIPES_DATA = {
     ],
     servings: 2,
     protein: "eggs",
+    cookingTime: 60,
     timers: [
       { "label": "Roast vegetables", "duration": 45, "step": 1 },
       { "label": "Cook gnocchi batch", "duration": 3, "step": 7 }
@@ -139,11 +146,11 @@ const RECIPES_DATA = {
   },
   "Hummus": {
     ingredients: [
-      { "name": "Sesame Seeds", "quantity": 25, "unit": "g" },
-      { "name": "Lemon", "quantity": 0.5, "unit": "" },
-      { "name": "Cumin (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Chickpeas", "quantity": 0.5, "unit": "" },
-      { "name": "Garlic Clove", "quantity": 0.5, "unit": "" }
+      { "name": "Sesamfrön", "quantity": 25, "unit": "g" },
+      { "name": "Citron", "quantity": 0.5, "unit": "" },
+      { "name": "Spiskummin (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Kikärtor", "quantity": 0.5, "unit": "" },
+      { "name": "Vitlöksklyfta", "quantity": 0.5, "unit": "" }
     ],
     instructions: [
       "Toast sesame seeds in a dry pan until fragrant to make tahini",
@@ -155,17 +162,18 @@ const RECIPES_DATA = {
       "Serve drizzled with olive oil and garnish with paprika or parsley"
     ],
     servings: 2,
-    protein: "chickpeas"
+    protein: "chickpeas",
+    cookingTime: 15
   },
   "Pizza": {
     ingredients: [
-      { "name": "Yeast (blue cube)", "quantity": 10, "unit": "g" },
-      { "name": "Flour", "quantity": 125, "unit": "g" },
-      { "name": "Tomato Sauce (piece)", "quantity": 0.25, "unit": "" },
-      { "name": "Olives (can)", "quantity": 0.25, "unit": "" },
-      { "name": "Shallot", "quantity": 0.5, "unit": "" },
-      { "name": "Artichoke", "quantity": 0.5, "unit": "" },
-      { "name": "Egg", "quantity": 1, "unit": "" },
+      { "name": "Jäst (blå kub)", "quantity": 10, "unit": "g" },
+      { "name": "Mjöl", "quantity": 125, "unit": "g" },
+      { "name": "Tomatsås (krossade)", "quantity": 0.25, "unit": "" },
+      { "name": "Oliver (burk)", "quantity": 0.25, "unit": "" },
+      { "name": "Schalottenlök", "quantity": 0.5, "unit": "" },
+      { "name": "Kronärtskocka", "quantity": 0.5, "unit": "" },
+      { "name": "Ägg", "quantity": 1, "unit": "" },
       { "name": "Tofu", "quantity": 25, "unit": "g" }
     ],
     instructions: [
@@ -181,6 +189,7 @@ const RECIPES_DATA = {
     ],
     servings: 2,
     protein: ["tofu", "eggs"],
+    cookingTime: 90,
     timers: [
       { "label": "Dough rising", "duration": 60, "step": 3 },
       { "label": "Pizza baking", "duration": 12, "step": 9 }
@@ -188,10 +197,10 @@ const RECIPES_DATA = {
   },
   "Tomato Quiche": {
     ingredients: [
-      { "name": "Flour", "quantity": 145, "unit": "g" },
-      { "name": "Mustard", "quantity": 0.1, "unit": "" },
-      { "name": "Tomato", "quantity": 1.5, "unit": "" },
-      { "name": "Olives (can)", "quantity": 0.25, "unit": "" }
+      { "name": "Mjöl", "quantity": 145, "unit": "g" },
+      { "name": "Senap", "quantity": 0.1, "unit": "" },
+      { "name": "Tomat", "quantity": 1.5, "unit": "" },
+      { "name": "Oliver (burk)", "quantity": 0.25, "unit": "" }
     ],
     instructions: [
       "Make pastry: combine flour with 70g cold butter and a pinch of salt until crumbly",
@@ -205,11 +214,12 @@ const RECIPES_DATA = {
       "Let cool slightly before serving"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 50
   },
   "Sweet potato (oven)": {
     ingredients: [
-      { "name": "Sweet potato", "quantity": 100, "unit": "g" }
+      { "name": "Sötpotatis", "quantity": 100, "unit": "g" }
     ],
     instructions: [
       "Preheat oven to 200°C (400°F)",
@@ -221,13 +231,14 @@ const RECIPES_DATA = {
       "Cut open and serve with butter, salt, and your favorite toppings"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 60
   },
   "Zucchini Quiche": {
     ingredients: [
-      { "name": "Flour", "quantity": 145, "unit": "g" },
+      { "name": "Mjöl", "quantity": 145, "unit": "g" },
       { "name": "Zucchini", "quantity": 0.5, "unit": "" },
-      { "name": "Egg", "quantity": 1, "unit": "" },
+      { "name": "Ägg", "quantity": 1, "unit": "" },
       { "name": "Tofu", "quantity": 25, "unit": "g" }
     ],
     instructions: [
@@ -243,15 +254,16 @@ const RECIPES_DATA = {
       "Let cool before slicing"
     ],
     servings: 2,
-    protein: ["eggs", "tofu"]
+    protein: ["eggs", "tofu", "pasta"],
+    cookingTime: 70
   },
   "Risotto": {
     ingredients: [
-      { "name": "Shallot", "quantity": 1, "unit": "" },
-      { "name": "Broth", "quantity": 0.5, "unit": "" },
+      { "name": "Schalottenlök", "quantity": 1, "unit": "" },
+      { "name": "Buljong", "quantity": 0.5, "unit": "" },
       { "name": "Parmesan", "quantity": 30, "unit": "g" },
-      { "name": "Tomato", "quantity": 1, "unit": "" },
-      { "name": "Mushroom", "quantity": 40, "unit": "g" }
+      { "name": "Tomat", "quantity": 1, "unit": "" },
+      { "name": "Svamp", "quantity": 40, "unit": "g" }
     ],
     instructions: [
       "Finely chop shallot and sauté in butter until translucent",
@@ -267,6 +279,7 @@ const RECIPES_DATA = {
     ],
     servings: 2,
     protein: "none",
+    cookingTime: 30,
     timers: [
       { "label": "Toast rice", "duration": 2, "step": 2 },
       { "label": "Simmer after tomato", "duration": 10, "step": 7 },
@@ -275,15 +288,15 @@ const RECIPES_DATA = {
   },
   "Cloclo Salad": {
     ingredients: [
-      { "name": "Tomato", "quantity": 0.5, "unit": "" },
-      { "name": "Feta", "quantity": 50, "unit": "g" },
-      { "name": "Avocado", "quantity": 0.5, "unit": "" },
-      { "name": "Olives (can)", "quantity": 0.25, "unit": "" },
-      { "name": "Salad", "quantity": 0.1, "unit": "" },
-      { "name": "Bell Pepper", "quantity": 0.25, "unit": "" },
+      { "name": "Tomat", "quantity": 0.5, "unit": "" },
+      { "name": "Fetaost", "quantity": 50, "unit": "g" },
+      { "name": "Avokado", "quantity": 0.5, "unit": "" },
+      { "name": "Oliver (burk)", "quantity": 0.25, "unit": "" },
+      { "name": "Sallad", "quantity": 0.1, "unit": "" },
+      { "name": "Paprika", "quantity": 0.25, "unit": "" },
       { "name": "Matvete", "quantity": 50, "unit": "g" },
-      { "name": "Pear", "quantity": 0.5, "unit": "" },
-      { "name": "Cucumber", "quantity": 0.25, "unit": "" }
+      { "name": "Päron", "quantity": 0.5, "unit": "" },
+      { "name": "Gurka", "quantity": 0.25, "unit": "" }
     ],
     instructions: [
       "Cook matvete (wheat berries) according to package instructions, drain and let cool",
@@ -296,15 +309,16 @@ const RECIPES_DATA = {
       "Toss gently and serve immediately"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 20
   },
   "Salmon (+ mashed potatoes?)": {
     ingredients: [
-      { "name": "Mushroom", "quantity": 40, "unit": "g" },
-      { "name": "Salmon", "quantity": 100, "unit": "g" },
-      { "name": "Potato (medium)", "quantity": 4, "unit": "" },
-      { "name": "Cherry Tomato", "quantity": 8, "unit": "" },
-      { "name": "Asparagus", "quantity": 4, "unit": "" }
+      { "name": "Svamp", "quantity": 40, "unit": "g" },
+      { "name": "Lax", "quantity": 100, "unit": "g" },
+      { "name": "Potatis (medelstor)", "quantity": 4, "unit": "" },
+      { "name": "Körsbärstomat", "quantity": 8, "unit": "" },
+      { "name": "Sparris", "quantity": 4, "unit": "" }
     ],
     instructions: [
       "Peel and cube potatoes, boil in salted water until tender (15-20 minutes)",
@@ -317,43 +331,45 @@ const RECIPES_DATA = {
       "Serve salmon with mashed potatoes, roasted vegetables, and mushrooms"
     ],
     servings: 2,
-    protein: "fish"
+    protein: "fish",
+    cookingTime: 35
   },
   "Misir Wat (Ethopian lentils)": {
     // test
     ingredients: [
-      { "name": "Butter", "quantity": 2, "unit": "tbsp" },
-      { "name": "Onion", "quantity": 0.5, "unit": "" },
-      { "name": "Tomato", "quantity": 0.5, "unit": "" },
-      { "name": "Garlic Clove", "quantity": 1, "unit": "" },
-      { "name": "Tomato paste", "quantity": 1.5, "unit": "tbsp" },
-      { "name": "bebere (powder)", "quantity": 1, "unit": "tbsp" },
-      { "name": "Lentil", "quantity": 100, "unit": "g" },
-      { "name": "Broth", "quantity": 0.5, "unit": "" },
+      { "name": "Smör", "quantity": 2, "unit": "tbsp" },
+      { "name": "Lök", "quantity": 0.5, "unit": "" },
+      { "name": "Tomat", "quantity": 0.5, "unit": "" },
+      { "name": "Vitlöksklyfta", "quantity": 1, "unit": "" },
+      { "name": "Tomatpuré", "quantity": 1.5, "unit": "tbsp" },
+      { "name": "Berbere (pulver)", "quantity": 1, "unit": "tbsp" },
+      { "name": "Linser", "quantity": 100, "unit": "g" },
+      { "name": "Buljong", "quantity": 0.5, "unit": "" },
       // Pita bread
-      { "name": "Flour", "quantity": 300, "unit": "g" },
-      { "name": "Water", "quantity": 200, "unit": "g" },
-      { "name": "Baking soda", "quantity": 2, "unit": "tsp" },
+      { "name": "Mjöl", "quantity": 300, "unit": "g" },
+      { "name": "Vatten", "quantity": 200, "unit": "g" },
+      { "name": "Bakpulver", "quantity": 2, "unit": "tsp" },
     ],
     instructions: [
       "Pot: butter, tomato paste, tomato, onion",
     ],
     servings: 2,
-    protein: "lentils"
+    protein: "lentils",
+    cookingTime: 40
   },
   "Cesar salad": {
     ingredients: [
-      { "name": "Chicken", "quantity": 62.5, "unit": "g" },
+      { "name": "Kyckling", "quantity": 62.5, "unit": "g" },
       { "name": "Bacon", "quantity": 37.5, "unit": "g" },
-      { "name": "Romane Lettuce", "quantity": 0.1, "unit": "" },
-      { "name": "Kale", "quantity": 0.1, "unit": "" },
-      { "name": "Red Onion", "quantity": 0.1, "unit": "" },
-      { "name": "Cherry Tomato", "quantity": 2, "unit": "" },
-      { "name": "Persillade (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Croutons", "quantity": 50, "unit": "g" },
+      { "name": "Romansallad", "quantity": 0.1, "unit": "" },
+      { "name": "Grönkål", "quantity": 0.1, "unit": "" },
+      { "name": "Rödlök", "quantity": 0.1, "unit": "" },
+      { "name": "Körsbärstomat", "quantity": 2, "unit": "" },
+      { "name": "Persillade (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Krutonger", "quantity": 50, "unit": "g" },
       { "name": "Parmesan", "quantity": 12.5, "unit": "g" },
-      { "name": "Mayonnaise", "quantity": 12.5, "unit": "g" },
-      { "name": "Mustard", "quantity": 0.1, "unit": "" },
+      { "name": "Majonnäs", "quantity": 12.5, "unit": "g" },
+      { "name": "Senap", "quantity": 0.1, "unit": "" },
       { "name": "Citron", "quantity": 0.25, "unit": "" }
     ],
     instructions: [
@@ -368,25 +384,26 @@ const RECIPES_DATA = {
       "Serve immediately"
     ],
     servings: 2,
-    protein: "chicken"
+    protein: "chicken",
+    cookingTime: 25
   },
   "Red Curry Lentil": {
     ingredients: [
-      { "name": "Coconut Oil", "quantity": 0.25, "unit": "tbsp" },
-      { "name": "Garlic Clove", "quantity": 1, "unit": "" },
-      { "name": "Ginger", "quantity": 3.75, "unit": "g" },
-      { "name": "Turmeric (powder)", "quantity": 0.025, "unit": "" },
-      { "name": "Cumin (powder)", "quantity": 0.25, "unit": "tsp" },
-      { "name": "Coriander (powder)", "quantity": 0.125, "unit": "tsp" },
-      { "name": "Curry (powder)", "quantity": 0.5, "unit": "tsp" },
-      { "name": "Garam Masala (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Red Lentils", "quantity": 50, "unit": "g" },
-      { "name": "Broth", "quantity": 0.25, "unit": "" },
-      { "name": "Tomato Sauce (piece)", "quantity": 100, "unit": "g" },
-      { "name": "Coconut Milk", "quantity": 100, "unit": "mL" },
-      { "name": "Peanut Butter", "quantity": 0.1, "unit": "" },
-      { "name": "Lemon", "quantity": 0.125, "unit": "" },
-      { "name": "Coriander (powder)", "quantity": 0.1, "unit": "" }
+      { "name": "Kokosolja", "quantity": 0.25, "unit": "tbsp" },
+      { "name": "Vitlöksklyfta", "quantity": 1, "unit": "" },
+      { "name": "Ingefära", "quantity": 3.75, "unit": "g" },
+      { "name": "Gurkmeja (pulver)", "quantity": 0.025, "unit": "" },
+      { "name": "Spiskummin (pulver)", "quantity": 0.25, "unit": "tsp" },
+      { "name": "Koriander (pulver)", "quantity": 0.125, "unit": "tsp" },
+      { "name": "Curry (pulver)", "quantity": 0.5, "unit": "tsp" },
+      { "name": "Garam masala (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Röda linser", "quantity": 50, "unit": "g" },
+      { "name": "Buljong", "quantity": 0.25, "unit": "" },
+      { "name": "Tomatsås (krossade)", "quantity": 100, "unit": "g" },
+      { "name": "Kokosmjölk", "quantity": 100, "unit": "mL" },
+      { "name": "Jordnötssmör", "quantity": 0.1, "unit": "" },
+      { "name": "Citron", "quantity": 0.125, "unit": "" },
+      { "name": "Koriander (pulver)", "quantity": 0.1, "unit": "" }
     ],
     instructions: [
       "Heat coconut oil in a large pot over medium heat",
@@ -400,6 +417,7 @@ const RECIPES_DATA = {
     ],
     servings: 2,
     protein: "lentils",
+    cookingTime: 35,
     timers: [
       { "label": "Sauté aromatics", "duration": 1, "step": 2 },
       { "label": "Simmer lentils", "duration": 25, "step": 5 }
@@ -407,17 +425,17 @@ const RECIPES_DATA = {
   },
   "Thai Pad": {
     ingredients: [
-      { "name": "Soy Sauce", "quantity": 0.1, "unit": "" },
+      { "name": "Sojasås", "quantity": 0.1, "unit": "" },
       { "name": "Tofu", "quantity": 50, "unit": "g" },
       { "name": "Edamame", "quantity": 50, "unit": "g" },
-      { "name": "Rice Noodles", "quantity": 90, "unit": "g" },
+      { "name": "Risnudlar", "quantity": 90, "unit": "g" },
       { "name": "Lime", "quantity": 0.5, "unit": "" },
-      { "name": "Rice Vinegar", "quantity": 0.1, "unit": "" },
-      { "name": "Egg", "quantity": 1, "unit": "" },
-      { "name": "Peanuts", "quantity": 20, "unit": "g" },
-      { "name": "Salad", "quantity": 0.1, "unit": "" },
-      { "name": "Coriander (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Avocado", "quantity": 1, "unit": "" }
+      { "name": "Risvinäger", "quantity": 0.1, "unit": "" },
+      { "name": "Ägg", "quantity": 1, "unit": "" },
+      { "name": "Jordnötter", "quantity": 20, "unit": "g" },
+      { "name": "Sallad", "quantity": 0.1, "unit": "" },
+      { "name": "Koriander (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Avokado", "quantity": 1, "unit": "" }
     ],
     instructions: [
       "Soak rice noodles in warm water for 15-20 minutes until soft, drain",
@@ -431,15 +449,16 @@ const RECIPES_DATA = {
       "Serve topped with chopped peanuts, fresh coriander, sliced avocado, and salad greens"
     ],
     servings: 2,
-    protein: ["tofu", "eggs"]
+    protein: ["tofu", "eggs"],
+    cookingTime: 30
   },
   "Pancake": {
     ingredients: [
-      { "name": "Flour", "quantity": 94, "unit": "g" },
-      { "name": "Egg", "quantity": 1, "unit": "" },
-      { "name": "Milk", "quantity": 150, "unit": "g" },
-      { "name": "Banana", "quantity": 1, "unit": "" },
-      { "name": "Maple Syrup", "quantity": 0.1, "unit": "" }
+      { "name": "Mjöl", "quantity": 94, "unit": "g" },
+      { "name": "Ägg", "quantity": 1, "unit": "" },
+      { "name": "Mjölk", "quantity": 150, "unit": "g" },
+      { "name": "Banan", "quantity": 1, "unit": "" },
+      { "name": "Lönnsirap", "quantity": 0.1, "unit": "" }
     ],
     instructions: [
       "In a bowl, whisk together flour, egg, and milk until smooth",
@@ -453,6 +472,7 @@ const RECIPES_DATA = {
     ],
     servings: 2,
     protein: "eggs",
+    cookingTime: 25,
     timers: [
       { "label": "Rest batter", "duration": 10, "step": 2 },
       { "label": "Cook first side", "duration": 3, "step": 5 },
@@ -461,12 +481,12 @@ const RECIPES_DATA = {
   },
   "Mushroom Omelette": {
     ingredients: [
-      { "name": "Egg", "quantity": 3, "unit": "" },
-      { "name": "Mushroom", "quantity": 40, "unit": "g" },
-      { "name": "Peas", "quantity": 30, "unit": "g" },
+      { "name": "Ägg", "quantity": 3, "unit": "" },
+      { "name": "Svamp", "quantity": 40, "unit": "g" },
+      { "name": "Ärtor", "quantity": 30, "unit": "g" },
       { "name": "Matvete", "quantity": 75, "unit": "g" },
-      { "name": "Shallot", "quantity": 1, "unit": "" },
-      { "name": "Frozen Spinach", "quantity": 15, "unit": "g" }
+      { "name": "Schalottenlök", "quantity": 1, "unit": "" },
+      { "name": "Fryst spenat", "quantity": 15, "unit": "g" }
     ],
     instructions: [
       "Cook matvete (or rice) according to package instructions",
@@ -481,17 +501,18 @@ const RECIPES_DATA = {
       "Serve with cooked matvete or rice on the side"
     ],
     servings: 2,
-    protein: "eggs"
+    protein: "eggs",
+    cookingTime: 25
   },
   "Zucchini Omelette (with wheat or rice)": {
     ingredients: [
-      { "name": "Egg", "quantity": 3, "unit": "" },
-      { "name": "Mushroom", "quantity": 40, "unit": "g" },
+      { "name": "Ägg", "quantity": 3, "unit": "" },
+      { "name": "Svamp", "quantity": 40, "unit": "g" },
       { "name": "Zucchini", "quantity": 0.5, "unit": "" },
       { "name": "Matvete", "quantity": 75, "unit": "g" },
-      { "name": "Peas", "quantity": 30, "unit": "g" },
-      { "name": "Shallot", "quantity": 1, "unit": "" },
-      { "name": "Frozen Spinach", "quantity": 15, "unit": "g" }
+      { "name": "Ärtor", "quantity": 30, "unit": "g" },
+      { "name": "Schalottenlök", "quantity": 1, "unit": "" },
+      { "name": "Fryst spenat", "quantity": 15, "unit": "g" }
     ],
     instructions: [
       "Cook matvete (or rice) according to package instructions",
@@ -506,20 +527,21 @@ const RECIPES_DATA = {
       "Serve with cooked matvete or rice on the side"
     ],
     servings: 2,
-    protein: "eggs"
+    protein: "eggs",
+    cookingTime: 25
   },
   "Dumplings": {
     ingredients: [
-      { "name": "Flour", "quantity": 150, "unit": "g" },
-      { "name": "Mushroom", "quantity": 40, "unit": "g" },
-      { "name": "Carrot", "quantity": 0.5, "unit": "" },
-      { "name": "Leek", "quantity": 0.25, "unit": "" },
-      { "name": "Ginger", "quantity": 15, "unit": "g" },
-      { "name": "Chives", "quantity": 0.25, "unit": "" },
-      { "name": "Soy Sauce", "quantity": 0.1, "unit": "" },
-      { "name": "Rice Vinegar", "quantity": 0.1, "unit": "" },
-      { "name": "Garlic Clove", "quantity": 1, "unit": "" },
-      { "name": "Shallot", "quantity": 1, "unit": "" }
+      { "name": "Mjöl", "quantity": 150, "unit": "g" },
+      { "name": "Svamp", "quantity": 40, "unit": "g" },
+      { "name": "Morot", "quantity": 0.5, "unit": "" },
+      { "name": "Purjolök", "quantity": 0.25, "unit": "" },
+      { "name": "Ingefära", "quantity": 15, "unit": "g" },
+      { "name": "Gräslök", "quantity": 0.25, "unit": "" },
+      { "name": "Sojasås", "quantity": 0.1, "unit": "" },
+      { "name": "Risvinäger", "quantity": 0.1, "unit": "" },
+      { "name": "Vitlöksklyfta", "quantity": 1, "unit": "" },
+      { "name": "Schalottenlök", "quantity": 1, "unit": "" }
     ],
     instructions: [
       "Make dough: mix flour with warm water (about 90ml) and knead until smooth, rest for 30 minutes",
@@ -533,20 +555,21 @@ const RECIPES_DATA = {
       "Serve with dipping sauce made from soy sauce, rice vinegar, and chili oil"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 60
   },
   "Poke Bowl": {
     ingredients: [
       { "name": "Mango", "quantity": 0.25, "unit": "" },
       { "name": "Edamame", "quantity": 50, "unit": "g" },
-      { "name": "Avocado", "quantity": 0.5, "unit": "" },
-      { "name": "Cucumber", "quantity": 0.25, "unit": "" },
-      { "name": "Soy Sauce", "quantity": 0.1, "unit": "" },
-      { "name": "Candied Ginger", "quantity": 20, "unit": "g" },
+      { "name": "Avokado", "quantity": 0.5, "unit": "" },
+      { "name": "Gurka", "quantity": 0.25, "unit": "" },
+      { "name": "Sojasås", "quantity": 0.1, "unit": "" },
+      { "name": "Kanderad ingefära", "quantity": 20, "unit": "g" },
       { "name": "Tofu", "quantity": 100, "unit": "g" },
-      { "name": "Mixed Beans", "quantity": 0.25, "unit": "" },
-      { "name": "Lettuce", "quantity": 20, "unit": "g" },
-      { "name": "Rice Vinegar", "quantity": 0.1, "unit": "" }
+      { "name": "Blandade bönor", "quantity": 0.25, "unit": "" },
+      { "name": "Sallad", "quantity": 20, "unit": "g" },
+      { "name": "Risvinäger", "quantity": 0.1, "unit": "" }
     ],
     instructions: [
       "Cook rice (about 150g) and let cool slightly",
@@ -561,21 +584,22 @@ const RECIPES_DATA = {
       "Serve immediately"
     ],
     servings: 2,
-    protein: "tofu"
+    protein: "tofu",
+    cookingTime: 30
   },
   "Ramen": {
     ingredients: [
-      { "name": "Ramen Noodles", "quantity": 125, "unit": "g" },
-      { "name": "Mushroom", "quantity": 40, "unit": "g" },
-      { "name": "Carrot", "quantity": 0.5, "unit": "" },
-      { "name": "Ginger", "quantity": 15, "unit": "g" },
-      { "name": "Coriander (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Soy Sauce", "quantity": 0.1, "unit": "" },
-      { "name": "Rice Vinegar", "quantity": 0.1, "unit": "" },
-      { "name": "Sesame Oil", "quantity": 0.1, "unit": "" },
-      { "name": "Garlic Clove", "quantity": 1, "unit": "" },
-      { "name": "Sesame Seeds", "quantity": 10, "unit": "g" },
-      { "name": "Broth", "quantity": 1, "unit": "" }
+      { "name": "Ramennudlar", "quantity": 125, "unit": "g" },
+      { "name": "Svamp", "quantity": 40, "unit": "g" },
+      { "name": "Morot", "quantity": 0.5, "unit": "" },
+      { "name": "Ingefära", "quantity": 15, "unit": "g" },
+      { "name": "Koriander (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Sojasås", "quantity": 0.1, "unit": "" },
+      { "name": "Risvinäger", "quantity": 0.1, "unit": "" },
+      { "name": "Sesamolja", "quantity": 0.1, "unit": "" },
+      { "name": "Vitlöksklyfta", "quantity": 1, "unit": "" },
+      { "name": "Sesamfrön", "quantity": 10, "unit": "g" },
+      { "name": "Buljong", "quantity": 1, "unit": "" }
     ],
     instructions: [
       "Heat broth in a large pot with minced garlic and grated ginger",
@@ -589,6 +613,7 @@ const RECIPES_DATA = {
     ],
     servings: 2,
     protein: "none",
+    cookingTime: 20,
     timers: [
       { "label": "Simmer vegetables", "duration": 5, "step": 2 },
       { "label": "Cook noodles", "duration": 4, "step": 4 }
@@ -596,11 +621,11 @@ const RECIPES_DATA = {
   },
   "Lasagna": {
     ingredients: [
-      { "name": "Lasagna Pasta", "quantity": 125, "unit": "g" },
-      { "name": "Tomato Sauce (piece)", "quantity": 0.5, "unit": "" },
+      { "name": "Lasagneplattor", "quantity": 125, "unit": "g" },
+      { "name": "Tomatsås (krossade)", "quantity": 0.5, "unit": "" },
       { "name": "Aubergine", "quantity": 0.25, "unit": "" },
-      { "name": "Frozen Spinach", "quantity": 100, "unit": "g" },
-      { "name": "Feta", "quantity": 50, "unit": "g" }
+      { "name": "Fryst spenat", "quantity": 100, "unit": "g" },
+      { "name": "Fetaost", "quantity": 50, "unit": "g" }
     ],
     instructions: [
       "Preheat oven to 180°C (350°F)",
@@ -615,20 +640,21 @@ const RECIPES_DATA = {
       "Let rest for 10 minutes before serving"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 55
   },
   "Indian Curry (chickpea)": {
     ingredients: [
-      { "name": "Shallot", "quantity": 1, "unit": "" },
-      { "name": "Garlic Clove", "quantity": 1, "unit": "" },
-      { "name": "Ginger", "quantity": 10, "unit": "g" },
-      { "name": "Chickpeas", "quantity": 0.5, "unit": "" },
-      { "name": "Frozen Spinach", "quantity": 50, "unit": "g" },
-      { "name": "Tomato Sauce (piece)", "quantity": 0.5, "unit": "" },
-      { "name": "Cumin (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Curry (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Coriander (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Coconut Milk", "quantity": 40, "unit": "g" }
+      { "name": "Schalottenlök", "quantity": 1, "unit": "" },
+      { "name": "Vitlöksklyfta", "quantity": 1, "unit": "" },
+      { "name": "Ingefära", "quantity": 10, "unit": "g" },
+      { "name": "Kikärtor", "quantity": 0.5, "unit": "" },
+      { "name": "Fryst spenat", "quantity": 50, "unit": "g" },
+      { "name": "Tomatsås (krossade)", "quantity": 0.5, "unit": "" },
+      { "name": "Spiskummin (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Curry (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Koriander (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Kokosmjölk", "quantity": 40, "unit": "g" }
     ],
     instructions: [
       "Finely chop shallot, mince garlic, and grate ginger",
@@ -642,11 +668,12 @@ const RECIPES_DATA = {
       "Serve hot over rice or with naan bread"
     ],
     servings: 2,
-    protein: "chickpeas"
+    protein: "chickpeas",
+    cookingTime: 30
   },
   "Butternut Squash Soup": {
     ingredients: [
-      { "name": "Butternut Squash", "quantity": 0.5, "unit": "" }
+      { "name": "Butternutpumpa", "quantity": 0.5, "unit": "" }
     ],
     instructions: [
       "Preheat oven to 200°C (400°F)",
@@ -659,13 +686,14 @@ const RECIPES_DATA = {
       "Serve hot, optionally garnished with cream and toasted seeds"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 55
   },
   "Carrot Soup etc": {
     ingredients: [
-      { "name": "Carrot", "quantity": 1, "unit": "" },
-      { "name": "Tomato", "quantity": 1, "unit": "" },
-      { "name": "Potato (medium)", "quantity": 1, "unit": "" },
+      { "name": "Morot", "quantity": 1, "unit": "" },
+      { "name": "Tomat", "quantity": 1, "unit": "" },
+      { "name": "Potatis (medelstor)", "quantity": 1, "unit": "" },
       { "name": "Zucchini", "quantity": 0.25, "unit": "" }
     ],
     instructions: [
@@ -679,17 +707,18 @@ const RECIPES_DATA = {
       "Serve hot with crusty bread"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 35
   },
   "Shrimp Salad": {
     ingredients: [
-      { "name": "Avocado", "quantity": 1, "unit": "" },
-      { "name": "Spinach", "quantity": 20, "unit": "g" },
-      { "name": "Ginger", "quantity": 15, "unit": "g" },
+      { "name": "Avokado", "quantity": 1, "unit": "" },
+      { "name": "Spenat", "quantity": 20, "unit": "g" },
+      { "name": "Ingefära", "quantity": 15, "unit": "g" },
       { "name": "Edamame", "quantity": 20, "unit": "g" },
-      { "name": "Shrimp", "quantity": 50, "unit": "g" },
-      { "name": "Lemon", "quantity": 0.5, "unit": "" },
-      { "name": "Chives", "quantity": 0.25, "unit": "" }
+      { "name": "Räkor", "quantity": 50, "unit": "g" },
+      { "name": "Citron", "quantity": 0.5, "unit": "" },
+      { "name": "Gräslök", "quantity": 0.25, "unit": "" }
     ],
     instructions: [
       "Cook edamame in boiling water for 3-4 minutes, drain and cool",
@@ -704,20 +733,21 @@ const RECIPES_DATA = {
       "Serve immediately"
     ],
     servings: 2,
-    protein: "fish"
+    protein: "fish",
+    cookingTime: 20
   },
   "Lentil Soup": {
     ingredients: [
-      { "name": "Shallot", "quantity": 0.5, "unit": "" },
-      { "name": "Carrot", "quantity": 1, "unit": "" },
-      { "name": "Garlic Clove", "quantity": 2, "unit": "" },
-      { "name": "Cumin (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Curry (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Thyme (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Tomato", "quantity": 1, "unit": "" },
-      { "name": "Lentil", "quantity": 50, "unit": "g" },
-      { "name": "Broth", "quantity": 0.5, "unit": "" },
-      { "name": "Lemon", "quantity": 0.5, "unit": "" }
+      { "name": "Schalottenlök", "quantity": 0.5, "unit": "" },
+      { "name": "Morot", "quantity": 1, "unit": "" },
+      { "name": "Vitlöksklyfta", "quantity": 2, "unit": "" },
+      { "name": "Spiskummin (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Curry (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Timjan (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Tomat", "quantity": 1, "unit": "" },
+      { "name": "Linser", "quantity": 50, "unit": "g" },
+      { "name": "Buljong", "quantity": 0.5, "unit": "" },
+      { "name": "Citron", "quantity": 0.5, "unit": "" }
     ],
     instructions: [
       "Dice shallot and carrot, mince garlic",
@@ -732,17 +762,18 @@ const RECIPES_DATA = {
       "Serve hot with crusty bread"
     ],
     servings: 2,
-    protein: "lentils"
+    protein: "lentils",
+    cookingTime: 40
   },
   "Lentil Salad": {
     ingredients: [
-      { "name": "Kale", "quantity": 0.1, "unit": "" },
-      { "name": "Almond", "quantity": 10, "unit": "g" },
-      { "name": "Spring onions", "quantity": 3, "unit": "" },
-      { "name": "Lemon", "quantity": 1, "unit": "" },
-      { "name": "Lentils", "quantity": 100, "unit": "g" },
-      { "name": "Cumin (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Olives (can)", "quantity": 0.25, "unit": "" }
+      { "name": "Grönkål", "quantity": 0.1, "unit": "" },
+      { "name": "Mandel", "quantity": 10, "unit": "g" },
+      { "name": "Salladslök", "quantity": 3, "unit": "" },
+      { "name": "Citron", "quantity": 1, "unit": "" },
+      { "name": "Linser", "quantity": 100, "unit": "g" },
+      { "name": "Spiskummin (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Oliver (burk)", "quantity": 0.25, "unit": "" }
     ],
     instructions: [
       "Cook lentils in boiling water for 20-25 minutes until tender, drain and cool",
@@ -756,25 +787,26 @@ const RECIPES_DATA = {
       "Serve at room temperature or chilled"
     ],
     servings: 2,
-    protein: "lentils"
+    protein: "lentils",
+    cookingTime: 30
   },
   "Lentil Stew": {
     ingredients: [
-      { "name": "Shallot", "quantity": 0.5, "unit": "" },
-      { "name": "Carrot", "quantity": 0.5, "unit": "" },
-      { "name": "Celery", "quantity": 0.5, "unit": "" },
-      { "name": "Potato (medium)", "quantity": 1, "unit": "" },
-      { "name": "Garlic Clove", "quantity": 2, "unit": "" },
+      { "name": "Schalottenlök", "quantity": 0.5, "unit": "" },
+      { "name": "Morot", "quantity": 0.5, "unit": "" },
+      { "name": "Selleri", "quantity": 0.5, "unit": "" },
+      { "name": "Potatis (medelstor)", "quantity": 1, "unit": "" },
+      { "name": "Vitlöksklyfta", "quantity": 2, "unit": "" },
       { "name": "Zucchini", "quantity": 0.25, "unit": "" },
-      { "name": "Coriander (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Cumin (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Turmeric (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Cinnamon (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Parsley", "quantity": 0.1, "unit": "" },
-      { "name": "Tomato", "quantity": 1, "unit": "" },
-      { "name": "Broth", "quantity": 0.5, "unit": "" },
-      { "name": "Lemon", "quantity": 0.5, "unit": "" },
-      { "name": "Lentil", "quantity": 100, "unit": "g" }
+      { "name": "Koriander (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Spiskummin (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Gurkmeja (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Kanel (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Persilja", "quantity": 0.1, "unit": "" },
+      { "name": "Tomat", "quantity": 1, "unit": "" },
+      { "name": "Buljong", "quantity": 0.5, "unit": "" },
+      { "name": "Citron", "quantity": 0.5, "unit": "" },
+      { "name": "Linser", "quantity": 100, "unit": "g" }
     ],
     instructions: [
       "Dice all vegetables (shallot, carrot, celery, potato, zucchini) and mince garlic",
@@ -789,16 +821,17 @@ const RECIPES_DATA = {
       "Serve hot with bread or over rice"
     ],
     servings: 2,
-    protein: "lentils"
+    protein: "lentils",
+    cookingTime: 45
   },
   "Greek Salad": {
     ingredients: [
-      { "name": "Tomato", "quantity": 1, "unit": "" },
-      { "name": "Feta", "quantity": 50, "unit": "g" },
-      { "name": "Avocado", "quantity": 1, "unit": "" },
-      { "name": "Olives (can)", "quantity": 0.25, "unit": "" },
-      { "name": "Lettuce", "quantity": 20, "unit": "g" },
-      { "name": "Cucumber", "quantity": 0.25, "unit": "" }
+      { "name": "Tomat", "quantity": 1, "unit": "" },
+      { "name": "Fetaost", "quantity": 50, "unit": "g" },
+      { "name": "Avokado", "quantity": 1, "unit": "" },
+      { "name": "Oliver (burk)", "quantity": 0.25, "unit": "" },
+      { "name": "Sallad", "quantity": 20, "unit": "g" },
+      { "name": "Gurka", "quantity": 0.25, "unit": "" }
     ],
     instructions: [
       "Wash and tear lettuce into bite-sized pieces",
@@ -812,20 +845,21 @@ const RECIPES_DATA = {
       "Serve immediately"
     ],
     servings: 2,
-    protein: "none"
+    protein: "none",
+    cookingTime: 15
   },
   "Chili (beans)": {
     ingredients: [
-      { "name": "Red Onion", "quantity": 0.25, "unit": "" },
-      { "name": "Bell Pepper", "quantity": 0.25, "unit": "" },
-      { "name": "Carrot", "quantity": 0.5, "unit": "" },
-      { "name": "Celery", "quantity": 0.25, "unit": "" },
-      { "name": "Garlic Clove", "quantity": 2, "unit": "" },
-      { "name": "Cumin (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Coriander (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Paprika (powder)", "quantity": 0.1, "unit": "" },
-      { "name": "Tomato", "quantity": 1, "unit": "" },
-      { "name": "Mixed Beans", "quantity": 0.5, "unit": "" },
+      { "name": "Rödlök", "quantity": 0.25, "unit": "" },
+      { "name": "Paprika", "quantity": 0.25, "unit": "" },
+      { "name": "Morot", "quantity": 0.5, "unit": "" },
+      { "name": "Selleri", "quantity": 0.25, "unit": "" },
+      { "name": "Vitlöksklyfta", "quantity": 2, "unit": "" },
+      { "name": "Spiskummin (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Koriander (pulver)", "quantity": 0.1, "unit": "" },
+      { "name": "Paprikapulver", "quantity": 0.1, "unit": "" },
+      { "name": "Tomat", "quantity": 1, "unit": "" },
+      { "name": "Blandade bönor", "quantity": 0.5, "unit": "" },
       { "name": "Lime", "quantity": 0.5, "unit": "" }
     ],
     instructions: [
@@ -841,6 +875,7 @@ const RECIPES_DATA = {
       "Serve hot with rice, tortilla chips, or topped with avocado and sour cream"
     ],
     servings: 2,
-    protein: "beans"
+    protein: "beans",
+    cookingTime: 40
   }
 };

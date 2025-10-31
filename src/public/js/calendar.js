@@ -218,8 +218,78 @@ const CalendarModule = (() => {
     // Get current selection
     const currentRecipe = calendarData[dayIndex]?.[mealIndex]?.recipe || '';
 
-    // Populate modal with recipes
+    // Setup filter button click handler
+    const filterBtn = modal.querySelector('.recipe-selection-filter-btn');
+    const newFilterBtn = filterBtn.cloneNode(true); // Remove old listeners
+    filterBtn.parentNode.replaceChild(newFilterBtn, filterBtn);
+
+    newFilterBtn.addEventListener('click', () => {
+      const currentFilter = newFilterBtn.getAttribute('data-filter');
+      // Cycle through filter modes: all → 15 → 30 → 60
+      let newFilter, newIcon, newTitle;
+
+      if (currentFilter === 'all') {
+        newFilter = '15';
+        newIcon = '15';
+        newTitle = '≤15 min';
+      } else if (currentFilter === '15') {
+        newFilter = '30';
+        newIcon = '30';
+        newTitle = '≤30 min';
+      } else if (currentFilter === '30') {
+        newFilter = '60';
+        newIcon = '60';
+        newTitle = '>30 min';
+      } else {
+        newFilter = 'all';
+        newIcon = '∞';
+        newTitle = 'All recipes';
+      }
+
+      newFilterBtn.setAttribute('data-filter', newFilter);
+      newFilterBtn.innerHTML = newIcon;
+      newFilterBtn.title = newTitle;
+
+      populateRecipeList(modal, dayIndex, mealIndex, currentRecipe);
+    });
+
+    // Setup sort button click handler
+    const sortBtn = modal.querySelector('.recipe-selection-sort-btn');
+    const newSortBtn = sortBtn.cloneNode(true); // Remove old listeners
+    sortBtn.parentNode.replaceChild(newSortBtn, sortBtn);
+
+    newSortBtn.addEventListener('click', () => {
+      const currentSort = newSortBtn.getAttribute('data-sort');
+      if (currentSort === 'name') {
+        newSortBtn.setAttribute('data-sort', 'protein');
+        newSortBtn.innerHTML = '🥗';
+        newSortBtn.title = 'Sort by protein';
+      } else {
+        newSortBtn.setAttribute('data-sort', 'name');
+        newSortBtn.innerHTML = '🔤';
+        newSortBtn.title = 'Sort by name';
+      }
+      populateRecipeList(modal, dayIndex, mealIndex, currentRecipe);
+    });
+
+    // Populate the list
+    populateRecipeList(modal, dayIndex, mealIndex, currentRecipe);
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  };
+
+  /**
+   * Populate recipe list in modal with current sort order and filter
+   */
+  const populateRecipeList = (modal, dayIndex, mealIndex, currentRecipe) => {
     const recipeList = modal.querySelector('.recipe-selection-list');
+    const sortBtn = modal.querySelector('.recipe-selection-sort-btn');
+    const filterBtn = modal.querySelector('.recipe-selection-filter-btn');
+    const sortBy = sortBtn.getAttribute('data-sort');
+    const filterBy = filterBtn.getAttribute('data-filter');
+
     recipeList.innerHTML = '';
 
     // Add "Clear selection" option
@@ -249,12 +319,53 @@ const CalendarModule = (() => {
 
     recipeList.appendChild(clearItem);
 
-    // Add all recipes
+    // Add all recipes with filtering and sorting
     const recipes = MealModule.getAllRecipes();
     if (recipes && Object.keys(recipes).length > 0) {
-      Object.keys(recipes)
-        .sort()
-        .forEach(recipeName => {
+      let recipeKeys = Object.keys(recipes);
+
+      // Filter by cooking time
+      if (filterBy !== 'all') {
+        recipeKeys = recipeKeys.filter(recipeName => {
+          const cookingTime = recipes[recipeName]?.cookingTime || 0;
+
+          if (filterBy === '15') {
+            return cookingTime <= 15;
+          } else if (filterBy === '30') {
+            return cookingTime <= 30;
+          } else if (filterBy === '60') {
+            return cookingTime > 30;
+          }
+          return true;
+        });
+      }
+
+      // Sort based on current sort mode
+      if (sortBy === 'protein') {
+        recipeKeys.sort((a, b) => {
+          const proteinA = recipes[a]?.protein;
+          const proteinB = recipes[b]?.protein;
+
+          // Get first protein for sorting
+          const getFirstProtein = (p) => {
+            if (!p) return 'zzz'; // Put 'none' at end
+            if (Array.isArray(p)) return p[0] || 'zzz';
+            return p;
+          };
+
+          const pA = getFirstProtein(proteinA);
+          const pB = getFirstProtein(proteinB);
+
+          // Sort by protein, then by name
+          if (pA === pB) return a.localeCompare(b);
+          return pA.localeCompare(pB);
+        });
+      } else {
+        // Sort alphabetically by name
+        recipeKeys.sort();
+      }
+
+      recipeKeys.forEach(recipeName => {
           const item = document.createElement('div');
           item.className = 'recipe-selection-item';
           if (recipeName === currentRecipe) {
@@ -303,10 +414,6 @@ const CalendarModule = (() => {
           recipeList.appendChild(item);
         });
     }
-
-    // Show modal
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
   };
 
   /**
@@ -327,13 +434,32 @@ const CalendarModule = (() => {
     title.className = 'recipe-selection-title';
     title.textContent = 'Select a Recipe';
 
+    const headerButtons = document.createElement('div');
+    headerButtons.className = 'recipe-selection-header-buttons';
+
+    const filterBtn = document.createElement('button');
+    filterBtn.className = 'recipe-selection-filter-btn';
+    filterBtn.innerHTML = '∞'; // Default: all recipes
+    filterBtn.title = 'All recipes';
+    filterBtn.setAttribute('data-filter', 'all');
+
+    const sortBtn = document.createElement('button');
+    sortBtn.className = 'recipe-selection-sort-btn';
+    sortBtn.innerHTML = '🔤'; // Default: alphabetical
+    sortBtn.title = 'Sort by name';
+    sortBtn.setAttribute('data-sort', 'name');
+
     const closeBtn = document.createElement('button');
     closeBtn.className = 'recipe-selection-close';
     closeBtn.innerHTML = '×';
     closeBtn.addEventListener('click', closeRecipeSelectionModal);
 
+    headerButtons.appendChild(filterBtn);
+    headerButtons.appendChild(sortBtn);
+    headerButtons.appendChild(closeBtn);
+
     header.appendChild(title);
-    header.appendChild(closeBtn);
+    header.appendChild(headerButtons);
 
     const list = document.createElement('div');
     list.className = 'recipe-selection-list';

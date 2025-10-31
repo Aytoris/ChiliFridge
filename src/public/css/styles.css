@@ -495,6 +495,58 @@ li:last-child {
     color: #333;
 }
 
+.recipe-selection-header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.recipe-selection-sort-btn {
+    background: none;
+    border: 1px solid #ddd;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 4px 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.recipe-selection-sort-btn:hover {
+    background-color: #f0f0f0;
+    border-color: #4CAF50;
+    color: #333;
+}
+
+.recipe-selection-filter-btn {
+    background: none;
+    border: 1px solid #ddd;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 4px 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.recipe-selection-filter-btn:hover {
+    background-color: #f0f0f0;
+    border-color: #FF9800;
+    color: #333;
+}
+
 .recipe-selection-close {
     background: none;
     border: none;
