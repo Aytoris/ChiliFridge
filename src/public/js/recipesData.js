@@ -452,23 +452,22 @@ const RECIPES_DATA = {
     protein: ["tofu", "eggs"],
     cookingTime: 30
   },
-  "Pancake": {
+  "Pancake (2/person)": {
     ingredients: [
-      { "name": "Mjöl", "quantity": 94, "unit": "g" },
+      { "name": "Mjöl", "quantity": 125, "unit": "g" },
       { "name": "Ägg", "quantity": 1, "unit": "" },
-      { "name": "Mjölk", "quantity": 150, "unit": "g" },
-      { "name": "Banan", "quantity": 1, "unit": "" },
-      { "name": "Lönnsirap", "quantity": 0.1, "unit": "" }
+      { "name": "Mjölk", "quantity": 200, "unit": "g" },
+      { "name": "Olivolja", "quantity": 7, "unit": "g" },
+      { "name": "Socker", "quantity": 7, "unit": "g" },
+      { "name": "Salt", "quantity": 1, "unit": "g" },
+      { "name": "Bakpulver", "quantity": 8, "unit": "g" }
     ],
     instructions: [
-      "In a bowl, whisk together flour, egg, and milk until smooth",
-      "Let batter rest for 5-10 minutes",
-      "Heat a non-stick pan over medium heat and add a small amount of butter",
-      "Pour a ladle of batter into the pan and swirl to spread evenly",
-      "Cook for 2-3 minutes until bubbles form on surface",
-      "Flip and cook for another 1-2 minutes until golden",
-      "Repeat with remaining batter",
-      "Serve topped with sliced banana and drizzled with maple syrup"
+      "1: Dry ingredients",
+      "2: Lait + jaunes d'oeufs",
+      "3: Laisser reposer 20 min",
+      "4: Ajouter blanc en neige",
+      "5: Poêle huilée chaude, 2min 1coté, 1min autre côté, thermo 5 (préchauffage 8)"
     ],
     servings: 2,
     protein: "eggs",
