@@ -171,10 +171,14 @@ const RECIPES_DATA = {
       { "name": "Panko", "quantity": 50, "unit": "g" },
       { "name": "Ägg", "quantity": 0.3, "unit": "" },
       { "name": "Balsamvinäger", "quantity": 0.1, "unit": "tbsp" },
+      { "name": "Sötpotatis", "quantity": 1, "unit": "" },
+      { "name": "Potatis (medelstor)", "quantity": 1, "unit": "" },
+      { "name": "Rödbeta", "quantity": 1, "unit": "" }
     ],
     instructions: [
       "Patty: Beans, onion, egg, panko, tamari, balsamic vinegar",
       "Pan: 5min each side, medium heat",
+      "https://www.loveandlemons.com/black-bean-burger-recipe/#wprm-recipe-container-49475",
     ],
     servings: 1,
     protein: "beans",
@@ -258,7 +262,7 @@ const RECIPES_DATA = {
   },
   "Sweet potato (oven)": {
     ingredients: [
-      { "name": "Sötpotatis", "quantity": 100, "unit": "g" }
+      { "name": "Sötpotatis", "quantity": 3, "unit": "" }
     ],
     instructions: [
       "Preheat oven to 200°C (400°F)",
@@ -916,4 +920,5 @@ const RECIPES_DATA = {
     protein: "beans",
     cookingTime: 40
   }
+
 };

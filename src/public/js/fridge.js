@@ -188,7 +188,35 @@ const FridgeModule = (() => {
 
     // Add auto-complete functionality to ingredient input
     const ingredientInput = document.getElementById('ingredientInput');
-    ingredientInput.addEventListener('input', handleIngredientInput);
+    if (ingredientInput) {
+      ingredientInput.addEventListener('input', handleIngredientInput);
+      // Also add keyup event for better responsiveness
+      ingredientInput.addEventListener('keyup', handleIngredientInput);
+      // Add change event for when user selects from datalist
+      ingredientInput.addEventListener('change', handleIngredientInput);
+
+      // Add keyboard navigation for dropdown
+      ingredientInput.addEventListener('keydown', handleDropdownKeyboard);
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        const dropdown = document.getElementById('autocompleteDropdown');
+        if (dropdown && !ingredientInput.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.classList.remove('show');
+        }
+      });
+
+      // Close dropdown on blur
+      ingredientInput.addEventListener('blur', () => {
+        // Small delay to allow click events on dropdown items to fire first
+        setTimeout(() => {
+          const dropdown = document.getElementById('autocompleteDropdown');
+          if (dropdown) {
+            dropdown.classList.remove('show');
+          }
+        }, 200);
+      });
+    }
 
     // Add validation to quantity input to only allow digits
     const quantityInput = document.getElementById('quantityInput');
@@ -214,8 +242,13 @@ const FridgeModule = (() => {
   const handleIngredientInput = (e) => {
     const input = e.target;
     const inputValue = input.value.trim();
+    const dropdown = document.getElementById('autocompleteDropdown');
 
-    if (inputValue.length < 2) return; // Only autocomplete after at least 2 characters
+    // Hide dropdown if input is empty
+    if (inputValue.length < 1) {
+      dropdown.classList.remove('show');
+      return;
+    }
 
     // Get all ingredients from recipes
     const ingredients = new Set();
@@ -231,10 +264,12 @@ const FridgeModule = (() => {
     try {
       if (MealModule && typeof MealModule.getAllRecipes === 'function') {
         const recipes = MealModule.getAllRecipes();
+
         if (recipes && typeof recipes === 'object') {
           Object.values(recipes).forEach(recipe => {
-            if (Array.isArray(recipe)) {
-              recipe.forEach(ingredient => {
+            // Check if recipe has ingredients property
+            if (recipe && recipe.ingredients && Array.isArray(recipe.ingredients)) {
+              recipe.ingredients.forEach(ingredient => {
                 if (ingredient && ingredient.name) {
                   ingredients.add(ingredient.name);
                 }
@@ -244,20 +279,36 @@ const FridgeModule = (() => {
         }
       }
     } catch (error) {
-      console.log('Could not get recipes for autocomplete:', error);
+      // Recipe module not yet loaded, will update later
     }
 
+    // Convert to array for filtering
+    const allIngredients = Array.from(ingredients);
+
     // Find matching ingredients (case-insensitive search)
-    const matchingIngredients = Array.from(ingredients)
-      .filter(name => name.toLowerCase().includes(inputValue.toLowerCase()))
+    // First try to find ingredients that start with the input (more precise)
+    const startsWithMatches = allIngredients
+      .filter(name => name.toLowerCase().startsWith(inputValue.toLowerCase()))
       .sort();
 
-    console.log('Input:', inputValue, 'Matches:', matchingIngredients.length, matchingIngredients);
+    // If no starts-with matches, look for ingredients that contain the input
+    const matchingIngredients = startsWithMatches.length > 0
+      ? startsWithMatches
+      : allIngredients
+          .filter(name => name.toLowerCase().includes(inputValue.toLowerCase()))
+          .sort();
+
+    // Show dropdown with matching options
+    showAutocompleteDropdown(dropdown, matchingIngredients, input);
 
     // If exactly one match, auto-complete and set unit and category
     if (matchingIngredients.length === 1) {
       const matchedIngredient = matchingIngredients[0];
-      input.value = matchedIngredient;
+
+      // Only autocomplete if the input is not already the complete match
+      if (input.value !== matchedIngredient) {
+        input.value = matchedIngredient;
+      }
 
       // Set appropriate unit based on recipe data
       const unit = getUnitForIngredient(matchedIngredient);
@@ -282,8 +333,155 @@ const FridgeModule = (() => {
         }
       }
 
-      // Move focus to quantity input
-      document.getElementById('quantityInput').focus();
+      // Hide dropdown and move focus to quantity input
+      dropdown.classList.remove('show');
+      setTimeout(() => {
+        document.getElementById('quantityInput').focus();
+      }, 100);
+    }
+  };
+
+  /**
+   * Show autocomplete dropdown with matching ingredients
+   * @param {HTMLElement} dropdown - Dropdown element
+   * @param {Array} matches - Array of matching ingredient names
+   * @param {HTMLElement} input - Input element
+   */
+  const showAutocompleteDropdown = (dropdown, matches, input) => {
+    // Clear existing items
+    dropdown.innerHTML = '';
+
+    // If no matches, hide dropdown
+    if (matches.length === 0) {
+      dropdown.classList.remove('show');
+      return;
+    }
+
+    // Limit to max 10 items to avoid overwhelming UI
+    const displayMatches = matches.slice(0, 10);
+
+    // Create dropdown items
+    displayMatches.forEach((ingredient, index) => {
+      const item = document.createElement('div');
+      item.className = 'autocomplete-item';
+      item.textContent = ingredient;
+
+      // Highlight first item
+      if (index === 0) {
+        item.classList.add('highlighted');
+      }
+
+      // Use mousedown instead of click to fire before blur event
+      item.addEventListener('mousedown', (e) => {
+        e.preventDefault(); // Prevent input from losing focus
+        selectIngredient(ingredient, input);
+      });
+
+      dropdown.appendChild(item);
+    });
+
+    // Show more indicator if there are more matches
+    if (matches.length > 10) {
+      const moreItem = document.createElement('div');
+      moreItem.className = 'autocomplete-no-results';
+      moreItem.textContent = `... and ${matches.length - 10} more`;
+      dropdown.appendChild(moreItem);
+    }
+
+    // Show dropdown
+    dropdown.classList.add('show');
+  };
+
+  /**
+   * Select an ingredient from the dropdown
+   * @param {string} ingredient - Selected ingredient name
+   * @param {HTMLElement} input - Input element
+   */
+  const selectIngredient = (ingredient, input) => {
+    const dropdown = document.getElementById('autocompleteDropdown');
+
+    // Set input value
+    input.value = ingredient;
+
+    // Hide dropdown
+    dropdown.classList.remove('show');
+
+    // Set appropriate unit based on recipe data
+    const unit = getUnitForIngredient(ingredient);
+    if (unit === 'g' && !isUnitG) {
+      toggleUnit();
+    } else if (unit !== 'g' && isUnitG) {
+      toggleUnit();
+    }
+
+    // Set category
+    const categorySelect = document.getElementById('ingredientCategorySelect');
+    if (categorySelect) {
+      const existingItem = findIngredientPreviousUse(ingredient);
+      if (existingItem && existingItem.category) {
+        categorySelect.value = existingItem.category;
+      } else {
+        const category = determineFridgeCategory(ingredient);
+        categorySelect.value = category;
+      }
+    }
+
+    // Focus quantity input
+    document.getElementById('quantityInput').focus();
+  };
+
+  /**
+   * Handle keyboard navigation in the dropdown
+   * @param {KeyboardEvent} e - Keyboard event
+   */
+  const handleDropdownKeyboard = (e) => {
+    const dropdown = document.getElementById('autocompleteDropdown');
+
+    if (!dropdown.classList.contains('show')) {
+      return;
+    }
+
+    const items = dropdown.querySelectorAll('.autocomplete-item');
+    if (items.length === 0) return;
+
+    const highlighted = dropdown.querySelector('.autocomplete-item.highlighted');
+    let currentIndex = highlighted ? Array.from(items).indexOf(highlighted) : -1;
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        // Remove current highlight
+        if (highlighted) highlighted.classList.remove('highlighted');
+
+        // Move to next item
+        currentIndex = (currentIndex + 1) % items.length;
+        items[currentIndex].classList.add('highlighted');
+        items[currentIndex].scrollIntoView({ block: 'nearest' });
+        break;
+
+      case 'ArrowUp':
+        e.preventDefault();
+        // Remove current highlight
+        if (highlighted) highlighted.classList.remove('highlighted');
+
+        // Move to previous item
+        currentIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
+        items[currentIndex].classList.add('highlighted');
+        items[currentIndex].scrollIntoView({ block: 'nearest' });
+        break;
+
+      case 'Enter':
+        e.preventDefault();
+        if (highlighted) {
+          const ingredient = highlighted.textContent;
+          selectIngredient(ingredient, e.target);
+        }
+        break;
+
+      case 'Escape':
+        e.preventDefault();
+        dropdown.classList.remove('show');
+        break;
     }
   };
 
@@ -298,8 +496,8 @@ const FridgeModule = (() => {
         const recipes = MealModule.getAllRecipes();
         if (recipes && typeof recipes === 'object') {
           for (const recipe of Object.values(recipes)) {
-            if (Array.isArray(recipe)) {
-              for (const ingredient of recipe) {
+            if (recipe && recipe.ingredients && Array.isArray(recipe.ingredients)) {
+              for (const ingredient of recipe.ingredients) {
                 if (ingredient && ingredient.name === ingredientName) {
                   return ingredient.unit || '';
                 }
@@ -309,10 +507,10 @@ const FridgeModule = (() => {
         }
       }
     } catch (error) {
-      console.log('Error getting unit for ingredient:', error);
+      // Recipe module not yet loaded
     }
 
-    return ''; // Default to no unit
+    return '';
   };
 
   /**
