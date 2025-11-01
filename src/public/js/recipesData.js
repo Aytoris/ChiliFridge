@@ -24,7 +24,7 @@ const RECIPES_DATA = {
       "Spread mashed avocado on toasted bread",
       "Top with cooked eggs and serve immediately"
     ],
-    servings: 2,
+    servings: 1,
     protein: "eggs",
     cookingTime: 15
   },
@@ -46,7 +46,7 @@ const RECIPES_DATA = {
       "Flip squash halves and fill with quinoa mixture",
       "Top with remaining parmesan and bake for 10 more minutes"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 60
   },
@@ -69,7 +69,7 @@ const RECIPES_DATA = {
       "Assemble tacos: fill tortillas with roasted chickpeas, avocado, and cashew cream",
       "Garnish with fresh coriander if available"
     ],
-    servings: 2,
+    servings: 1,
     protein: "chickpeas",
     cookingTime: 25
   },
@@ -93,7 +93,7 @@ const RECIPES_DATA = {
       "Cook until heated through",
       "Serve hot filling in warm tortillas with your favorite toppings"
     ],
-    servings: 2,
+    servings: 1,
     protein: "beans",
     cookingTime: 40
   },
@@ -111,7 +111,7 @@ const RECIPES_DATA = {
       "For frying: fry in batches for 4-5 minutes until golden and crispy",
       "Season with salt immediately after cooking and serve hot"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 45
   },
@@ -136,7 +136,7 @@ const RECIPES_DATA = {
       "Toss cooked gnocchi with mushrooms and fresh arugula",
       "Drizzle with olive oil and season with salt and pepper"
     ],
-    servings: 2,
+    servings: 1,
     protein: "eggs",
     cookingTime: 60,
     timers: [
@@ -163,6 +163,26 @@ const RECIPES_DATA = {
     protein: "none",
     cookingTime: 5,
   },
+  "Bean Burger": {
+    ingredients: [
+      { "name": "Svarta bönor", "quantity": 100, "unit": "g" },
+      { "name": "Lök", "quantity": 0.1, "unit": "" },
+      { "name": "Tamari", "quantity": 1, "unit": "tsp" },
+      { "name": "Panko", "quantity": 50, "unit": "g" },
+      { "name": "Ägg", "quantity": 0.3, "unit": "" },
+      { "name": "Balsamvinäger", "quantity": 0.1, "unit": "tbsp" },
+    ],
+    instructions: [
+      "Patty: Beans, onion, egg, panko, tamari, balsamic vinegar",
+      "Pan: 5min each side, medium heat",
+    ],
+    servings: 1,
+    protein: "beans",
+    cookingTime: 15,
+    timers: [
+      { "label": "Stir fry patties", "duration": 5, "step": 2 }
+    ]
+  },
   "Hummus": {
     ingredients: [
       { "name": "Sesamfrön", "quantity": 25, "unit": "g" },
@@ -180,7 +200,7 @@ const RECIPES_DATA = {
       "Season with salt to taste",
       "Serve drizzled with olive oil and garnish with paprika or parsley"
     ],
-    servings: 2,
+    servings: 1,
     protein: "chickpeas",
     cookingTime: 15
   },
@@ -206,7 +226,7 @@ const RECIPES_DATA = {
       "Create a well in the center and crack an egg into it",
       "Carefully transfer to hot oven and bake for 10-12 minutes until crust is golden"
     ],
-    servings: 2,
+    servings: 1,
     protein: ["tofu", "eggs"],
     cookingTime: 90,
     timers: [
@@ -232,7 +252,7 @@ const RECIPES_DATA = {
       "Bake for 30-35 minutes until pastry is golden",
       "Let cool slightly before serving"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 50
   },
@@ -249,7 +269,7 @@ const RECIPES_DATA = {
       "Let cool for a few minutes before serving",
       "Cut open and serve with butter, salt, and your favorite toppings"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 60
   },
@@ -272,7 +292,7 @@ const RECIPES_DATA = {
       "Bake for 30-35 minutes until set and golden",
       "Let cool before slicing"
     ],
-    servings: 2,
+    servings: 1,
     protein: ["eggs", "tofu", "pasta"],
     cookingTime: 70
   },
@@ -296,7 +316,7 @@ const RECIPES_DATA = {
       "When rice is creamy and al dente, stir in mushrooms and parmesan",
       "Season with salt and pepper, serve immediately"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 30,
     timers: [
@@ -327,7 +347,7 @@ const RECIPES_DATA = {
       "Dress with olive oil, lemon juice, salt, and pepper",
       "Toss gently and serve immediately"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 20
   },
@@ -349,7 +369,7 @@ const RECIPES_DATA = {
       "Meanwhile, sauté sliced mushrooms in butter until golden",
       "Serve salmon with mashed potatoes, roasted vegetables, and mushrooms"
     ],
-    servings: 2,
+    servings: 1,
     protein: "fish",
     cookingTime: 35
   },
@@ -372,7 +392,7 @@ const RECIPES_DATA = {
     instructions: [
       "Pot: butter, tomato paste, tomato, onion",
     ],
-    servings: 2,
+    servings: 1,
     protein: "lentils",
     cookingTime: 40
   },
@@ -402,7 +422,7 @@ const RECIPES_DATA = {
       "Top salad with chicken, bacon, croutons, and extra parmesan",
       "Serve immediately"
     ],
-    servings: 2,
+    servings: 1,
     protein: "chicken",
     cookingTime: 25
   },
@@ -434,7 +454,7 @@ const RECIPES_DATA = {
       "Add lemon juice and adjust seasoning with salt",
       "Serve hot over rice, garnished with fresh coriander"
     ],
-    servings: 2,
+    servings: 1,
     protein: "lentils",
     cookingTime: 35,
     timers: [
@@ -467,7 +487,7 @@ const RECIPES_DATA = {
       "Pour sauce over and toss everything together",
       "Serve topped with chopped peanuts, fresh coriander, sliced avocado, and salad greens"
     ],
-    servings: 2,
+    servings: 1,
     protein: ["tofu", "eggs"],
     cookingTime: 30
   },
@@ -488,7 +508,7 @@ const RECIPES_DATA = {
       "4: Ajouter blanc en neige",
       "5: Poêle huilée chaude, 2min 1coté, 1min autre côté, thermo 5 (préchauffage 8)"
     ],
-    servings: 2,
+    servings: 1,
     protein: "eggs",
     cookingTime: 25,
     timers: [
@@ -518,7 +538,7 @@ const RECIPES_DATA = {
       "Fold omelette in half and cook for another minute",
       "Serve with cooked matvete or rice on the side"
     ],
-    servings: 2,
+    servings: 1,
     protein: "eggs",
     cookingTime: 25
   },
@@ -544,7 +564,7 @@ const RECIPES_DATA = {
       "Fold omelette in half and cook for another minute",
       "Serve with cooked matvete or rice on the side"
     ],
-    servings: 2,
+    servings: 1,
     protein: "eggs",
     cookingTime: 25
   },
@@ -572,7 +592,7 @@ const RECIPES_DATA = {
       "Steam dumplings in a steamer basket for 12-15 minutes, or pan-fry until golden on bottom then add water and cover to steam",
       "Serve with dipping sauce made from soy sauce, rice vinegar, and chili oil"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 60
   },
@@ -601,7 +621,7 @@ const RECIPES_DATA = {
       "Top with candied ginger and shredded lettuce",
       "Serve immediately"
     ],
-    servings: 2,
+    servings: 1,
     protein: "tofu",
     cookingTime: 30
   },
@@ -629,7 +649,7 @@ const RECIPES_DATA = {
       "Garnish with sesame seeds and fresh coriander",
       "Serve immediately while hot"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 20,
     timers: [
@@ -657,7 +677,7 @@ const RECIPES_DATA = {
       "Remove foil and bake for 10 more minutes until golden",
       "Let rest for 10 minutes before serving"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 55
   },
@@ -685,7 +705,7 @@ const RECIPES_DATA = {
       "Season with salt to taste",
       "Serve hot over rice or with naan bread"
     ],
-    servings: 2,
+    servings: 1,
     protein: "chickpeas",
     cookingTime: 30
   },
@@ -703,7 +723,7 @@ const RECIPES_DATA = {
       "Season with salt, pepper, and a pinch of nutmeg",
       "Serve hot, optionally garnished with cream and toasted seeds"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 55
   },
@@ -724,7 +744,7 @@ const RECIPES_DATA = {
       "Adjust consistency with more broth if needed",
       "Serve hot with crusty bread"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 35
   },
@@ -750,7 +770,7 @@ const RECIPES_DATA = {
       "Drizzle dressing over salad and garnish with chives",
       "Serve immediately"
     ],
-    servings: 2,
+    servings: 1,
     protein: "fish",
     cookingTime: 20
   },
@@ -779,7 +799,7 @@ const RECIPES_DATA = {
       "Stir in lemon juice and season with salt and pepper",
       "Serve hot with crusty bread"
     ],
-    servings: 2,
+    servings: 1,
     protein: "lentils",
     cookingTime: 40
   },
@@ -789,7 +809,7 @@ const RECIPES_DATA = {
       { "name": "Mandel", "quantity": 10, "unit": "g" },
       { "name": "Salladslök", "quantity": 3, "unit": "" },
       { "name": "Citron", "quantity": 1, "unit": "" },
-      { "name": "Linser", "quantity": 100, "unit": "g" },
+      { "name": "Linser", "quantity": 200, "unit": "g" },
       { "name": "Oliver (burk)", "quantity": 0.25, "unit": "" },
       { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
     ],
@@ -804,7 +824,7 @@ const RECIPES_DATA = {
       "Top with toasted almonds",
       "Serve at room temperature or chilled"
     ],
-    servings: 2,
+    servings: 1,
     protein: "lentils",
     cookingTime: 30
   },
@@ -838,7 +858,7 @@ const RECIPES_DATA = {
       "Season with salt and pepper to taste",
       "Serve hot with bread or over rice"
     ],
-    servings: 2,
+    servings: 1,
     protein: "lentils",
     cookingTime: 45
   },
@@ -862,7 +882,7 @@ const RECIPES_DATA = {
       "Top with crumbled feta",
       "Serve immediately"
     ],
-    servings: 2,
+    servings: 1,
     protein: "none",
     cookingTime: 15
   },
@@ -892,7 +912,7 @@ const RECIPES_DATA = {
       "Add chili powder or hot sauce if desired for extra heat",
       "Serve hot with rice, tortilla chips, or topped with avocado and sour cream"
     ],
-    servings: 2,
+    servings: 1,
     protein: "beans",
     cookingTime: 40
   }
