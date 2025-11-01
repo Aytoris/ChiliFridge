@@ -1659,3 +1659,87 @@ body.modal-open {
 .timer-button.timer-active .timer-duration {
     display: none;
 }
+
+/* Data Transfer Section */
+.data-transfer-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 2px dashed #dee2e6;
+}
+
+.data-transfer-section h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #495057;
+    font-size: 1.2em;
+    border-bottom: none;
+}
+
+.transfer-description {
+    margin-bottom: 15px;
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.transfer-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.transfer-buttons button {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px 20px;
+    font-size: 1em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#downloadDataBtn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+#downloadDataBtn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+#uploadDataBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+#uploadDataBtn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .data-transfer-section {
+        margin-top: 20px;
+        padding: 15px;
+    }
+
+    .transfer-buttons {
+        flex-direction: column;
+    }
+
+    .transfer-buttons button {
+        width: 100%;
+        min-width: 100%;
+    }
+}

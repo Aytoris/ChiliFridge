@@ -74,6 +74,17 @@
                 <button id="clearFridgeBtn">Clear Fridge</button>
             </div>
             <ul id="fridgeList"></ul>
+
+            <!-- Data Transfer Section -->
+            <div class="data-transfer-section">
+                <h3>Transfer Data</h3>
+                <p class="transfer-description">Download all your data to transfer to another device</p>
+                <div class="transfer-buttons">
+                    <button id="downloadDataBtn" class="btn-primary">📥 Download All Data</button>
+                    <button id="uploadDataBtn" class="btn-secondary">📤 Upload Data</button>
+                    <input type="file" id="uploadDataInput" accept=".json" style="display: none;">
+                </div>
+            </div>
         </div>
 
         <div class="content">
@@ -239,7 +250,73 @@
             }
 
             console.log('All modules initialization started');
+
+            // Set up data transfer event listeners
+            setupDataTransfer();
         });
+
+        /**
+         * Set up data transfer functionality
+         */
+        function setupDataTransfer() {
+            const downloadBtn = document.getElementById('downloadDataBtn');
+            const uploadBtn = document.getElementById('uploadDataBtn');
+            const uploadInput = document.getElementById('uploadDataInput');
+
+            // Download data button
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', () => {
+                    try {
+                        const result = API.exportAllData();
+                        if (result.success) {
+                            Utility.showToast('Data downloaded successfully!', 'success');
+                        } else {
+                            Utility.showToast('Download failed: ' + result.message, 'error');
+                        }
+                    } catch (error) {
+                        console.error('Error downloading data:', error);
+                        Utility.showToast('Download failed', 'error');
+                    }
+                });
+            }
+
+            // Upload data button (triggers file input)
+            if (uploadBtn) {
+                uploadBtn.addEventListener('click', () => {
+                    uploadInput.click();
+                });
+            }
+
+            // Handle file selection
+            if (uploadInput) {
+                uploadInput.addEventListener('change', async (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    try {
+                        Utility.showToast('Importing data...', 'info');
+                        const result = await API.importAllData(file);
+
+                        if (result.success) {
+                            Utility.showToast(result.message, 'success');
+
+                            // Reload the page after a short delay to apply all changes
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1500);
+                        } else {
+                            Utility.showToast('Import failed: ' + result.message, 'error');
+                        }
+                    } catch (error) {
+                        console.error('Error importing data:', error);
+                        Utility.showToast('Import failed: ' + error.message, 'error');
+                    }
+
+                    // Reset the file input so the same file can be selected again
+                    e.target.value = '';
+                });
+            }
+        }
     </script>
 
     <!-- Toast Notification Container -->

@@ -15,23 +15,23 @@ const FridgeModule = (() => {
   const init = async () => {
     // First load categories before loading the fridge
     loadFridgeCategories();
-    
+
     // Then load fridge data
     await loadFridge();
-    
+
     // Make sure all elements are properly initialized
     populateIngredientList();
     populateCategorySelect();
-    
+
     // Update the toggle button text to match the initial state
     const toggleBtn = document.getElementById('toggleFridgeCategoriesBtn');
     if (toggleBtn) {
       toggleBtn.textContent = isShowingCategories ? 'Hide Categories' : 'Show Categories';
     }
-    
+
     // Set up event listeners
     setupEventListeners();
-    
+
     // Log initialization
     console.log('Fridge module initialized with categories');
   };
@@ -87,10 +87,10 @@ const FridgeModule = (() => {
   const loadFridge = async () => {
     try {
       fridge = await API.fetchFridge();
-      
+
       // Ensure all items have categories assigned
       ensureFridgeItemCategories();
-      
+
       displayFridge();
     } catch (error) {
       console.error('Failed to load fridge:', error);
@@ -116,14 +116,14 @@ const FridgeModule = (() => {
   const populateIngredientList = () => {
     try {
       const ingredients = new Set();
-      
+
       // Add existing fridge ingredients first (these don't require MealModule)
       Object.values(fridge).forEach(item => {
         if (item && item.name) {
           ingredients.add(item.name);
         }
       });
-      
+
       // Try to get recipes if available
       try {
         const recipes = MealModule.getAllRecipes();
@@ -143,22 +143,22 @@ const FridgeModule = (() => {
         console.log('Recipes not yet available for ingredients list');
         // It's okay if recipes aren't available yet, we'll use what we have
       }
-      
+
       // Convert to sorted array
       const sortedIngredients = Array.from(ingredients).sort();
-      
+
       // Populate datalist
       const datalist = document.getElementById('ingredientList');
       if (datalist) {
         datalist.innerHTML = '';
-        
+
         sortedIngredients.forEach(ingredient => {
           const option = document.createElement('option');
           option.value = ingredient;
           datalist.appendChild(option);
         });
       }
-      
+
       // Listen for recipe data loaded event to update the list
       window.addEventListener('recipeDataLoaded', populateIngredientList, { once: true });
     } catch (error) {
@@ -176,20 +176,20 @@ const FridgeModule = (() => {
         MealModule.findMissingIngredients();
       }
     });
-    
+
     document.getElementById('clearFridgeBtn').addEventListener('click', clearFridge);
     document.getElementById('toggleUnitBtn').addEventListener('click', toggleUnit);
-    
+
     // Add category toggle button listener
     document.getElementById('toggleFridgeCategoriesBtn')?.addEventListener('click', toggleCategories);
 
     // Add edit categories button listener
     document.getElementById('editFridgeCategoriesBtn')?.addEventListener('click', showFridgeCategoriesModal);
-    
+
     // Add auto-complete functionality to ingredient input
     const ingredientInput = document.getElementById('ingredientInput');
     ingredientInput.addEventListener('input', handleIngredientInput);
-    
+
     // Add validation to quantity input to only allow digits
     const quantityInput = document.getElementById('quantityInput');
     quantityInput.addEventListener('keypress', (e) => {
@@ -197,13 +197,13 @@ const FridgeModule = (() => {
       if (!/^\d$/.test(e.key) && e.key !== '.') {
         e.preventDefault();
       }
-      
+
       // Prevent multiple decimal points
       if (e.key === '.' && quantityInput.value.includes('.')) {
         e.preventDefault();
       }
     });
-    
+
     // Populate the ingredient category select
     populateCategorySelect();
   };
@@ -213,20 +213,20 @@ const FridgeModule = (() => {
    */
   const handleIngredientInput = (e) => {
     const input = e.target;
-    const inputValue = input.value.toLowerCase().trim();
-    
+    const inputValue = input.value.trim();
+
     if (inputValue.length < 2) return; // Only autocomplete after at least 2 characters
-    
+
     // Get all ingredients from recipes
     const ingredients = new Set();
-    
+
     // Add existing fridge ingredients
     Object.values(fridge).forEach(item => {
       if (item && item.name) {
         ingredients.add(item.name);
       }
     });
-    
+
     // Add recipe ingredients if MealModule is available
     try {
       if (MealModule && typeof MealModule.getAllRecipes === 'function') {
@@ -246,17 +246,19 @@ const FridgeModule = (() => {
     } catch (error) {
       console.log('Could not get recipes for autocomplete:', error);
     }
-    
-    // Find matching ingredients
+
+    // Find matching ingredients (case-insensitive search)
     const matchingIngredients = Array.from(ingredients)
-      .filter(name => name.toLowerCase().includes(inputValue))
+      .filter(name => name.toLowerCase().includes(inputValue.toLowerCase()))
       .sort();
-    
+
+    console.log('Input:', inputValue, 'Matches:', matchingIngredients.length, matchingIngredients);
+
     // If exactly one match, auto-complete and set unit and category
     if (matchingIngredients.length === 1) {
       const matchedIngredient = matchingIngredients[0];
       input.value = matchedIngredient;
-      
+
       // Set appropriate unit based on recipe data
       const unit = getUnitForIngredient(matchedIngredient);
       if (unit === 'g' && !isUnitG) {
@@ -264,7 +266,7 @@ const FridgeModule = (() => {
       } else if (unit !== 'g' && isUnitG) {
         toggleUnit(); // Switch to count if needed
       }
-      
+
       // Check if this ingredient was previously stored in a specific category
       const categorySelect = document.getElementById('ingredientCategorySelect');
       if (categorySelect) {
@@ -279,12 +281,12 @@ const FridgeModule = (() => {
           categorySelect.value = category;
         }
       }
-      
+
       // Move focus to quantity input
       document.getElementById('quantityInput').focus();
     }
   };
-  
+
   /**
    * Get the unit typically used for an ingredient from recipes
    * @param {string} ingredientName - Name of the ingredient
@@ -309,7 +311,7 @@ const FridgeModule = (() => {
     } catch (error) {
       console.log('Error getting unit for ingredient:', error);
     }
-    
+
     return ''; // Default to no unit
   };
 
@@ -319,13 +321,13 @@ const FridgeModule = (() => {
   const populateCategorySelect = () => {
     const categorySelect = document.getElementById('ingredientCategorySelect');
     if (!categorySelect) return;
-    
+
     // Clear existing options
     categorySelect.innerHTML = '';
-    
+
     // Sort categories by order
     const sortedCategories = [...fridgeCategories].sort((a, b) => a.order - b.order);
-    
+
     // Add options for each category
     sortedCategories.forEach(category => {
       const option = document.createElement('option');
@@ -359,13 +361,13 @@ const FridgeModule = (() => {
   const showFridgeCategoriesModal = () => {
     const modal = document.getElementById('fridgeCategoriesModal');
     const modalList = document.getElementById('fridgeCategoriesModalList');
-    
+
     // Store the current fridge data to prevent loss
     const currentFridge = JSON.parse(JSON.stringify(fridge));
-    
+
     // Clear existing items
     modalList.innerHTML = '';
-    
+
     // Add category items to modal
     fridgeCategories.forEach(category => {
       const item = document.createElement('div');
@@ -379,7 +381,7 @@ const FridgeModule = (() => {
         <button class="save-category-btn" style="display:none">💾</button>
       `;
       modalList.appendChild(item);
-      
+
       // Add edit button listener
       item.querySelector('.edit-category-btn').addEventListener('click', (e) => {
         const itemEl = e.target.closest('.sortable-item');
@@ -389,41 +391,41 @@ const FridgeModule = (() => {
         itemEl.querySelector('.edit-category-btn').style.display = 'none';
         itemEl.querySelector('.save-category-btn').style.display = 'inline-block';
       });
-      
+
       // Add save button listener
       item.querySelector('.save-category-btn').addEventListener('click', (e) => {
         const itemEl = e.target.closest('.sortable-item');
         const newName = itemEl.querySelector('.category-name-edit').value.trim();
-        
+
         if (newName) {
           // Update the display and data
           itemEl.querySelector('.category-name').textContent = newName;
-          
+
           // Find and update the category
           const categoryId = itemEl.getAttribute('data-id');
           const categoryIndex = fridgeCategories.findIndex(c => c.id === categoryId);
-          
+
           if (categoryIndex !== -1) {
             fridgeCategories[categoryIndex].name = newName;
             saveFridgeCategories();
           }
         }
-        
+
         // Reset display
         itemEl.classList.remove('editing');
         itemEl.querySelector('.category-name').style.display = 'inline-block';
         itemEl.querySelector('.category-name-edit').style.display = 'none';
         itemEl.querySelector('.edit-category-btn').style.display = 'inline-block';
         itemEl.querySelector('.save-category-btn').style.display = 'none';
-        
+
         // Restore the fridge data before refreshing display
         fridge = JSON.parse(JSON.stringify(currentFridge));
-        
+
         // Refresh the display
         displayFridge();
       });
     });
-    
+
     // Initialize sortable
     if (typeof Sortable !== 'undefined') {
       const sortable = Sortable.create(modalList, {
@@ -435,29 +437,29 @@ const FridgeModule = (() => {
           items.forEach((item, index) => {
             const categoryId = item.getAttribute('data-id');
             const categoryIndex = fridgeCategories.findIndex(c => c.id === categoryId);
-            
+
             if (categoryIndex !== -1) {
               fridgeCategories[categoryIndex].order = index;
             }
           });
-          
+
           saveFridgeCategories();
-          
+
           // Restore the fridge data before refreshing display
           fridge = JSON.parse(JSON.stringify(currentFridge));
-          
+
           displayFridge();
         }
       });
     }
-    
+
     // Show the modal
     modal.style.display = 'block';
-    
+
     // Add close button listener
     modal.querySelector('.close-modal').addEventListener('click', () => {
       modal.style.display = 'none';
-      
+
       // Restore the fridge data when closing the modal
       fridge = JSON.parse(JSON.stringify(currentFridge));
       displayFridge();
@@ -467,7 +469,7 @@ const FridgeModule = (() => {
     window.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.style.display = 'none';
-        
+
         // Restore the fridge data when closing the modal
         fridge = JSON.parse(JSON.stringify(currentFridge));
         displayFridge();
@@ -486,40 +488,40 @@ const FridgeModule = (() => {
     if (existingCategory && fridgeCategories.some(c => c.id === existingCategory)) {
       return existingCategory;
     }
-    
+
     // Try to determine by common patterns
     const lowerName = itemName.toLowerCase();
-    
+
     // Check for fruits & vegetables
     if (/apple|banana|orange|grape|berry|fruit|vegetable|lettuce|tomato|carrot|onion/i.test(lowerName)) {
       return 'fruits';
     }
-    
+
     // Check for refrigerator items
     if (/milk|cheese|yogurt|butter|egg|cream|meat|chicken|beef|fish|cold/i.test(lowerName)) {
       return 'refrigerator';
     }
-    
+
     // Check for freezer items
     if (/frozen|ice|freeze|cold/i.test(lowerName)) {
       return 'freezer';
     }
-    
+
     // Check for pantry items
     if (/pasta|rice|bean|can|jar|flour|sugar|cereal|snack|chip|crackers|bread/i.test(lowerName)) {
       return 'pantry';
     }
-    
+
     // Check for spices and herbs
     if (/spice|herb|salt|pepper|seasoning|oregano|basil|thyme/i.test(lowerName)) {
       return 'spices';
     }
-    
+
     // Check for drinks
     if (/water|soda|juice|drink|beverage|coffee|tea|wine|beer|alcohol/i.test(lowerName)) {
       return 'drinks';
     }
-    
+
     // Default to 'other' if no match
     return 'other';
   };
@@ -533,9 +535,9 @@ const FridgeModule = (() => {
       console.error('Fridge list element not found');
       return;
     }
-    
+
     fridgeList.innerHTML = '';
-    
+
     // If the fridge is empty, show a message
     if (Object.keys(fridge).length === 0) {
       const emptyMessage = document.createElement('li');
@@ -544,7 +546,7 @@ const FridgeModule = (() => {
       fridgeList.appendChild(emptyMessage);
       return;
     }
-    
+
     // If categories are disabled, display a simple list
     if (!isShowingCategories) {
       Object.keys(fridge).forEach(key => {
@@ -553,23 +555,23 @@ const FridgeModule = (() => {
       });
       return;
     }
-    
+
     // Ensure all items have categories
     ensureFridgeItemCategories();
-    
+
     // Group items by category
     const categorizedItems = {};
-    
+
     // Initialize all categories (even empty ones)
     fridgeCategories.forEach(category => {
       categorizedItems[category.id] = [];
     });
-    
+
     // Group items by category
     Object.keys(fridge).forEach(key => {
       const item = fridge[key];
       const category = item.category; // Category should already be assigned
-      
+
       // Ensure the category exists in our categorizedItems
       if (!categorizedItems[category]) {
         // This might happen if a category was deleted
@@ -579,17 +581,17 @@ const FridgeModule = (() => {
         categorizedItems[category].push({ key, ...item });
       }
     });
-    
+
     // Get categories in the right order
     const orderedCategories = [...fridgeCategories].sort((a, b) => a.order - b.order);
-    
+
     // Create UI for each category
     orderedCategories.forEach(category => {
       const items = categorizedItems[category.id];
-      
+
       // Skip empty categories
       if (!items || items.length === 0) return;
-      
+
       // Create category header
       const categoryHeader = document.createElement('li');
       categoryHeader.className = 'category-header';
@@ -599,7 +601,7 @@ const FridgeModule = (() => {
         <div class="category-count">${items.length} item${items.length !== 1 ? 's' : ''}</div>
       `;
       fridgeList.appendChild(categoryHeader);
-      
+
       // Add items in this category
       items.forEach(item => {
         addFridgeItemToList(fridgeList, item.key, {
@@ -625,7 +627,7 @@ const FridgeModule = (() => {
     if (item.category) {
       li.setAttribute('data-category', item.category);
     }
-    
+
     // Add quantity input and buttons
     const quantityControls = `
       <div class="quantity-controls">
@@ -634,28 +636,28 @@ const FridgeModule = (() => {
         <button class="increase-btn" data-key="${key}">+</button>
       </div>
     `;
-    
+
     li.innerHTML = `
       <span>${item.name}: </span>
       ${quantityControls}
       <span>${item.unit}</span>
       <div class="item-controls">
         <select class="category-select" data-key="${key}">
-          ${fridgeCategories.map(c => 
+          ${fridgeCategories.map(c =>
             `<option value="${c.id}" ${item.category === c.id ? 'selected' : ''}>${c.name}</option>`
           ).join('')}
         </select>
         <button class="delete-btn" data-key="${key}">🗑️</button>
       </div>
     `;
-    
+
     list.appendChild(li);
-    
+
     // Add event listener for quantity changes
     li.querySelector('.quantity-input').addEventListener('change', (e) => {
       const key = e.target.dataset.key;
       const newQuantity = parseFloat(e.target.value);
-      
+
       if (!isNaN(newQuantity) && newQuantity > 0) {
         editQuantity(key, newQuantity);
       } else {
@@ -664,30 +666,30 @@ const FridgeModule = (() => {
         Utility.showToast('Please enter a valid quantity (greater than 0).', 'warning');
       }
     });
-    
+
     // Add event listener for increase button
     li.querySelector('.increase-btn').addEventListener('click', (e) => {
       const key = e.target.dataset.key;
       increaseQuantity(key);
     });
-    
+
     // Add event listener for decrease button
     li.querySelector('.decrease-btn').addEventListener('click', (e) => {
       const key = e.target.dataset.key;
       decreaseQuantity(key);
     });
-    
+
     // Add event listener for delete button
     li.querySelector('.delete-btn').addEventListener('click', (e) => {
       const key = e.target.dataset.key;
       deleteItem(key);
     });
-    
+
     // Add event listener for category changes
     li.querySelector('.category-select').addEventListener('change', (e) => {
       const key = e.target.dataset.key;
       const newCategory = e.target.value;
-      
+
       if (fridge[key]) {
         fridge[key].category = newCategory;
         updateFridge();
@@ -717,11 +719,11 @@ const FridgeModule = (() => {
       // For decimal values, increment by 0.1
       const currentQuantity = fridge[key].quantity;
       const isInteger = Number.isInteger(currentQuantity);
-      
-      fridge[key].quantity = isInteger ? 
-        currentQuantity + 1 : 
+
+      fridge[key].quantity = isInteger ?
+        currentQuantity + 1 :
         Math.round((currentQuantity + 0.1) * 10) / 10;
-        
+
       updateFridge();
       displayFridge(); // Update UI immediately
     }
@@ -737,11 +739,11 @@ const FridgeModule = (() => {
       // For decimal values, decrement by 0.1
       const currentQuantity = fridge[key].quantity;
       const isInteger = Number.isInteger(currentQuantity);
-      
-      const newQuantity = isInteger ? 
-        currentQuantity - 1 : 
+
+      const newQuantity = isInteger ?
+        currentQuantity - 1 :
         Math.round((currentQuantity - 0.1) * 10) / 10;
-      
+
       // Ensure quantity doesn't go below 0.1
       if (newQuantity >= 0.1) {
         fridge[key].quantity = newQuantity;
@@ -776,16 +778,16 @@ const FridgeModule = (() => {
     try {
       // Ensure all items have categories before updating
       ensureFridgeItemCategories();
-      
+
       // Before updating, save the current state to history
       saveFridgeHistory();
-      
+
       await API.updateFridge(fridge);
       displayFridge();
-      
+
       // Update the ingredient category dropdown
       populateCategorySelect();
-      
+
       // Dispatch event for fridge update
       try {
         const event = new CustomEvent('fridgeUpdated');
@@ -794,7 +796,7 @@ const FridgeModule = (() => {
       } catch (eventError) {
         console.error('Error dispatching fridge updated event:', eventError);
       }
-      
+
       if (MealModule && typeof MealModule.findMissingIngredients === 'function') {
         MealModule.findMissingIngredients();
       }
@@ -811,11 +813,11 @@ const FridgeModule = (() => {
       // Get existing history or create a new one
       let history = {};
       const existingHistory = localStorage.getItem('fridgeHistory');
-      
+
       if (existingHistory) {
         history = JSON.parse(existingHistory);
       }
-      
+
       // Add current items to history, preserving their categories
       Object.keys(fridge).forEach(key => {
         const item = fridge[key];
@@ -828,7 +830,7 @@ const FridgeModule = (() => {
           };
         }
       });
-      
+
       // Save back to localStorage
       localStorage.setItem('fridgeHistory', JSON.stringify(history));
     } catch (error) {
@@ -843,41 +845,41 @@ const FridgeModule = (() => {
     const ingredientInput = document.getElementById('ingredientInput');
     const quantityInput = document.getElementById('quantityInput');
     const categorySelect = document.getElementById('ingredientCategorySelect');
-    
+
     const name = ingredientInput.value.trim();
     const quantity = parseFloat(quantityInput.value);
     const category = categorySelect ? categorySelect.value : determineFridgeCategory(name);
-    
+
     if (!name || isNaN(quantity) || quantity <= 0) {
       Utility.showToast('Please enter a valid ingredient name and quantity.', 'warning');
       return;
     }
-    
+
     const unit = isUnitG ? 'g' : '';
-    
+
     // Check if the item already exists in the fridge
     const existingItem = findIngredient(name);
-    
+
     if (existingItem) {
       // Update existing item quantity
       fridge[existingItem.key].quantity += quantity;
       console.log(`Updated existing item ${name}, new quantity: ${fridge[existingItem.key].quantity}`);
     } else {
       // Add as new item - use the name as the key instead of timestamp
-      fridge[name] = { 
-        name, 
-        quantity, 
-        unit, 
-        category 
+      fridge[name] = {
+        name,
+        quantity,
+        unit,
+        category
       };
       console.log(`Added new item ${name}, quantity: ${quantity}`);
     }
-    
+
     ingredientInput.value = '';
     quantityInput.value = '';
-    
+
     updateFridge();
-    
+
     if (existingItem) {
       Utility.showToast(`Updated ${name} in your ${fridgeCategories.find(c => c.id === category)?.name || 'fridge'}.`, 'success');
     } else {
@@ -893,12 +895,12 @@ const FridgeModule = (() => {
   const findIngredient = (name) => {
     // Normalize the name for case-insensitive comparison
     const normalizedName = name.toLowerCase();
-    
+
     // Check if the item exists directly by name (which is now the key)
     if (fridge[name]) {
       return { key: name, ...fridge[name] };
     }
-    
+
     // Also check with case-insensitive comparison
     const keys = Object.keys(fridge);
     for (const key of keys) {
@@ -906,7 +908,7 @@ const FridgeModule = (() => {
         return { key, ...fridge[key] };
       }
     }
-    
+
     return null;
   };
 
@@ -921,7 +923,7 @@ const FridgeModule = (() => {
     if (currentItem) {
       return currentItem;
     }
-    
+
     // Also look in local storage history if we have it
     try {
       const fridgeHistory = localStorage.getItem('fridgeHistory');
@@ -936,7 +938,7 @@ const FridgeModule = (() => {
     } catch (error) {
       console.log('Could not check fridge history:', error);
     }
-    
+
     return null;
   };
 
@@ -961,18 +963,18 @@ const FridgeModule = (() => {
       console.error('Invalid or empty grocery items array:', groceryItems);
       return;
     }
-    
+
     console.log('Adding grocery items to fridge:', groceryItems);
-    
+
     // Process each item in the grocery list
     groceryItems.forEach(item => {
       if (!item || typeof item !== 'object' || !item.name) {
         console.error('Invalid grocery item:', item);
         return; // Skip this item
       }
-      
+
       const existingItem = findIngredient(item.name);
-      
+
       if (existingItem) {
         // Add to existing item
         fridge[existingItem.key].quantity += item.quantity;
@@ -988,7 +990,7 @@ const FridgeModule = (() => {
         console.log(`Added new item ${item.name}, quantity: ${item.quantity}`);
       }
     });
-    
+
     // Update the fridge after all items have been processed
     updateFridge();
   };
@@ -1010,4 +1012,4 @@ const FridgeModule = (() => {
     toggleCategories,
     showFridgeCategoriesModal
   };
-})(); 
+})();

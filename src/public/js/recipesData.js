@@ -56,8 +56,8 @@ const RECIPES_DATA = {
       { "name": "Cashewnötter", "quantity": 35, "unit": "g" },
       { "name": "Lime", "quantity": 0.5, "unit": "" },
       { "name": "Avokado", "quantity": 1, "unit": "" },
+      { "name": "Mjöl", "quantity": 110, "unit": "g" },
       { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Mjöl", "quantity": 110, "unit": "g" }
     ],
     instructions: [
       "Drain and rinse chickpeas, then pat dry",
@@ -148,9 +148,9 @@ const RECIPES_DATA = {
     ingredients: [
       { "name": "Sesamfrön", "quantity": 25, "unit": "g" },
       { "name": "Citron", "quantity": 0.5, "unit": "" },
-      { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Kikärtor", "quantity": 0.5, "unit": "" },
-      { "name": "Vitlöksklyfta", "quantity": 0.5, "unit": "" }
+      { "name": "Vitlöksklyfta", "quantity": 0.5, "unit": "" },
+      { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
     ],
     instructions: [
       "Toast sesame seeds in a dry pan until fragrant to make tahini",
@@ -342,9 +342,9 @@ const RECIPES_DATA = {
       { "name": "Tomat", "quantity": 0.5, "unit": "" },
       { "name": "Vitlöksklyfta", "quantity": 1, "unit": "" },
       { "name": "Tomatpuré", "quantity": 1.5, "unit": "tbsp" },
-      { "name": "Berbere (krydda)", "quantity": 1, "unit": "tbsp" },
       { "name": "Linser", "quantity": 100, "unit": "g" },
       { "name": "Buljong", "quantity": 0.5, "unit": "" },
+      { "name": "Berbere (krydda)", "quantity": 1, "unit": "tbsp" },
       // Pita bread
       { "name": "Mjöl", "quantity": 300, "unit": "g" },
       { "name": "Vatten", "quantity": 200, "unit": "g" },
@@ -365,12 +365,12 @@ const RECIPES_DATA = {
       { "name": "Grönkål", "quantity": 0.1, "unit": "" },
       { "name": "Rödlök", "quantity": 0.1, "unit": "" },
       { "name": "Körsbärstomat", "quantity": 2, "unit": "" },
-      { "name": "Persillade (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Krutonger", "quantity": 50, "unit": "g" },
       { "name": "Parmesan", "quantity": 12.5, "unit": "g" },
       { "name": "Majonnäs", "quantity": 12.5, "unit": "g" },
       { "name": "Senap", "quantity": 0.1, "unit": "" },
-      { "name": "Citron", "quantity": 0.25, "unit": "" }
+      { "name": "Citron", "quantity": 0.25, "unit": "" },
+      { "name": "Persillade (krydda)", "quantity": 0.1, "unit": "" },
     ],
     instructions: [
       "Season chicken with salt, pepper, and persillade, then grill or pan-fry until cooked through",
@@ -392,17 +392,17 @@ const RECIPES_DATA = {
       { "name": "Kokosolja", "quantity": 0.25, "unit": "tbsp" },
       { "name": "Vitlöksklyfta", "quantity": 1, "unit": "" },
       { "name": "Ingefära", "quantity": 3.75, "unit": "g" },
-      { "name": "Gurkmeja (krydda)", "quantity": 0.025, "unit": "" },
-      { "name": "Spiskummin (krydda)", "quantity": 0.25, "unit": "tsp" },
-      { "name": "Koriander (krydda)", "quantity": 0.125, "unit": "tsp" },
-      { "name": "Curry (krydda)", "quantity": 0.5, "unit": "tsp" },
-      { "name": "Garam masala (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Röda linser", "quantity": 50, "unit": "g" },
       { "name": "Buljong", "quantity": 0.25, "unit": "" },
       { "name": "Tomatsås (krossade)", "quantity": 100, "unit": "g" },
       { "name": "Kokosmjölk", "quantity": 100, "unit": "mL" },
       { "name": "Jordnötssmör", "quantity": 0.1, "unit": "" },
       { "name": "Citron", "quantity": 0.125, "unit": "" },
+      { "name": "Gurkmeja (krydda)", "quantity": 0.025, "unit": "" },
+      { "name": "Spiskummin (krydda)", "quantity": 0.25, "unit": "tsp" },
+      { "name": "Koriander (krydda)", "quantity": 0.125, "unit": "tsp" },
+      { "name": "Curry (krydda)", "quantity": 0.5, "unit": "tsp" },
+      { "name": "Garam masala (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" }
     ],
     instructions: [
@@ -434,8 +434,8 @@ const RECIPES_DATA = {
       { "name": "Ägg", "quantity": 1, "unit": "" },
       { "name": "Jordnötter", "quantity": 20, "unit": "g" },
       { "name": "Sallad", "quantity": 0.1, "unit": "" },
+      { "name": "Avokado", "quantity": 1, "unit": "" },
       { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Avokado", "quantity": 1, "unit": "" }
     ],
     instructions: [
       "Soak rice noodles in warm water for 15-20 minutes until soft, drain",
@@ -592,13 +592,13 @@ const RECIPES_DATA = {
       { "name": "Svamp", "quantity": 40, "unit": "g" },
       { "name": "Morot", "quantity": 0.5, "unit": "" },
       { "name": "Ingefära", "quantity": 15, "unit": "g" },
-      { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Sojasås", "quantity": 0.1, "unit": "" },
       { "name": "Risvinäger", "quantity": 0.1, "unit": "" },
       { "name": "Sesamolja", "quantity": 0.1, "unit": "" },
       { "name": "Vitlöksklyfta", "quantity": 1, "unit": "" },
       { "name": "Sesamfrön", "quantity": 10, "unit": "g" },
-      { "name": "Buljong", "quantity": 1, "unit": "" }
+      { "name": "Buljong", "quantity": 1, "unit": "" },
+      { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" },
     ],
     instructions: [
       "Heat broth in a large pot with minced garlic and grated ginger",
@@ -650,10 +650,10 @@ const RECIPES_DATA = {
       { "name": "Kikärtor", "quantity": 0.5, "unit": "" },
       { "name": "Fryst spenat", "quantity": 50, "unit": "g" },
       { "name": "Tomatsås (krossade)", "quantity": 0.5, "unit": "" },
+      { "name": "Kokosmjölk", "quantity": 40, "unit": "g" },
       { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Curry (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Kokosmjölk", "quantity": 40, "unit": "g" }
     ],
     instructions: [
       "Finely chop shallot, mince garlic, and grate ginger",
@@ -740,13 +740,13 @@ const RECIPES_DATA = {
       { "name": "Schalottenlök", "quantity": 0.5, "unit": "" },
       { "name": "Morot", "quantity": 1, "unit": "" },
       { "name": "Vitlöksklyfta", "quantity": 2, "unit": "" },
-      { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Curry (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Timjan (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Tomat", "quantity": 1, "unit": "" },
       { "name": "Linser", "quantity": 50, "unit": "g" },
       { "name": "Buljong", "quantity": 0.5, "unit": "" },
-      { "name": "Citron", "quantity": 0.5, "unit": "" }
+      { "name": "Citron", "quantity": 0.5, "unit": "" },
+      { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
+      { "name": "Curry (krydda)", "quantity": 0.1, "unit": "" },
+      { "name": "Timjan (krydda)", "quantity": 0.1, "unit": "" },
     ],
     instructions: [
       "Dice shallot and carrot, mince garlic",
@@ -771,8 +771,8 @@ const RECIPES_DATA = {
       { "name": "Salladslök", "quantity": 3, "unit": "" },
       { "name": "Citron", "quantity": 1, "unit": "" },
       { "name": "Linser", "quantity": 100, "unit": "g" },
+      { "name": "Oliver (burk)", "quantity": 0.25, "unit": "" },
       { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Oliver (burk)", "quantity": 0.25, "unit": "" }
     ],
     instructions: [
       "Cook lentils in boiling water for 20-25 minutes until tender, drain and cool",
@@ -797,15 +797,15 @@ const RECIPES_DATA = {
       { "name": "Potatis (medelstor)", "quantity": 1, "unit": "" },
       { "name": "Vitlöksklyfta", "quantity": 2, "unit": "" },
       { "name": "Zucchini", "quantity": 0.25, "unit": "" },
-      { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Gurkmeja (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Kanel (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Persilja", "quantity": 0.1, "unit": "" },
       { "name": "Tomat", "quantity": 1, "unit": "" },
       { "name": "Buljong", "quantity": 0.5, "unit": "" },
       { "name": "Citron", "quantity": 0.5, "unit": "" },
-      { "name": "Linser", "quantity": 100, "unit": "g" }
+      { "name": "Linser", "quantity": 100, "unit": "g" },
+      { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" },
+      { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
+      { "name": "Gurkmeja (krydda)", "quantity": 0.1, "unit": "" },
+      { "name": "Kanel (krydda)", "quantity": 0.1, "unit": "" },
     ],
     instructions: [
       "Dice all vegetables (shallot, carrot, celery, potato, zucchini) and mince garlic",
@@ -854,12 +854,12 @@ const RECIPES_DATA = {
       { "name": "Morot", "quantity": 0.5, "unit": "" },
       { "name": "Selleri", "quantity": 0.25, "unit": "" },
       { "name": "Vitlöksklyfta", "quantity": 2, "unit": "" },
-      { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
-      { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" },
       { "name": "Paprikapulver", "quantity": 0.1, "unit": "" },
       { "name": "Tomat", "quantity": 1, "unit": "" },
       { "name": "Blandade bönor", "quantity": 0.5, "unit": "" },
-      { "name": "Lime", "quantity": 0.5, "unit": "" }
+      { "name": "Lime", "quantity": 0.5, "unit": "" },
+      { "name": "Spiskummin (krydda)", "quantity": 0.1, "unit": "" },
+      { "name": "Koriander (krydda)", "quantity": 0.1, "unit": "" },
     ],
     instructions: [
       "Dice red onion, bell pepper, carrot, and celery, mince garlic",
