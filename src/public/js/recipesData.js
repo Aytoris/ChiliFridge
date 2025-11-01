@@ -8,7 +8,7 @@
  * - ingredients: Array of {name, quantity, unit}
  * - instructions: Array of step-by-step cooking instructions
  * - servings: Default number of servings (used for scaling)
- * - protein: Optional protein type (tofu, lentils, chickpeas, beans, eggs, fish, chicken, dairy, mixed, none)
+ * - protein: Optional protein type (tofu, lentils, chickpeas, beans, eggs, fish, chicken, none)
  * - cookingTime: Cooking duration in minutes
  */
 const RECIPES_DATA = {
@@ -920,5 +920,50 @@ const RECIPES_DATA = {
     protein: "beans",
     cookingTime: 40
   }
-
+  ,
+  "Roasted Broccoli & Brussels Sprouts": {
+    ingredients: [
+      { "name": "Broccoli", "quantity": 1, "unit": "" },
+      { "name": "Brysselkål", "quantity": 15, "unit": "" },
+      { "name": "Olivolja", "quantity": 2, "unit": "tbsp" },
+      { "name": "Citronjuice", "quantity": 3, "unit": "tbsp" },
+      { "name": "Vitlöksklyfta", "quantity": 2, "unit": "" },
+      { "name": "Näringsjäst", "quantity": 1.5, "unit": "tbsp" },
+      { "name": "Tofu", "quantity": 400, "unit": "g" },
+    ],
+    instructions: [
+      "Preheat oven to 200°C.",
+      "Cut broccoli into small florets and halve or quarter brussels sprouts, discarding woody ends.",
+      "Mince garlic cloves.",
+      "Oven: Tofu, broccoli, brussels + oil, lemon juice, garlic, nutritional yeast, salt, pepper.",
+      "Mix everything together to coat the vegetables evenly.",
+      "Roast for 20-25 minutes, until veggies are tender and crisped at the edges.",
+      "Remove from oven and top with extra nutritional yeast and lemon juice to taste."
+    ],
+    servings: 4,
+    protein: "none",
+    cookingTime: 30
+  },
+  "Croque-madame": {
+    ingredients: [
+      { "name": "Toastbröd", "quantity": 4, "unit": "skiva" },
+      { "name": "Emmental", "quantity": 100, "unit": "g" },
+      { "name": "Ägg", "quantity": 2, "unit": "" },
+      { "name": "Skinka", "quantity": 2, "unit": "skiva" },
+      { "name": "Smör", "quantity": 25, "unit": "g" },
+      { "name": "Salt", "quantity": 1, "unit": "g" },
+      { "name": "Peppar", "quantity": 1, "unit": "g" }
+    ],
+    instructions: [
+      "Preheat oven to 210°C. Butter one side of each bread slice.",
+      "Slice cheese thinly.",
+      "Assemble sandwich: bread (buttered side in), cheese, ham, cheese, bread (buttered side in).",
+      "Place on baking sheet and bake until golden.",
+      "Fry eggs in a pan, season with salt and pepper.",
+      "Top each sandwich with a fried egg and serve."
+    ],
+    servings: 2,
+    protein: ["eggs", "pork"],
+    cookingTime: 20
+  },
 };
