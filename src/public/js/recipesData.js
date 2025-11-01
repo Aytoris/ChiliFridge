@@ -144,6 +144,25 @@ const RECIPES_DATA = {
       { "label": "Cook gnocchi batch", "duration": 3, "step": 7 }
     ]
   },
+  "Smoothie 1": {
+    ingredients: [
+      { "name": "Banan", "quantity": 1, "unit": "" },
+      { "name": "Blåbär", "quantity": 50, "unit": "g" },
+      { "name": "Jordgubbar", "quantity": 50, "unit": "g" },
+      { "name": "Mjölk", "quantity": 200, "unit": "g" },
+    ],
+    instructions: [
+      "Alternative: Banan/strawberry/blueberry",
+      "Alternative: Banan/mango",
+      "Alternative: apple/pear/kiwi",
+      "Alternative: Banan/strawberry/blueberry/kiwi/pinapple",
+      "Alternative: mango/pineapple/orange",
+      "+Mapple syrup?",
+    ],
+    servings: 1,
+    protein: "none",
+    cookingTime: 5,
+  },
   "Hummus": {
     ingredients: [
       { "name": "Sesamfrön", "quantity": 25, "unit": "g" },
