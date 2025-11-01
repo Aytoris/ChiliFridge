@@ -62,6 +62,7 @@ const CalendarModule = (() => {
    */
   const setupEventListeners = () => {
     document.getElementById('addWeeklyGroceryListButton').addEventListener('click', addWeeklyGroceryList);
+    document.getElementById('exportMealPlanImageBtn').addEventListener('click', exportMealPlanAsImage);
     document.getElementById('clearCalendarButton').addEventListener('click', clearCalendar);
   };
 
@@ -884,6 +885,81 @@ const CalendarModule = (() => {
   };
 
   /**
+   * Export the meal plan calendar as an image
+   */
+  const exportMealPlanAsImage = async () => {
+    try {
+      // Get the calendar container element
+      const calendarElement = document.getElementById('calendar');
+
+      if (!calendarElement) {
+        Utility.showToast('Calendar not found!', 'error');
+        return;
+      }
+
+      // Show a loading toast
+      Utility.showToast('Generating meal plan image...', 'info');
+
+      // Save original styles
+      const originalOverflow = calendarElement.style.overflow;
+      const originalMaxWidth = calendarElement.style.maxWidth;
+      const originalHeight = calendarElement.style.height;
+      const originalScrollLeft = calendarElement.scrollLeft;
+
+      // Temporarily modify styles to show all content
+      calendarElement.style.overflow = 'visible';
+      calendarElement.style.maxWidth = 'none';
+      calendarElement.style.height = 'auto';
+      calendarElement.scrollLeft = 0;
+
+      // Wait a bit for the layout to adjust
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Use html2canvas to capture the calendar
+      const canvas = await html2canvas(calendarElement, {
+        backgroundColor: '#ffffff',
+        scale: 2, // Higher quality image
+        logging: false,
+        useCORS: true,
+        scrollX: 0,
+        scrollY: -window.scrollY, // Account for page scroll
+        width: calendarElement.scrollWidth,
+        height: calendarElement.scrollHeight
+      });
+
+      // Restore original styles
+      calendarElement.style.overflow = originalOverflow;
+      calendarElement.style.maxWidth = originalMaxWidth;
+      calendarElement.style.height = originalHeight;
+      calendarElement.scrollLeft = originalScrollLeft;
+
+      // Convert canvas to blob
+      canvas.toBlob((blob) => {
+        // Create a download link
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+
+        // Generate filename with current date
+        const now = new Date();
+        const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD format
+        link.download = `meal-plan-${dateStr}.png`;
+
+        link.href = url;
+        link.click();
+
+        // Clean up
+        URL.revokeObjectURL(url);
+
+        Utility.showToast('Meal plan image downloaded!', 'success');
+      }, 'image/png');
+
+    } catch (error) {
+      console.error('Error exporting meal plan:', error);
+      Utility.showToast('Failed to export meal plan image', 'error');
+    }
+  };
+
+  /**
    * Clear all meal selections from the calendar
    */
   const clearCalendar = () => {
@@ -1466,6 +1542,7 @@ const CalendarModule = (() => {
     init,
     displayCalendar,
     addWeeklyGroceryList,
+    exportMealPlanAsImage,
     clearCalendar,
     getCalendarData: () => calendarData,
     openCookingMode

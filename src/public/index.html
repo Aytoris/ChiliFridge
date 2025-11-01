@@ -28,6 +28,7 @@
         <div id="calendar" class="calendar-container"></div>
         <div class="form-group">
             <button id="addWeeklyGroceryListButton" class="btn-primary">Add Weekly Grocery List</button>
+            <button id="exportMealPlanImageBtn" class="btn-export">Export Meal Plan Image</button>
             <button id="clearCalendarButton" class="btn-secondary">Clear Meal Planner</button>
         </div>
     </div>
@@ -185,6 +186,9 @@
 
     <!-- Sortable Library for drag-and-drop -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+
+    <!-- html2canvas Library for exporting calendar as image -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <!-- Main Script -->
     <script>

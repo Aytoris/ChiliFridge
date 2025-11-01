@@ -152,6 +152,22 @@ button:hover {
     background-color: #5a6268;
 }
 
+/* Button styles for secondary actions */
+.btn-export {
+    background-color: #6d0088;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin: 5px 0;
+}
+
+.btn-export:hover {
+    background-color: #5a0170;
+}
+
 /* Lists */
 ul {
     list-style-type: none;
