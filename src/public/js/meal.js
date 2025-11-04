@@ -95,6 +95,13 @@ const MealModule = (() => {
       checkAllRecipesAvailability();
       updateMealSelectAvailability();
     });
+
+    // Listen for always-have updates to update recipe availability
+    window.addEventListener('alwaysHaveUpdated', () => {
+      checkAllRecipesAvailability();
+      updateMealSelectAvailability();
+      findMissingIngredients();
+    });
   };
 
   /**
@@ -134,6 +141,22 @@ const MealModule = (() => {
     // Check if all ingredients are available in sufficient quantities
     for (const recipeIngredient of ingredients) {
       const scaledQuantity = recipeIngredient.quantity * peopleCount;
+
+      // Check if this ingredient is in the always-have list
+      let isAlwaysHave = false;
+      try {
+        if (AlwaysHaveModule && typeof AlwaysHaveModule.isAlwaysHave === 'function') {
+          isAlwaysHave = AlwaysHaveModule.isAlwaysHave(recipeIngredient.name);
+        }
+      } catch (error) {
+        // AlwaysHaveModule not yet loaded
+      }
+
+      // Skip checking fridge if it's an always-have item
+      if (isAlwaysHave) {
+        continue;
+      }
+
       const fridgeIngredient = FridgeModule.findIngredient(recipeIngredient.name);
 
       // If ingredient is missing or insufficient quantity
@@ -266,6 +289,22 @@ const MealModule = (() => {
     // Check if all ingredients are available
     ingredients.forEach(recipeIngredient => {
       const scaledQuantity = recipeIngredient.quantity * peopleCount;
+
+      // Check if this ingredient is in the always-have list
+      let isAlwaysHave = false;
+      try {
+        if (AlwaysHaveModule && typeof AlwaysHaveModule.isAlwaysHave === 'function') {
+          isAlwaysHave = AlwaysHaveModule.isAlwaysHave(recipeIngredient.name);
+        }
+      } catch (error) {
+        // AlwaysHaveModule not yet loaded
+      }
+
+      // Skip checking fridge if it's an always-have item
+      if (isAlwaysHave) {
+        return;
+      }
+
       const fridgeIngredient = FridgeModule.findIngredient(recipeIngredient.name);
 
       if (!fridgeIngredient || fridgeIngredient.quantity < scaledQuantity) {
@@ -278,9 +317,25 @@ const MealModule = (() => {
       return;
     }
 
-    // Remove ingredients from fridge
+    // Remove ingredients from fridge (but not always-have items)
     ingredients.forEach(recipeIngredient => {
       const scaledQuantity = recipeIngredient.quantity * peopleCount;
+
+      // Check if this ingredient is in the always-have list
+      let isAlwaysHave = false;
+      try {
+        if (AlwaysHaveModule && typeof AlwaysHaveModule.isAlwaysHave === 'function') {
+          isAlwaysHave = AlwaysHaveModule.isAlwaysHave(recipeIngredient.name);
+        }
+      } catch (error) {
+        // AlwaysHaveModule not yet loaded
+      }
+
+      // Don't remove always-have items from fridge
+      if (isAlwaysHave) {
+        return;
+      }
+
       const fridgeIngredient = FridgeModule.findIngredient(recipeIngredient.name);
 
       if (fridgeIngredient) {
@@ -333,6 +388,22 @@ const MealModule = (() => {
 
     ingredients.forEach(recipeIngredient => {
       const scaledQuantity = recipeIngredient.quantity * peopleCount;
+
+      // Check if this ingredient is in the always-have list
+      let isAlwaysHave = false;
+      try {
+        if (AlwaysHaveModule && typeof AlwaysHaveModule.isAlwaysHave === 'function') {
+          isAlwaysHave = AlwaysHaveModule.isAlwaysHave(recipeIngredient.name);
+        }
+      } catch (error) {
+        // AlwaysHaveModule not yet loaded
+      }
+
+      // Skip if it's an always-have item (considered always available)
+      if (isAlwaysHave) {
+        return;
+      }
+
       const fridgeIngredient = FridgeModule.findIngredient(recipeIngredient.name);
 
       if (!fridgeIngredient) {

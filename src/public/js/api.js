@@ -168,7 +168,8 @@ const API = {
           groceryList: localStorage.getItem('groceryList'),
           fridgeCategories: localStorage.getItem('fridgeCategories'),
           fridgeHistory: localStorage.getItem('fridgeHistory'),
-          storeSections: localStorage.getItem('storeSections')
+          storeSections: localStorage.getItem('storeSections'),
+          alwaysHaveItems: localStorage.getItem('alwaysHaveItems')
         }
       };
 
@@ -245,6 +246,9 @@ const API = {
             }
             if (data.storeSections) {
               localStorage.setItem('storeSections', data.storeSections);
+            }
+            if (data.alwaysHaveItems) {
+              localStorage.setItem('alwaysHaveItems', data.alwaysHaveItems);
             }
 
             console.log('Data imported successfully');

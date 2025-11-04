@@ -860,6 +860,21 @@ const CalendarModule = (() => {
     const missingIngredients = [];
 
     totalIngredients.forEach(ingredient => {
+      // Check if this ingredient is in the always-have list
+      let isAlwaysHave = false;
+      try {
+        if (AlwaysHaveModule && typeof AlwaysHaveModule.isAlwaysHave === 'function') {
+          isAlwaysHave = AlwaysHaveModule.isAlwaysHave(ingredient.name);
+        }
+      } catch (error) {
+        // AlwaysHaveModule not yet loaded
+      }
+
+      // Skip always-have items - they're considered always available
+      if (isAlwaysHave) {
+        return;
+      }
+
       const fridgeIngredient = FridgeModule.findIngredient(ingredient.name);
 
       if (!fridgeIngredient) {

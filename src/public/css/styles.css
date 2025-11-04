@@ -41,13 +41,25 @@ body {
     box-sizing: border-box;
 }
 
+.always-have {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 0;
+    padding: 15px;
+    box-shadow: none;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+
 /* Add border radius and gaps for desktop */
 @media (min-width: 769px) {
     .container {
         gap: 20px;
     }
 
-    .fridge, .content, .grocery {
+    .fridge, .content, .grocery, .always-have {
         min-width: 300px;
         width: auto;
         border-radius: 8px;
@@ -730,7 +742,7 @@ li:last-child {
         flex-direction: column;
     }
 
-    .fridge, .content, .grocery {
+    .fridge, .content, .grocery, .always-have {
         width: 100%;
         margin-bottom: 0;
     }
@@ -1813,4 +1825,100 @@ body.modal-open {
     .autocomplete-dropdown {
         max-height: 150px;
     }
+}
+
+/* Always-Have Section Styles */
+.always-have {
+    background: linear-gradient(135deg, #fff8e1 0%, #fffef5 100%);
+}
+
+.always-have h2 {
+    color: #f57c00;
+    border-bottom: 2px solid #ffb74d;
+}
+
+.section-description {
+    color: #6c757d;
+    font-size: 0.9em;
+    font-style: italic;
+    margin: -10px 0 15px 0;
+    padding: 8px 12px;
+    background-color: rgba(255, 152, 0, 0.1);
+    border-left: 3px solid #ff9800;
+    border-radius: 4px;
+}
+
+.always-have-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+#alwaysHaveList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.always-have-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ffe0b2;
+    transition: background-color 0.2s ease;
+    background-color: white;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.always-have-item:hover {
+    background-color: #fff3e0;
+}
+
+.always-have-item .item-name {
+    flex-grow: 1;
+    color: #333;
+    font-weight: 500;
+}
+
+.always-have-item .delete-item-btn {
+    background-color: transparent;
+    color: #f57c00;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0 8px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    font-weight: bold;
+}
+
+.always-have-item .delete-item-btn:hover {
+    opacity: 1;
+    color: #e65100;
+}
+
+#addAlwaysHaveBtn {
+    background-color: #ff9800;
+}
+
+#addAlwaysHaveBtn:hover {
+    background-color: #f57c00;
+}
+
+#clearAlwaysHaveBtn {
+    background-color: #ff6f00;
+}
+
+#clearAlwaysHaveBtn:hover {
+    background-color: #e65100;
+}
+
+/* Always-have empty message */
+.always-have .empty-message {
+    background-color: rgba(255, 152, 0, 0.05);
+    border: 1px dashed #ffb74d;
+    color: #f57c00;
 }

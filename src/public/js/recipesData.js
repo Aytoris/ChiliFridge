@@ -145,7 +145,7 @@ const RECIPES_DATA = {
       { "name": "Vatten", "quantity": 60, "unit": "g" },
       { "name": "Salt", "quantity": 0.25, "unit": "tsp" },
       { "name": "Socker", "quantity": 12.5, "unit": "g" },
-      { "name": "Egg", "quantity": 0.25, "unit": "" },
+      { "name": "Ägg", "quantity": 0.25, "unit": "" },
 
     ],
     instructions: [

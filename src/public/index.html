@@ -112,6 +112,26 @@
             <ul id="missingIngredients"></ul>
             <button id="addMissingBtn">Add All Missing Ingredients to Grocery List</button>
         </div>
+
+        <div class="always-have">
+            <h2>Always-Have Items</h2>
+            <p class="section-description">Items you always keep stocked (won't appear in grocery lists)</p>
+
+            <div class="form-group">
+                <div class="autocomplete-container">
+                    <input type="text" id="alwaysHaveInput" list="alwaysHaveIngredientList" placeholder="Select item" autocomplete="off">
+                    <datalist id="alwaysHaveIngredientList"></datalist>
+                    <div id="alwaysHaveAutocompleteDropdown" class="autocomplete-dropdown"></div>
+                </div>
+                <button id="addAlwaysHaveBtn">Add</button>
+            </div>
+
+            <div class="always-have-controls">
+                <button id="clearAlwaysHaveBtn" class="btn-secondary">Clear All</button>
+            </div>
+
+            <ul id="alwaysHaveList"></ul>
+        </div>
     </div>
 
     <!-- Store Layout Modal (hidden by default) -->
@@ -195,6 +215,7 @@
     <script src="js/storeCategoriesData.js"></script>
     <script src="js/fridge.js"></script>
     <script src="js/meal.js"></script>
+    <script src="js/alwaysHave.js"></script>
     <script src="js/grocery.js"></script>
     <script src="js/calendar.js"></script>
 
@@ -240,6 +261,10 @@
                 setTimeout(() => {
                     try { FridgeModule.init(); } catch (e) { console.log('FridgeModule init error:', e); }
                 }, 100);
+
+                setTimeout(() => {
+                    try { AlwaysHaveModule.init(); } catch (e) { console.log('AlwaysHaveModule init error:', e); }
+                }, 150);
 
                 setTimeout(() => {
                     try { GroceryModule.init(); } catch (e) { console.log('GroceryModule init error:', e); }
