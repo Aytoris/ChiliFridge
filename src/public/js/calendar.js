@@ -526,19 +526,21 @@ const CalendarModule = (() => {
       initializeCalendarData();
     }
 
-    // Create a card for each day
+    // Create a card for each day - display starting from current day
     for (let i = 0; i < 7; i++) {
+      // Calculate which day of week to show (rotating from current day)
       const dayIndex = (currentDay + i) % 7;
+
       const dayCard = document.createElement('div');
       dayCard.className = 'day-card';
       dayCard.id = `day-${i}`;
 
-      // Mark the current day (i === 0 means today)
+      // Mark the current day (first card shown)
       if (i === 0) {
         dayCard.classList.add('current-day');
       }
 
-      // Add day name
+      // Add day name - use rotated day index
       const dayNameDiv = document.createElement('div');
       dayNameDiv.className = 'day-name';
       dayNameDiv.textContent = daysOfWeek[dayIndex];
@@ -552,12 +554,12 @@ const CalendarModule = (() => {
         // Create meal display button
         const mealDisplay = document.createElement('button');
         mealDisplay.className = 'meal-display';
-        mealDisplay.id = `meal-display-day-${i}-${mealIndex}`;
-        mealDisplay.setAttribute('data-day', i);
+        mealDisplay.id = `meal-display-day-${dayIndex}-${mealIndex}`;
+        mealDisplay.setAttribute('data-day', dayIndex);
         mealDisplay.setAttribute('data-meal', mealIndex);
 
-        // Set initial text
-        const selectedRecipe = calendarData[i]?.[mealIndex]?.recipe;
+        // Set initial text - use dayIndex to access correct data position
+        const selectedRecipe = calendarData[dayIndex]?.[mealIndex]?.recipe;
         if (selectedRecipe) {
           mealDisplay.textContent = selectedRecipe;
           mealContainer.classList.add('meal-active');
@@ -573,9 +575,9 @@ const CalendarModule = (() => {
           mealDisplay.classList.add('empty');
         }
 
-        // Open modal on click
+        // Open modal on click - use dayIndex for data position
         mealDisplay.addEventListener('click', () => {
-          openRecipeSelectionModal(i, mealIndex);
+          openRecipeSelectionModal(dayIndex, mealIndex);
         });
 
         mealContainer.appendChild(mealDisplay);
@@ -588,15 +590,15 @@ const CalendarModule = (() => {
 
         const peopleLabel = document.createElement('label');
         peopleLabel.textContent = 'People: ';
-        peopleLabel.setAttribute('for', `people-day-${i}-${mealIndex}`);
+        peopleLabel.setAttribute('for', `people-day-${dayIndex}-${mealIndex}`);
         peopleContainer.appendChild(peopleLabel);
 
         const peopleSelect = document.createElement('select');
         peopleSelect.className = 'people-selector';
-        peopleSelect.id = `people-day-${i}-${mealIndex}`;
-        peopleSelect.setAttribute('data-day', i);
+        peopleSelect.id = `people-day-${dayIndex}-${mealIndex}`;
+        peopleSelect.setAttribute('data-day', dayIndex);
         peopleSelect.setAttribute('data-meal', mealIndex);
-        peopleSelect.addEventListener('change', (e) => updatePeopleCount(i, mealIndex, parseInt(e.target.value, 10)));
+        peopleSelect.addEventListener('change', (e) => updatePeopleCount(dayIndex, mealIndex, parseInt(e.target.value, 10)));
 
         // Add options for people count
         for (let p = 1; p <= 8; p++) {
@@ -606,25 +608,25 @@ const CalendarModule = (() => {
           peopleSelect.appendChild(option);
         }
 
-        // Set the selected value if there's saved data
-        if (calendarData[i] && calendarData[i][mealIndex]) {
-          peopleSelect.value = calendarData[i][mealIndex].peopleCount || 2;
+        // Set the selected value if there's saved data - use dayIndex
+        if (calendarData[dayIndex] && calendarData[dayIndex][mealIndex]) {
+          peopleSelect.value = calendarData[dayIndex][mealIndex].peopleCount || 2;
         }
 
         peopleContainer.appendChild(peopleSelect);
         mealContainer.appendChild(peopleContainer);
 
-        // Add "Cook This" button if a recipe is selected
-        if (calendarData[i] && calendarData[i][mealIndex] && calendarData[i][mealIndex].recipe) {
+        // Add "Cook This" button if a recipe is selected - use dayIndex
+        if (calendarData[dayIndex] && calendarData[dayIndex][mealIndex] && calendarData[dayIndex][mealIndex].recipe) {
           const cookButton = document.createElement('button');
           cookButton.className = 'cook-button';
           cookButton.textContent = 'Cook This';
-          cookButton.setAttribute('data-day', i);
+          cookButton.setAttribute('data-day', dayIndex);
           cookButton.setAttribute('data-meal', mealIndex);
-          cookButton.setAttribute('data-recipe', calendarData[i][mealIndex].recipe);
+          cookButton.setAttribute('data-recipe', calendarData[dayIndex][mealIndex].recipe);
 
           // Make sure we're using the correct people count from the meal planner
-          const mealPeopleCount = calendarData[i][mealIndex].peopleCount || 2;
+          const mealPeopleCount = calendarData[dayIndex][mealIndex].peopleCount || 2;
           cookButton.setAttribute('data-people', mealPeopleCount);
 
           // Use a direct function reference instead of an arrow function
@@ -970,7 +972,7 @@ const CalendarModule = (() => {
       // Reset the calendar data (without loading from localStorage)
       calendarData = [];
 
-      // Create 7 days with empty meals
+      // Create 7 days with empty meals in static positions (Sun=0, Mon=1, etc.)
       for (let i = 0; i < 7; i++) {
         const dayMeals = [];
 
