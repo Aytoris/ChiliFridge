@@ -153,16 +153,16 @@ const RECIPES_DATA = {
       "Pan: 5min each side, medium heat",
       "Dough: yeast, oil, WARM water, salt. REST 5min, then flour & BEATEN egg",
       "Knead for 3-5min",
-      "Let rest for 10-20min",
+      "Let rise for 10-20min",
       "Furnace 220°C for 8-12min",
       "https://www.loveandlemons.com/black-bean-burger-recipe/#wprm-recipe-container-49475",
     ],
     servings: 1,
     protein: "beans",
-    cookingTime: 15,
+    cookingTime: 25,
     timers: [
       { "label": "Stir fry patties", "duration": 5, "step": 2 },
-      { "label": "Rise buns", "duration": 5, "step": 3}
+      { "label": "Rise buns", "duration": 5, "step": 3},
       { "label": "Bake buns", "duration": 10, "step": 4}
     ]
   },
@@ -756,7 +756,7 @@ const RECIPES_DATA = {
     ],
     instructions: [
       "Preheat oven to 200°C.",
-      "Cut broccoli into small florets and halve or quarter brussels sprouts, discarding woody ends.",
+      "Cut broccoli into small florets and halve brussels sprouts, discarding woody ends.",
       "Mince garlic cloves.",
       "Oven: Tofu, broccoli, brussels + oil, lemon juice, garlic, nutritional yeast, salt, pepper.",
       "Mix everything together to coat the vegetables evenly.",
@@ -789,4 +789,36 @@ const RECIPES_DATA = {
     protein: ["eggs", "pork"],
     cookingTime: 20
   },
+  "Galette poire chocolat (8p)":  {
+    ingredients: [
+      { "name": "Smördeg", "quantity": 2, "unit": "" },
+      { "name": "Mörk choklad", "quantity": 60, "unit": "g" },
+      { "name": "Socker", "quantity": 150, "unit": "g" },
+      { "name": "Päron", "quantity": 2, "unit": "" },
+      { "name": "Mandelmjöl", "quantity": 150, "unit": "g" },
+      { "name": "Ägg", "quantity": 3, "unit": "" },
+      // Vegan butter (100g)
+      { "name": "Mjölk", "quantity": 40, "unit": "g" },
+      { "name": "Neutral kokosolja", "quantity": 55, "unit": "g" },
+      { "name": "Mandelmjöl", "quantity": 13, "unit": "g" },
+      { "name": "Olivolja", "quantity": 14, "unit": "g" },
+      { "name": "Salt", "quantity": 2, "unit": "g" },
+    ],
+    instructions: [
+      "Furnace: 180°C",
+      "Pan: 1 tsp butter + pears (cut in quarters) + 1 tbsp sugar",
+      "Bowl (mix into a cream): sugar + 2 eggs + almond flour + butter (soft)",
+      "Furnace plate: spread 1 dough (except 2cm from borders), add cream + chocolate chips",
+      "Furnace plate: Wet edges with water, add 2nd dough on top",
+      "Furnace plate: Spread some butter on top to get a golden color",
+      "Bake 25-30min",
+      "https://www.marmiton.org/recettes/recette_galette-des-rois-poires-amandes-chocolat_44531.aspx",
+    ],
+    servings: 1,
+    protein: "eggs",
+    cookingTime: 45,
+    timers: [
+      { "label": "Bake", "duration": 30, "step": 5 }
+    ]
+  }
 };
