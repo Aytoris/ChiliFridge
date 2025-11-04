@@ -149,21 +149,22 @@ const RECIPES_DATA = {
 
     ],
     instructions: [
-      "Patty: Beans, onion, egg, panko, tamari, balsamic vinegar",
-      "Pan: 5min each side, medium heat",
+      "Fries: Bake at 210°C for 30min",
       "Dough: yeast, oil, WARM water, salt. REST 5min, then flour & BEATEN egg",
-      "Knead for 3-5min",
-      "Let rise for 10-20min",
-      "Furnace 220°C for 8-12min",
+      "Dough: Knead for 3-5min",
+      "Dough: Let rise for 10-20min",
+      "Patty: Beans, onion, egg, panko, tamari, balsamic vinegar",
+      "Patty: Pan: 5min each side, medium heat",
+      "Dough: Furnace 220°C for 8-12min",
       "https://www.loveandlemons.com/black-bean-burger-recipe/#wprm-recipe-container-49475",
     ],
     servings: 1,
     protein: "beans",
     cookingTime: 25,
     timers: [
-      { "label": "Stir fry patties", "duration": 5, "step": 2 },
-      { "label": "Rise buns", "duration": 5, "step": 3},
-      { "label": "Bake buns", "duration": 10, "step": 4}
+      { "label": "Bake fries (210°C)", "duration": 30, "step": 0 }
+      { "label": "Rise buns", "duration": 20, "step": 3},
+      { "label": "Bake buns (220°C)", "duration": 10, "step": 4}
     ]
   },
   "Hummus": {
