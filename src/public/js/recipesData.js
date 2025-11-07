@@ -779,24 +779,27 @@ const RECIPES_DATA = {
   "Croque-madame": {
     ingredients: [
       { "name": "Toastbröd", "quantity": 4, "unit": "skiva" },
-      { "name": "Emmental", "quantity": 100, "unit": "g" },
+      { "name": "Emmental", "quantity": 50, "unit": "g" },
+      { "name": "Sallad", "quantity": 3, "unit": "leaf" },
       { "name": "Ägg", "quantity": 2, "unit": "" },
       { "name": "Skinka", "quantity": 2, "unit": "skiva" },
-      { "name": "Smör", "quantity": 25, "unit": "g" },
+      { "name": "Smör", "quantity": 12, "unit": "g" },
       { "name": "Salt", "quantity": 1, "unit": "g" },
       { "name": "Peppar", "quantity": 1, "unit": "g" }
     ],
     instructions: [
-      "Preheat oven to 210°C. Butter one side of each bread slice.",
-      "Slice cheese thinly.",
-      "Assemble sandwich: bread (buttered side in), cheese, ham, cheese, bread (buttered side in).",
-      "Place on baking sheet and bake until golden.",
+      "Preheat oven to 210°C",
+      "On baking sheet:bread, cheese,ham, bread. Then butter on top.",
+      "Bake until golden (10 min).",
       "Fry eggs in a pan, season with salt and pepper.",
-      "Top each sandwich with a fried egg and serve."
+      "Top each sandwich with a fried egg."
     ],
-    servings: 2,
+    servings: 1,
     protein: ["eggs", "pork"],
-    cookingTime: 20
+    cookingTime: 20,
+    timers: [
+      { "label": "Bake sandwich", "duration": 10, "step": 3 }
+    ]
   },
   "Galette poire chocolat (8p)":  {
     ingredients: [
