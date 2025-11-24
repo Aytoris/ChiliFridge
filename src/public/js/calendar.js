@@ -1202,14 +1202,13 @@ const CalendarModule = (() => {
         }
       });
       activeTimers = [];
-    }; document.getElementById('closeCookingMode').onclick = closeModal;
-
-    // Close modal when clicking outside
-    window.onclick = (event) => {
-      if (event.target === modal) {
-        closeModal();
-      }
     };
+
+    document.getElementById('closeCookingMode').onclick = closeModal;
+    document.getElementById('closeCookingModeFromOverlay').onclick = closeModal;
+
+    // Don't close on outside click for cooking mode (it's fullscreen)
+    // User must use the X button to close
 
     // Add escape key listener to close modal
     const handleEscape = (event) => {
@@ -1454,11 +1453,7 @@ const CalendarModule = (() => {
    * @param {number} duration - Duration in minutes
    */
   const startTimer = (label, duration) => {
-    // Check if timer with same label is already running
-    if (activeTimers.find(t => t.label === label)) {
-      Utility.showToast(`Timer "${label}" is already running!`, 'warning');
-      return;
-    }
+    // Allow duplicate timers - removed check
 
     const timerId = `timer-${Date.now()}`;
     const durationInSeconds = duration * 60;
@@ -1481,9 +1476,9 @@ const CalendarModule = (() => {
   };
 
   /**
-   * Transform the timer button into an active countdown display
-   * @param {Object} timer - Timer object
-   */
+ * Transform the timer button into an active countdown display
+ * @param {Object} timer - Timer object
+ */
   const transformTimerButton = (timer) => {
     // Find the timer button by label
     const timersContainer = document.getElementById('cookingTimersContainer');
@@ -1504,46 +1499,23 @@ const CalendarModule = (() => {
     // Add active class
     timerBtn.classList.add('timer-active');
 
-    // Create header with label and stop button
-    const headerDiv = document.createElement('div');
-    headerDiv.className = 'timer-active-header';
+    // Clear existing content
+    timerBtn.innerHTML = '';
 
-    const labelSpan = document.createElement('span');
-    labelSpan.className = 'timer-active-label';
-    labelSpan.textContent = timer.label;
-
-    const stopBtn = document.createElement('button');
-    stopBtn.className = 'timer-stop-btn';
-    stopBtn.textContent = 'Stop';
-    stopBtn.onclick = (e) => {
-      e.stopPropagation();
-      stopTimer(timer.id);
-    };
-
-    headerDiv.appendChild(labelSpan);
-    headerDiv.appendChild(stopBtn);
-
-    // Create countdown display
+    // Create countdown display only
     const displayDiv = document.createElement('div');
     displayDiv.className = 'timer-countdown-display';
     displayDiv.id = `${timer.id}-display`;
     displayDiv.textContent = formatTime(timer.remainingSeconds);
 
-    // Create progress bar
-    const progressBarContainer = document.createElement('div');
-    progressBarContainer.className = 'timer-progress-bar';
-
-    const progressBar = document.createElement('div');
-    progressBar.className = 'timer-progress';
-    progressBar.id = `${timer.id}-progress`;
-    progressBar.style.width = '100%';
-
-    progressBarContainer.appendChild(progressBar);
-
-    // Add all new elements to button
-    timerBtn.appendChild(headerDiv);
+    // Add countdown to button
     timerBtn.appendChild(displayDiv);
-    timerBtn.appendChild(progressBarContainer);
+
+    // Make entire button clickable to stop
+    timerBtn.onclick = (e) => {
+      e.stopPropagation();
+      stopTimer(timer.id);
+    };
   };
 
   /**
@@ -1570,15 +1542,9 @@ const CalendarModule = (() => {
 
       // Update display
       const displayDiv = document.getElementById(`${timer.id}-display`);
-      const progressBar = document.getElementById(`${timer.id}-progress`);
 
       if (displayDiv) {
         displayDiv.textContent = formatTime(remainingSeconds);
-      }
-
-      if (progressBar) {
-        const percentage = (remainingSeconds / timer.duration) * 100;
-        progressBar.style.width = `${percentage}%`;
       }
 
       // Update button styling based on remaining time
@@ -1652,6 +1618,9 @@ const CalendarModule = (() => {
     timerBtn.classList.remove('timer-active', 'timer-warning', 'timer-critical', 'timer-complete');
     delete timerBtn.dataset.activeTimerId;
 
+    // Remove onclick handler set by transformTimerButton
+    timerBtn.onclick = null;
+
     // Remove all child elements
     while (timerBtn.firstChild) {
       timerBtn.removeChild(timerBtn.firstChild);
@@ -1675,6 +1644,11 @@ const CalendarModule = (() => {
 
     timerBtn.appendChild(labelSpan);
     timerBtn.appendChild(durationSpan);
+
+    // Restore click handler to start the timer again
+    timerBtn.addEventListener('click', () => {
+      startTimer(label, duration);
+    });
   };
 
   /**

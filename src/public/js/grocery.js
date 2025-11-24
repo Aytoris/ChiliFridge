@@ -104,6 +104,44 @@ const GroceryModule = (() => {
    * Set up event listeners for grocery functionality
    */
   const setupEventListeners = () => {
+    // Quick add grocery item button
+    document.getElementById('addGroceryItemBtn').addEventListener('click', () => {
+      const itemInput = document.getElementById('groceryItemInput');
+      const quantityInput = document.getElementById('groceryQuantityInput');
+      const unitInput = document.getElementById('groceryUnitInput');
+
+      const name = itemInput.value.trim();
+      const quantity = parseFloat(quantityInput.value);
+      const unit = unitInput.value.trim();
+
+      if (!name) {
+        Utility.showToast('Please enter an item name', 'warning');
+        return;
+      }
+
+      if (!quantity || quantity <= 0) {
+        Utility.showToast('Please enter a valid quantity', 'warning');
+        return;
+      }
+
+      addToGroceryList(name, quantity, unit);
+
+      // Clear inputs
+      itemInput.value = '';
+      quantityInput.value = '';
+      unitInput.value = '';
+      itemInput.focus();
+
+      Utility.showToast(`Added ${name} to grocery list`, 'success');
+    });
+
+    // Allow Enter key to add item
+    document.getElementById('groceryItemInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('addGroceryItemBtn').click();
+      }
+    });
+
     document.getElementById('clearGroceryBtn').addEventListener('click', clearGroceryList);
     document.getElementById('sendToFridgeBtn').addEventListener('click', sendGroceryListToFridge);
     document.getElementById('exportGroceryBtn').addEventListener('click', saveGroceryListToFile);
@@ -185,6 +223,9 @@ const GroceryModule = (() => {
 
       // Skip empty categories
       if (!items || items.length === 0) return;
+
+      // Sort items alphabetically by name within this category
+      items.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
 
       // Create section header
       const sectionHeader = document.createElement('li');
@@ -444,7 +485,7 @@ const GroceryModule = (() => {
     // - DuckDuckGo: 'https://duckduckgo.com/?q='
     // - Amazon: 'https://www.amazon.com/s?k='
     // - Walmart: 'https://www.walmart.com/search?q='
-    const BASE_URL = 'https://www.coop.se/globalt-sok/?query=';
+    const BASE_URL = 'https://www.coop.se/globalt-sok/?&query=';
 
     // Generate URLs for each item
     let textContent = '';
@@ -574,7 +615,7 @@ const GroceryModule = (() => {
   // Drag and drop functionality
   let draggedItem = null;
 
-  const dragStart = function(e) {
+  const dragStart = function (e) {
     draggedItem = this;
     setTimeout(() => this.classList.add('dragging'), 0);
 
@@ -583,7 +624,7 @@ const GroceryModule = (() => {
     e.dataTransfer.setData('text/html', this.innerHTML);
   };
 
-  const dragOver = function(e) {
+  const dragOver = function (e) {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
 
@@ -612,12 +653,12 @@ const GroceryModule = (() => {
     }, { offset: Number.NEGATIVE_INFINITY }).element;
   };
 
-  const drop = function(e) {
+  const drop = function (e) {
     e.stopPropagation();
     return false;
   };
 
-  const dragEnd = function() {
+  const dragEnd = function () {
     this.classList.remove('dragging');
     draggedItem = null;
   };

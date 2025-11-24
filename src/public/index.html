@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,7 @@
     <link rel="apple-touch-icon" href="img/icon-192x192.svg">
     <link rel="apple-touch-icon" sizes="512x512" href="img/icon-512x512.svg">
 </head>
+
 <body>
     <!-- Calendar Section - Full width -->
     <div class="calendar-section">
@@ -37,6 +39,14 @@
     <div class="container">
         <div class="grocery">
             <h2>Grocery List</h2>
+            <!-- Quick Add Form -->
+            <div class="form-group grocery-quick-add">
+                <input type="text" id="groceryItemInput" placeholder="Item name" autocomplete="off">
+                <input type="number" id="groceryQuantityInput" min="0.1" step="0.1" placeholder="Qty" size="6"
+                    inputmode="decimal">
+                <input type="text" id="groceryUnitInput" placeholder="Unit (e.g., kg, pcs)" size="8">
+                <button id="addGroceryItemBtn" class="btn-primary">+ Add</button>
+            </div>
             <div class="form-group">
                 <button id="toggleShoppingModeBtn">Enter Shopping Mode</button>
                 <button id="exportGroceryBtn">Export Grocery List</button>
@@ -56,12 +66,14 @@
             <h1>Chloé's Fridge</h1>
             <div class="form-group">
                 <div class="autocomplete-container">
-                    <input type="text" id="ingredientInput" list="ingredientList" placeholder="Select food" autocomplete="off">
+                    <input type="text" id="ingredientInput" list="ingredientList" placeholder="Select food"
+                        autocomplete="off">
                     <datalist id="ingredientList"></datalist>
                     <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
                 </div>
                 <label for="quantityInput">Quantity:</label>
-                <input type="number" id="quantityInput" min="0.1" step="0.1" placeholder="Enter quantity" size="8" inputmode="decimal">
+                <input type="number" id="quantityInput" min="0.1" step="0.1" placeholder="Enter quantity" size="8"
+                    inputmode="decimal">
                 <span id="unitDisplay"></span>
                 <button id="toggleUnitBtn">Toggle Unit</button>
                 <select id="ingredientCategorySelect">
@@ -119,7 +131,8 @@
 
             <div class="form-group">
                 <div class="autocomplete-container">
-                    <input type="text" id="alwaysHaveInput" list="alwaysHaveIngredientList" placeholder="Select item" autocomplete="off">
+                    <input type="text" id="alwaysHaveInput" list="alwaysHaveIngredientList" placeholder="Select item"
+                        autocomplete="off">
                     <datalist id="alwaysHaveIngredientList"></datalist>
                     <div id="alwaysHaveAutocompleteDropdown" class="autocomplete-dropdown"></div>
                 </div>
@@ -182,10 +195,11 @@
             </div>
             <div class="modal-body">
                 <div class="cooking-mode-container">
-                    <!-- Timers Section - Moved to top for sticky positioning -->
+                    <!-- Timers Section - Fixed overlay at top -->
                     <div id="cookingTimersSection" class="cooking-timers-section">
                         <h4>Timers</h4>
                         <div id="cookingTimersContainer" class="timers-container"></div>
+                        <button id="closeCookingModeFromOverlay" class="close-cooking-overlay-btn">&times;</button>
                     </div>
 
                     <div class="recipe-details">
@@ -246,7 +260,7 @@
             console.log('ChiliFridge - Client-Side PWA (No Server Required)');
 
             // Make sure modules don't throw errors if other modules are not ready
-            window.onerror = function(message, source, lineno, colno, error) {
+            window.onerror = function (message, source, lineno, colno, error) {
                 console.log('Error caught:', message);
                 // Return true to prevent the error from being displayed in the console
                 return true;
@@ -350,4 +364,5 @@
     <!-- Toast Notification Container -->
     <div id="toast-container"></div>
 </body>
+
 </html>

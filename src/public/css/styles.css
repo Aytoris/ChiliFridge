@@ -936,6 +936,49 @@ button {
     opacity: 1;
 }
 
+/* Grocery quick add form */
+.grocery-quick-add {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.grocery-quick-add input[type="text"],
+.grocery-quick-add input[type="number"] {
+    flex: 1;
+    min-width: 100px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.grocery-quick-add input[type="text"]#groceryItemInput {
+    flex: 2;
+    min-width: 150px;
+}
+
+.grocery-quick-add input[type="number"]#groceryQuantityInput {
+    flex: 0.5;
+    min-width: 70px;
+}
+
+.grocery-quick-add input[type="text"]#groceryUnitInput {
+    flex: 1;
+    min-width: 100px;
+}
+
+.grocery-quick-add button {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
 /* Grocery menu styles */
 .grocery-menu {
     background-color: white;
@@ -1439,67 +1482,69 @@ body.modal-open {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding-top: 50px;
+    /* Space for fixed timer overlay */
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    min-height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Cooking Mode Modal - Fullscreen on ALL devices */
+#cookingModeModal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+#cookingModeModal .modal-content {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+#cookingModeModal .modal-header {
+    display: none;
+    /* Hidden - close button will be in timer overlay */
+}
+
+#cookingModeModal .modal-body {
+    padding: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 @media (min-width: 768px) {
     .cooking-mode-container {
         flex-direction: row;
-    }
-
-    /* Cooking Mode Modal - Fullscreen Override */
-    #cookingModeModal {
-        display: none;
-        position: fixed;
-        z-index: 3000;
-        /* Higher than other modals */
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-    }
-
-    #cookingModeModal .modal-content {
-        background-color: #fff;
-        margin: 0;
-        padding: 0;
-        border: none;
-        width: 100%;
-        height: 100%;
-        max-width: none;
-        border-radius: 0;
-        display: flex;
-        flex-direction: column;
-        box-shadow: none;
-        animation: slideUp 0.3s ease-out;
-    }
-
-    @keyframes slideUp {
-        from {
-            transform: translateY(100%);
-        }
-
-        to {
-            transform: translateY(0);
-        }
-    }
-
-    #cookingModeModal .modal-header {
-        padding: 15px 20px;
-        background-color: #fff;
-        border-bottom: 1px solid #eee;
-        flex-shrink: 0;
-        position: sticky;
-        top: 0;
-        z-index: 101;
-    }
-
-    #cookingModeModal .modal-body {
-        padding: 0;
-        overflow-y: auto;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
     }
 
     .cooking-mode-container {
@@ -1603,11 +1648,11 @@ body.modal-open {
     /* Increase max height */
 }
 
-/* Ensure cooking mode body is scrollable */
+/* Modal body takes full height and scrolls */
 #cookingModeModal .modal-body {
-    max-height: calc(90vh - 80px);
-    /* Account for header */
+    height: 100%;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 #cookingModeTitle {
@@ -1629,99 +1674,149 @@ body.modal-open {
     color: #4CAF50;
 }
 
-/* Timer Section Styles */
+/* Timer Section Styles - Fixed Overlay */
 .cooking-timers-section {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 2px solid #e9ecef;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    padding: 8px 50px 8px 15px;
+    /* Extra padding on right for close button */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .cooking-timers-section h4 {
-    margin-bottom: 15px;
-    color: #333;
+    display: none;
+    /* Hide the "Timers" heading */
+}
+
+/* Close button in timer overlay */
+.close-cooking-overlay-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.close-cooking-overlay-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .timers-container {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    margin: 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.timers-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.timers-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.timers-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+.timers-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .timer-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: rgba(255, 255, 255, 0.15);
     color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 6px 12px;
     cursor: pointer;
-    font-size: 0.9em;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+    font-size: 1.1em;
+    font-weight: 700;
+    transition: all 0.2s ease;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    min-width: 100px;
+    min-width: 60px;
     flex-shrink: 0;
-    height: 60px;
+    height: 36px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
 }
 
 .timer-button:hover:not(.timer-active) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
 }
 
 .timer-button:active:not(.timer-active) {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 .timer-button .timer-label {
-    width: 100%;
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 4px;
+    display: none;
+    /* Always hide labels */
 }
 
 .timer-button .timer-duration {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 2px 8px;
-    border-radius: 10px;
     font-size: 0.85em;
-    margin-left: 0;
+    font-weight: 600;
 }
 
-/* Active timer state */
-/* Active timer state */
+/* Active timer state - show countdown only */
 .timer-button.timer-active {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: rgba(245, 87, 108, 0.9);
+    border-color: rgba(255, 255, 255, 0.5);
     animation: pulse-timer 2s ease-in-out infinite;
-    cursor: default;
-    flex-direction: column;
-    gap: 5px;
-    padding: 8px 12px;
-    min-width: 140px;
+    cursor: pointer;
+    /* Changed to pointer to indicate it's clickable */
 }
 
 @keyframes pulse-timer {
 
     0%,
     100% {
-        box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+        box-shadow: 0 0 8px rgba(245, 87, 108, 0.5);
     }
 
     50% {
-        box-shadow: 0 4px 20px rgba(245, 87, 108, 0.5);
+        box-shadow: 0 0 15px rgba(245, 87, 108, 0.8);
     }
 }
 
 .timer-button.timer-warning {
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    background: rgba(254, 225, 64, 0.9);
+    border-color: rgba(250, 112, 154, 0.5);
     animation: pulse-warning 1s ease-in-out infinite;
 }
 
@@ -1729,16 +1824,17 @@ body.modal-open {
 
     0%,
     100% {
-        box-shadow: 0 4px 12px rgba(254, 225, 64, 0.4);
+        box-shadow: 0 0 8px rgba(254, 225, 64, 0.6);
     }
 
     50% {
-        box-shadow: 0 4px 20px rgba(254, 225, 64, 0.7);
+        box-shadow: 0 0 15px rgba(254, 225, 64, 0.9);
     }
 }
 
 .timer-button.timer-critical {
-    background: linear-gradient(135deg, #ff6b6b 0%, #c92a2a 100%);
+    background: rgba(201, 42, 42, 0.95);
+    border-color: rgba(255, 107, 107, 0.7);
     animation: pulse-critical 0.5s ease-in-out infinite;
 }
 
@@ -1746,70 +1842,36 @@ body.modal-open {
 
     0%,
     100% {
-        box-shadow: 0 4px 12px rgba(201, 42, 42, 0.5);
+        box-shadow: 0 0 10px rgba(201, 42, 42, 0.7);
     }
 
     50% {
-        box-shadow: 0 4px 20px rgba(201, 42, 42, 0.8);
+        box-shadow: 0 0 20px rgba(201, 42, 42, 1);
     }
 }
 
 .timer-button.timer-complete {
-    background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+    background: rgba(81, 207, 102, 0.9);
+    border-color: rgba(55, 178, 77, 0.7);
     animation: none;
 }
 
-/* Active timer header in transformed button */
-.timer-active-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.timer-active-label {
-    font-weight: 700;
-    font-size: 0.9em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 70px;
-}
-
-.timer-stop-btn {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 6px;
-    padding: 4px 12px;
-    cursor: pointer;
-    font-size: 0.85em;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.timer-stop-btn:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Timer countdown display */
+/* Timer countdown display - compact mode */
 .timer-countdown-display {
-    font-size: 1.4em;
-    font-weight: bold;
+    font-size: 1em;
+    font-weight: 700;
     text-align: center;
     font-family: 'Courier New', monospace;
-    letter-spacing: 1px;
-    width: 100%;
-    line-height: 1.2;
+    letter-spacing: 0.5px;
+    line-height: 1;
 }
 
-/* Progress bar in transformed button */
+/* Hide these elements in compact mode */
+.timer-active-header,
+.timer-active-label,
+.timer-stop-btn,
 .timer-progress-bar {
-    width: 100%;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-    overflow: hidden;
+    display: none;
 }
 
 .timer-progress {
