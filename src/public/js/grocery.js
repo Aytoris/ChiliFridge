@@ -444,7 +444,7 @@ const GroceryModule = (() => {
     // - DuckDuckGo: 'https://duckduckgo.com/?q='
     // - Amazon: 'https://www.amazon.com/s?k='
     // - Walmart: 'https://www.walmart.com/search?q='
-    const BASE_URL = 'https://www.google.com/search?q=';
+    const BASE_URL = 'https://www.coop.se/globalt-sok/?query=';
 
     // Generate URLs for each item
     let textContent = '';

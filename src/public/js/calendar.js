@@ -367,53 +367,53 @@ const CalendarModule = (() => {
       }
 
       recipeKeys.forEach(recipeName => {
-          const item = document.createElement('div');
-          item.className = 'recipe-selection-item';
-          if (recipeName === currentRecipe) {
-            item.classList.add('selected');
+        const item = document.createElement('div');
+        item.className = 'recipe-selection-item';
+        if (recipeName === currentRecipe) {
+          item.classList.add('selected');
+        }
+
+        // Create color indicator
+        const colorIndicator = document.createElement('div');
+        colorIndicator.className = 'recipe-selection-color';
+
+        if (recipes[recipeName] && recipes[recipeName].protein) {
+          const protein = recipes[recipeName].protein;
+
+          if (Array.isArray(protein) && protein.length > 0) {
+            // Multi-protein: create striped background
+            const stripeHeight = 100 / protein.length;
+            const stripes = protein.map((p, index) => {
+              const color = getProteinColor(p, false);
+              const start = index * stripeHeight;
+              const end = (index + 1) * stripeHeight;
+              return `${color} ${start}%, ${color} ${end}%`;
+            }).join(', ');
+            colorIndicator.style.background = `linear-gradient(180deg, ${stripes})`;
+          } else if (!Array.isArray(protein)) {
+            // Single protein: solid color
+            const color = getProteinColor(protein, false);
+            colorIndicator.style.background = color;
           }
+        } else {
+          // No protein info
+          colorIndicator.style.background = '#e0e0e0';
+        }
 
-          // Create color indicator
-          const colorIndicator = document.createElement('div');
-          colorIndicator.className = 'recipe-selection-color';
+        const name = document.createElement('div');
+        name.className = 'recipe-selection-name';
+        name.textContent = recipeName;
 
-          if (recipes[recipeName] && recipes[recipeName].protein) {
-            const protein = recipes[recipeName].protein;
+        item.appendChild(colorIndicator);
+        item.appendChild(name);
 
-            if (Array.isArray(protein) && protein.length > 0) {
-              // Multi-protein: create striped background
-              const stripeHeight = 100 / protein.length;
-              const stripes = protein.map((p, index) => {
-                const color = getProteinColor(p, false);
-                const start = index * stripeHeight;
-                const end = (index + 1) * stripeHeight;
-                return `${color} ${start}%, ${color} ${end}%`;
-              }).join(', ');
-              colorIndicator.style.background = `linear-gradient(180deg, ${stripes})`;
-            } else if (!Array.isArray(protein)) {
-              // Single protein: solid color
-              const color = getProteinColor(protein, false);
-              colorIndicator.style.background = color;
-            }
-          } else {
-            // No protein info
-            colorIndicator.style.background = '#e0e0e0';
-          }
-
-          const name = document.createElement('div');
-          name.className = 'recipe-selection-name';
-          name.textContent = recipeName;
-
-          item.appendChild(colorIndicator);
-          item.appendChild(name);
-
-          item.addEventListener('click', () => {
-            selectRecipeFromModal(dayIndex, mealIndex, recipeName);
-            closeRecipeSelectionModal();
-          });
-
-          recipeList.appendChild(item);
+        item.addEventListener('click', () => {
+          selectRecipeFromModal(dayIndex, mealIndex, recipeName);
+          closeRecipeSelectionModal();
         });
+
+        recipeList.appendChild(item);
+      });
     }
   };
 
@@ -546,6 +546,11 @@ const CalendarModule = (() => {
       dayNameDiv.textContent = daysOfWeek[dayIndex];
       dayCard.appendChild(dayNameDiv);
 
+      // Create a wrapper for meals to ensure Sortable indices match data indices
+      const mealsList = document.createElement('div');
+      mealsList.className = 'meals-list';
+      mealsList.id = `meals-list-day-${dayIndex}`;
+
       // Create meal containers for each meal slot (without specific meal types)
       for (let mealIndex = 0; mealIndex < MEAL_COUNT; mealIndex++) {
         const mealContainer = document.createElement('div');
@@ -630,7 +635,7 @@ const CalendarModule = (() => {
           cookButton.setAttribute('data-people', mealPeopleCount);
 
           // Use a direct function reference instead of an arrow function
-          cookButton.onclick = function() {
+          cookButton.onclick = function () {
             const recipe = this.getAttribute('data-recipe');
             const people = parseInt(this.getAttribute('data-people'), 10);
             console.log(`Cook button clicked for ${recipe} for ${people} people`);
@@ -640,14 +645,97 @@ const CalendarModule = (() => {
           peopleContainer.appendChild(cookButton);
         }
 
-        dayCard.appendChild(mealContainer);
+        mealsList.appendChild(mealContainer);
       }
 
+      dayCard.appendChild(mealsList);
       calendarEl.appendChild(dayCard);
+
+      // Initialize Sortable for this day's meal list
+      new Sortable(mealsList, {
+        group: 'shared', // Allow dragging between days
+        animation: 150,
+        draggable: '.meal-container',
+        delay: 100, // Slight delay to prevent accidental drags on touch
+        delayOnTouchOnly: true,
+        onEnd: handleDragEnd
+      });
     }
 
     // Scroll to current day after rendering
     scrollToCurrentDay();
+  };
+
+  /**
+   * Handle drag and drop end event
+   * @param {Object} evt - Sortable event object
+   */
+  const handleDragEnd = (evt) => {
+    const itemEl = evt.item;  // dragged HTMLElement
+    const toEl = evt.to;    // target list
+    const fromEl = evt.from;  // previous list
+
+    // If dropped outside or in same position, do nothing
+    if (!toEl || (toEl === fromEl && evt.newIndex === evt.oldIndex)) {
+      return;
+    }
+
+    // Get indices
+    // Note: The DOM has already been changed by Sortable.
+    // We need to map the DOM elements back to their data indices.
+
+    // Parse day indices from the container IDs (meals-list-day-X)
+    const fromDayIndex = parseInt(fromEl.id.replace('meals-list-day-', ''), 10);
+    const toDayIndex = parseInt(toEl.id.replace('meals-list-day-', ''), 10);
+
+    const fromMealIndex = evt.oldIndex;
+    let toMealIndex = evt.newIndex;
+
+    // Clamp target index to valid range
+    // When dragging to the end of a list, Sortable gives an index equal to length (e.g., 3)
+    // We want to swap with the last item in that case.
+    if (toMealIndex >= MEAL_COUNT) {
+      toMealIndex = MEAL_COUNT - 1;
+    }
+
+    // We want to SWAP the meals, but Sortable has performed an INSERT.
+    // So we need to:
+    // 1. Revert the DOM change (by re-rendering)
+    // 2. Perform the data swap
+    // 3. Re-render with new data
+
+    // Perform the data swap
+    swapMeals(fromDayIndex, fromMealIndex, toDayIndex, toMealIndex);
+
+    // Re-render to show the swapped state and fix DOM
+    displayCalendar();
+  };
+
+  /**
+   * Swap two meals in the calendar data
+   */
+  const swapMeals = (day1, slot1, day2, slot2) => {
+    // Ensure data exists
+    if (!calendarData[day1]) calendarData[day1] = [];
+    if (!calendarData[day2]) calendarData[day2] = [];
+
+    // Ensure slots exist (fill with empty if needed)
+    while (calendarData[day1].length <= slot1) {
+      calendarData[day1].push({ recipe: '', peopleCount: 2 });
+    }
+    while (calendarData[day2].length <= slot2) {
+      calendarData[day2].push({ recipe: '', peopleCount: 2 });
+    }
+
+    // Swap
+    const temp = calendarData[day1][slot1];
+    calendarData[day1][slot1] = calendarData[day2][slot2];
+    calendarData[day2][slot2] = temp;
+
+    // Save
+    saveCalendarData();
+
+    Utility.showToast('Meals swapped!', 'success');
   };
 
   /**
@@ -727,7 +815,7 @@ const CalendarModule = (() => {
       cookButton.setAttribute('data-people', peopleCount);
 
       // Add click handler
-      cookButton.onclick = function() {
+      cookButton.onclick = function () {
         const recipe = this.getAttribute('data-recipe');
         const people = parseInt(this.getAttribute('data-people'), 10);
         console.log(`Cook button clicked for ${recipe} for ${people} people`);
@@ -789,6 +877,33 @@ const CalendarModule = (() => {
 
       if (savedData) {
         calendarData = JSON.parse(savedData);
+
+        // Sanitize data: ensure 7 days and max MEAL_COUNT meals per day
+        if (Array.isArray(calendarData)) {
+          // Ensure 7 days
+          while (calendarData.length < 7) {
+            calendarData.push([]);
+          }
+          if (calendarData.length > 7) {
+            calendarData = calendarData.slice(0, 7);
+          }
+
+          // Ensure MEAL_COUNT meals per day
+          calendarData.forEach((dayMeals, index) => {
+            if (!Array.isArray(dayMeals)) {
+              calendarData[index] = [];
+            }
+            // Trim extra meals
+            if (calendarData[index].length > MEAL_COUNT) {
+              calendarData[index] = calendarData[index].slice(0, MEAL_COUNT);
+            }
+            // Fill missing meals
+            while (calendarData[index].length < MEAL_COUNT) {
+              calendarData[index].push({ recipe: '', peopleCount: 2 });
+            }
+          });
+        }
+
         console.log('Calendar data loaded from localStorage');
       }
     } catch (error) {
@@ -1087,7 +1202,7 @@ const CalendarModule = (() => {
         }
       });
       activeTimers = [];
-    };    document.getElementById('closeCookingMode').onclick = closeModal;
+    }; document.getElementById('closeCookingMode').onclick = closeModal;
 
     // Close modal when clicking outside
     window.onclick = (event) => {
@@ -1280,9 +1395,56 @@ const CalendarModule = (() => {
 
       timersContainer.appendChild(timerBtn);
     });
+
+    // Initial sort
+    sortTimers();
   };
 
-    // Active timers tracking
+  /**
+   * Sort timers: Active first (by remaining time), then Inactive (by duration)
+   */
+  const sortTimers = () => {
+    const timersContainer = document.getElementById('cookingTimersContainer');
+    if (!timersContainer) return;
+
+    const buttons = Array.from(timersContainer.querySelectorAll('.timer-button'));
+
+    buttons.sort((a, b) => {
+      const aActive = a.classList.contains('timer-active');
+      const bActive = b.classList.contains('timer-active');
+
+      // 1. Active timers come first
+      if (aActive && !bActive) return -1;
+      if (!aActive && bActive) return 1;
+
+      // 2. Sort active timers by remaining time (ascending)
+      if (aActive && bActive) {
+        // We need to find the remaining time for these timers
+        // The button has data-active-timer-id
+        const aId = a.dataset.activeTimerId;
+        const bId = b.dataset.activeTimerId;
+
+        const aTimer = activeTimers.find(t => t.id === aId);
+        const bTimer = activeTimers.find(t => t.id === bId);
+
+        const aTime = aTimer ? aTimer.remainingSeconds : Infinity;
+        const bTime = bTimer ? bTimer.remainingSeconds : Infinity;
+
+        return aTime - bTime;
+      }
+
+      // 3. Sort inactive timers by duration (ascending)
+      const aDuration = parseFloat(a.dataset.duration);
+      const bDuration = parseFloat(b.dataset.duration);
+
+      return aDuration - bDuration;
+    });
+
+    // Re-append in new order
+    buttons.forEach(btn => timersContainer.appendChild(btn));
+  };
+
+  // Active timers tracking
   let activeTimers = [];
   let timerIntervals = {};
 
@@ -1313,6 +1475,7 @@ const CalendarModule = (() => {
     activeTimers.push(timer);
     transformTimerButton(timer);
     startTimerInterval(timer);
+    sortTimers(); // Sort to move active timer to front
 
     Utility.showToast(`Timer "${label}" started for ${duration} minutes`, 'success');
   };
@@ -1473,6 +1636,8 @@ const CalendarModule = (() => {
     if (timerBtn && timer) {
       resetTimerButton(timerBtn, timer.label);
     }
+
+    sortTimers(); // Sort to move stopped timer back to inactive list
 
     Utility.showToast('Timer stopped', 'info');
   };

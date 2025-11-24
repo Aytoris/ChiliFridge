@@ -29,7 +29,9 @@ body {
     width: 100%;
 }
 
-.fridge, .content, .grocery {
+.fridge,
+.content,
+.grocery {
     flex: 1;
     min-width: 0;
     width: 100%;
@@ -59,7 +61,10 @@ body {
         gap: 20px;
     }
 
-    .fridge, .content, .grocery, .always-have {
+    .fridge,
+    .content,
+    .grocery,
+    .always-have {
         min-width: 300px;
         width: auto;
         border-radius: 8px;
@@ -108,7 +113,8 @@ body {
     }
 }
 
-h1, h2 {
+h1,
+h2 {
     color: #333;
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
@@ -116,7 +122,9 @@ h1, h2 {
 }
 
 /* Form controls */
-input, select, button {
+input,
+select,
+button {
     margin: 5px 0;
     padding: 8px;
     border-radius: 4px;
@@ -212,7 +220,7 @@ li:last-child {
     -webkit-overflow-scrolling: touch;
     /* Hide scrollbar for Chrome, Safari and Opera */
     scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.3) transparent;
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
 }
 
 /* Optimize calendar container for mobile */
@@ -235,12 +243,12 @@ li:last-child {
 }
 
 .calendar-container::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 4px;
 }
 
 .calendar-container::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #calendar {
@@ -261,7 +269,7 @@ li:last-child {
     min-width: 252px;
     max-width: 252px;
     margin-bottom: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     border: 1px solid #e9ecef;
     transition: all 0.3s ease;
 }
@@ -299,7 +307,7 @@ li:last-child {
     padding: 8px;
     border-radius: 5px;
     font-size: 1.1em;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -318,11 +326,35 @@ li:last-child {
     padding: 12px;
     background: linear-gradient(135deg, #E0F7FA, #80DEEA);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    cursor: grab;
+    /* Indicate draggable */
+    touch-action: none;
+    /* Prevent scrolling while dragging on touch */
+}
+
+.meal-container:active {
+    cursor: grabbing;
+}
+
+/* SortableJS classes */
+.sortable-ghost {
+    opacity: 0.4;
+    background: #e0e0e0;
+    border: 2px dashed #999;
+}
+
+.sortable-drag {
+    cursor: grabbing;
+    opacity: 1;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    z-index: 1000;
 }
 
 /* Protein-based background colors for meal planning
@@ -411,9 +443,9 @@ li:last-child {
 
 /* Active state with a more vibrant color */
 .meal-active {
-    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
     transform: translateY(-2px);
-    border: 2px solid rgba(0,0,0,0.15);
+    border: 2px solid rgba(0, 0, 0, 0.15);
 }
 
 /* Enhanced colors when meal is active (selected) */
@@ -460,7 +492,7 @@ li:last-child {
 
 .meal-container:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .meal-container::before {
@@ -470,9 +502,10 @@ li:last-child {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(255,255,255,0.15), transparent);
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.15), transparent);
     z-index: 1;
-    pointer-events: none; /* Don't block clicks on buttons */
+    pointer-events: none;
+    /* Don't block clicks on buttons */
 }
 
 /* Recipe Selection Modal */
@@ -484,16 +517,18 @@ li:last-child {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
-    pointer-events: none; /* Don't block clicks when inactive */
+    pointer-events: none;
+    /* Don't block clicks when inactive */
 }
 
 .recipe-selection-modal.active {
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: auto; /* Allow clicks when active */
+    pointer-events: auto;
+    /* Allow clicks when active */
 }
 
 .recipe-selection-content {
@@ -504,7 +539,7 @@ li:last-child {
     width: 90%;
     max-height: 80vh;
     overflow-y: auto;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     position: relative;
 }
 
@@ -632,8 +667,8 @@ li:last-child {
     height: 24px;
     border-radius: 4px;
     flex-shrink: 0;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .recipe-selection-name {
@@ -665,7 +700,7 @@ li:last-child {
 
 .meal-display:hover {
     border-color: #4CAF50;
-    box-shadow: 0 3px 8px rgba(76,175,80,0.2);
+    box-shadow: 0 3px 8px rgba(76, 175, 80, 0.2);
 }
 
 .meal-display.empty {
@@ -678,13 +713,13 @@ li:last-child {
     padding: 8px;
     margin-left: 5px;
     border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.5);
-    background-color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
     color: #333;
     position: relative;
     z-index: 2;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
 }
 
@@ -701,7 +736,7 @@ li:last-child {
 .meal-container label {
     color: white;
     font-weight: 500;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 2;
 }
@@ -732,7 +767,11 @@ li:last-child {
 }
 
 /* Smooth transitions for all elements */
-.day-card, .day-name, .meal-container, .people-selector, button {
+.day-card,
+.day-name,
+.meal-container,
+.people-selector,
+button {
     transition: all 0.3s ease;
 }
 
@@ -742,7 +781,10 @@ li:last-child {
         flex-direction: column;
     }
 
-    .fridge, .content, .grocery, .always-have {
+    .fridge,
+    .content,
+    .grocery,
+    .always-have {
         width: 100%;
         margin-bottom: 0;
     }
@@ -759,7 +801,8 @@ li:last-child {
         margin: 5px 0;
     }
 
-    h1, h2 {
+    h1,
+    h2 {
         font-size: 1.4em;
         margin-top: 0;
     }
@@ -776,7 +819,7 @@ li:last-child {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .category-header:first-child {
@@ -936,7 +979,8 @@ li:last-child {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    overflow: hidden; /* Prevent background scroll */
+    overflow: hidden;
+    /* Prevent background scroll */
 }
 
 /* Prevent body scroll when modal is open */
@@ -952,16 +996,25 @@ body.modal-open {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     width: 80%;
     max-width: 600px;
-    max-height: 85vh; /* Limit height to viewport */
+    max-height: 85vh;
+    /* Limit height to viewport */
     display: flex;
     flex-direction: column;
     animation: modalFadeIn 0.3s ease;
-    overflow: hidden; /* Ensure proper scrolling behavior */
+    overflow: hidden;
+    /* Ensure proper scrolling behavior */
 }
 
 @keyframes modalFadeIn {
-    from {opacity: 0; transform: translateY(-20px);}
-    to {opacity: 1; transform: translateY(0);}
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-header {
@@ -970,7 +1023,8 @@ body.modal-open {
     align-items: center;
     padding: 15px 20px;
     border-bottom: 1px solid #e9ecef;
-    flex-shrink: 0; /* Prevent header from shrinking */
+    flex-shrink: 0;
+    /* Prevent header from shrinking */
 }
 
 .modal-header h3 {
@@ -992,9 +1046,12 @@ body.modal-open {
 
 .modal-body {
     padding: 20px;
-    overflow-y: auto; /* Make modal body scrollable */
-    flex: 1; /* Take remaining space */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overflow-y: auto;
+    /* Make modal body scrollable */
+    flex: 1;
+    /* Take remaining space */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
 }
 
 /* Sortable list styles */
@@ -1061,7 +1118,7 @@ body.modal-open {
     padding: 10px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .progress-bar {
@@ -1091,9 +1148,17 @@ body.modal-open {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(13, 202, 240, 0.4); }
-    70% { box-shadow: 0 0 0 6px rgba(13, 202, 240, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(13, 202, 240, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(13, 202, 240, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(13, 202, 240, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(13, 202, 240, 0);
+    }
 }
 
 /* Shopping mode button */
@@ -1128,11 +1193,11 @@ body.modal-open {
     padding: 10px;
 }
 
-#fridgeList li > span {
+#fridgeList li>span {
     margin-right: 5px;
 }
 
-#fridgeList li > div {
+#fridgeList li>div {
     margin-left: auto;
     display: flex;
     gap: 5px;
@@ -1215,6 +1280,7 @@ body.modal-open {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1225,6 +1291,7 @@ body.modal-open {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
         transform: translateY(-20px);
@@ -1249,7 +1316,7 @@ body.modal-open {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     border-left: 4px solid #4CAF50;
 }
 
@@ -1269,7 +1336,7 @@ body.modal-open {
     background-color: #f8f9fa;
 }
 
-.fridge-item > span {
+.fridge-item>span {
     margin-right: 5px;
 }
 
@@ -1313,11 +1380,11 @@ body.modal-open {
     padding: 10px;
 }
 
-#fridgeList li > span {
+#fridgeList li>span {
     margin-right: 5px;
 }
 
-#fridgeList li > div {
+#fridgeList li>div {
     margin-left: auto;
     display: flex;
     gap: 5px;
@@ -1379,12 +1446,79 @@ body.modal-open {
         flex-direction: row;
     }
 
-    .recipe-details, .recipe-instructions {
-        flex: 1;
+    /* Cooking Mode Modal - Fullscreen Override */
+    #cookingModeModal {
+        display: none;
+        position: fixed;
+        z-index: 3000;
+        /* Higher than other modals */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+    }
+
+    #cookingModeModal .modal-content {
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        border: none;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        box-shadow: none;
+        animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    #cookingModeModal .modal-header {
+        padding: 15px 20px;
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+        flex-shrink: 0;
+        position: sticky;
+        top: 0;
+        z-index: 101;
+    }
+
+    #cookingModeModal .modal-body {
+        padding: 0;
+        overflow-y: auto;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cooking-mode-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+    }
+
+    .recipe-details,
+    .recipe-instructions {
+        padding: 20px;
     }
 }
 
-.recipe-details, .recipe-instructions {
+.recipe-details,
+.recipe-instructions {
     background-color: #f9f9f9;
     border-radius: 8px;
     padding: 15px;
@@ -1449,7 +1583,7 @@ body.modal-open {
     font-size: 0.9em;
     margin-left: 10px;
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease;
     z-index: 10;
     position: relative;
@@ -1458,19 +1592,21 @@ body.modal-open {
 .cook-button:hover {
     background-color: #45a049;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Make the cooking mode modal larger */
 #cookingModeModal .modal-content {
     max-width: 900px;
     width: 90%;
-    max-height: 90vh; /* Increase max height */
+    max-height: 90vh;
+    /* Increase max height */
 }
 
 /* Ensure cooking mode body is scrollable */
 #cookingModeModal .modal-body {
-    max-height: calc(90vh - 80px); /* Account for header */
+    max-height: calc(90vh - 80px);
+    /* Account for header */
     overflow-y: auto;
 }
 
@@ -1517,17 +1653,21 @@ body.modal-open {
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 12px 16px;
+    padding: 10px 14px;
     cursor: pointer;
-    font-size: 0.95em;
+    font-size: 0.9em;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     position: relative;
     overflow: hidden;
+    min-width: 100px;
+    flex-shrink: 0;
+    height: 60px;
 }
 
 .timer-button:hover:not(.timer-active) {
@@ -1540,32 +1680,41 @@ body.modal-open {
 }
 
 .timer-button .timer-label {
-    flex-grow: 1;
+    width: 100%;
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
 }
 
 .timer-button .timer-duration {
     background-color: rgba(255, 255, 255, 0.2);
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.9em;
-    margin-left: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    margin-left: 0;
 }
 
+/* Active timer state */
 /* Active timer state */
 .timer-button.timer-active {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     animation: pulse-timer 2s ease-in-out infinite;
     cursor: default;
     flex-direction: column;
-    gap: 10px;
-    padding: 16px;
+    gap: 5px;
+    padding: 8px 12px;
+    min-width: 140px;
 }
 
 @keyframes pulse-timer {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
     }
+
     50% {
         box-shadow: 0 4px 20px rgba(245, 87, 108, 0.5);
     }
@@ -1577,9 +1726,12 @@ body.modal-open {
 }
 
 @keyframes pulse-warning {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 4px 12px rgba(254, 225, 64, 0.4);
     }
+
     50% {
         box-shadow: 0 4px 20px rgba(254, 225, 64, 0.7);
     }
@@ -1591,9 +1743,12 @@ body.modal-open {
 }
 
 @keyframes pulse-critical {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 4px 12px rgba(201, 42, 42, 0.5);
     }
+
     50% {
         box-shadow: 0 4px 20px rgba(201, 42, 42, 0.8);
     }
@@ -1614,7 +1769,11 @@ body.modal-open {
 
 .timer-active-label {
     font-weight: 700;
-    font-size: 1.05em;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70px;
 }
 
 .timer-stop-btn {
@@ -1635,12 +1794,13 @@ body.modal-open {
 
 /* Timer countdown display */
 .timer-countdown-display {
-    font-size: 2.2em;
+    font-size: 1.4em;
     font-weight: bold;
     text-align: center;
     font-family: 'Courier New', monospace;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     width: 100%;
+    line-height: 1.2;
 }
 
 /* Progress bar in transformed button */
