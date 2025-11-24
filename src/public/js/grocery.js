@@ -485,13 +485,17 @@ const GroceryModule = (() => {
     // - DuckDuckGo: 'https://duckduckgo.com/?q='
     // - Amazon: 'https://www.amazon.com/s?k='
     // - Walmart: 'https://www.walmart.com/search?q='
-    const BASE_URL = 'https://www.coop.se/globalt-sok/?&query=';
+    const BASE_URL = 'https://www.coop.se/globalt-sok/?query=';
 
     // Generate URLs for each item
     let textContent = '';
 
     groceryList.forEach(item => {
-      // URL encode the item name (replaces spaces with %20, etc.)
+      // URL encode the item name
+      // encodeURIComponent handles special characters:
+      // - Spaces become %20
+      // - Parentheses ( ) become %28 %29
+      // - Ampersands & become %26
       const encodedItemName = encodeURIComponent(item.name);
       const itemUrl = BASE_URL + encodedItemName;
       textContent += itemUrl + '\n';
