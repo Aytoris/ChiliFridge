@@ -492,11 +492,15 @@ const GroceryModule = (() => {
 
     groceryList.forEach(item => {
       // URL encode the item name
-      // encodeURIComponent handles special characters:
+      // encodeURIComponent handles most special characters, but parentheses
+      // are considered "unreserved" and don't get encoded by default.
+      // We explicitly encode them for better compatibility:
       // - Spaces become %20
-      // - Parentheses ( ) become %28 %29
+      // - Parentheses ( ) become %28 %29  (explicitly replaced)
       // - Ampersands & become %26
-      const encodedItemName = encodeURIComponent(item.name);
+      const encodedItemName = encodeURIComponent(item.name)
+        .replace(/\(/g, '%28')
+        .replace(/\)/g, '%29');
       const itemUrl = BASE_URL + encodedItemName;
       textContent += itemUrl + '\n';
     });
