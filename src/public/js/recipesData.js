@@ -168,11 +168,11 @@ const RECIPES_DATA = {
     cookingTime: 25,
     timers: [
       { "label": "Bake fries (210°C)", "duration": 35, "step": 0 },
-      { "label": "Rest dissolved yeast", "duration": 5, "step": 3},
-      { "label": "Knead dough", "duration": 5, "step": 3},
-      { "label": "Stir fry patty (thermo 4.5)", "duration": 5, "step": 3},
-      { "label": "Rise buns", "duration": 20, "step": 3},
-      { "label": "Bake buns (220°C)", "duration": 15, "step": 4}
+      { "label": "Rest dissolved yeast", "duration": 5, "step": 3 },
+      { "label": "Knead dough", "duration": 5, "step": 3 },
+      { "label": "Stir fry patty (thermo 4.5)", "duration": 5, "step": 3 },
+      { "label": "Rise buns", "duration": 20, "step": 3 },
+      { "label": "Bake buns (220°C)", "duration": 15, "step": 4 }
     ]
   },
   "Hummus": {
@@ -801,7 +801,7 @@ const RECIPES_DATA = {
       { "label": "Bake sandwich", "duration": 10, "step": 3 }
     ]
   },
-  "Galette poire chocolat (8p)":  {
+  "Galette poire chocolat (8p)": {
     ingredients: [
       { "name": "Smördeg", "quantity": 2, "unit": "" },
       { "name": "Mörk choklad", "quantity": 60, "unit": "g" },
@@ -832,5 +832,95 @@ const RECIPES_DATA = {
     timers: [
       { "label": "Bake", "duration": 30, "step": 5 }
     ]
-  }
+  },
+  "Vegan Butter Chicken (with Amazing Tofu)": {
+    "ingredients": [
+      { "name": "Cornstarch", "quantity": 1, "unit": "tablespoon" },
+      { "name": "Garam masala", "quantity": 0.5, "unit": "teaspoon" },
+      { "name": "Ground ginger", "quantity": 0.25, "unit": "teaspoon" },
+      { "name": "Kashmiri chili powder", "quantity": 0.25, "unit": "teaspoon" },
+      { "name": "Curry powder", "quantity": 0.25, "unit": "teaspoon" },
+      { "name": "Coconut oil", "quantity": 3, "unit": "teaspoons" },
+      { "name": "Extra firm tofu (pressed)", "quantity": 16, "unit": "ounce block" },
+      { "name": "Coconut oil (or vegan butter)", "quantity": 1.5, "unit": "tablespoons" },
+      { "name": "Small onion (diced)", "quantity": 1, "unit": "" },
+      { "name": "Garam masala", "quantity": 1, "unit": "tablespoon" },
+      { "name": "Ground ginger", "quantity": 1, "unit": "teaspoon" },
+      { "name": "Kashmiri chili powder", "quantity": 0.5, "unit": "teaspoon" },
+      { "name": "Sea salt", "quantity": 1, "unit": "teaspoon" },
+      { "name": "Ground black pepper", "quantity": 0.5, "unit": "teaspoon" },
+      { "name": "Curry powder", "quantity": 1, "unit": "teaspoon" },
+      { "name": "Full fat coconut milk", "quantity": 14, "unit": "ounce can" },
+      { "name": "Tomato paste", "quantity": 6, "unit": "ounce can" },
+      { "name": "Lime", "quantity": 1, "unit": "juice of" }
+    ],
+    "instructions": [
+      "Press the tofu using paper towels and a heavy pan for 30 minutes.",
+      "Cut the pressed tofu into cubes or tear into pieces.",
+      "Mix cornstarch, 1/2 tsp garam masala, 1/4 tsp ginger, 1/4 tsp chili powder, and 1/4 tsp curry powder. Toss tofu in mixture to coat and marinate for 15 mins.",
+      "Heat 3 tsp coconut oil in a pan over medium-high heat. Brown and crisp tofu on all sides, then remove.",
+      "In the same pan, heat 1.5 tbsp coconut oil. Sauté onions for 4 minutes until translucent.",
+      "Add 1 tbsp garam masala, 1 tsp ginger, 0.5 tsp chili powder, salt, pepper, and 1 tsp curry powder. Cook for 30 seconds.",
+      "Stir in coconut milk and tomato paste, mixing for 15 seconds to incorporate.",
+      "Bring to a slight boil, reduce to simmer, and cook for 5 minutes to thicken.",
+      "Add the tofu back in, coating it gently. Simmer for 5-10 minutes to soak up flavors.",
+      "Remove from heat, squeeze in lime juice, and season with more salt if desired."
+    ],
+    "servings": 4,
+    "protein": "Tofu",
+    "cookingTime": 50,
+    "timers": [
+      { "label": "Press Tofu", "duration": 30, "step": 0 },
+      { "label": "Marinate Tofu", "duration": 15, "step": 2 },
+      { "label": "Sauté Onion", "duration": 4, "step": 4 },
+      { "label": "Thicken Sauce", "duration": 5, "step": 7 },
+      { "label": "Final Simmer", "duration": 10, "step": 8 }
+    ]
+  },
+  "Spanish Paella": {
+    ingredients: [
+      { "name": "Extra virgin olive oil", "quantity": 55, "unit": "g" },
+      { "name": "Onion", "quantity": 1, "unit": "" },
+      { "name": "Bell pepper", "quantity": 1, "unit": "" },
+      { "name": "Garlic", "quantity": 4, "unit": "cloves" },
+      { "name": "Roma tomatoes", "quantity": 3, "unit": "" },
+      { "name": "Bay leaf", "quantity": 1, "unit": "" },
+      { "name": "Paprika (sweet or smoked)", "quantity": 2, "unit": "g" },
+      { "name": "Saffron threads", "quantity": 1, "unit": "pinch" },
+      { "name": "White wine", "quantity": 60, "unit": "g" },
+      { "name": "Chicken thighs", "quantity": 4, "unit": "" },
+      { "name": "Parsley", "quantity": 15, "unit": "g" },
+      { "name": "Spanish Rice", "quantity": 400, "unit": "g" },
+      { "name": "Chicken Broth", "quantity": 1200, "unit": "g" },
+      { "name": "Frozen peas", "quantity": 75, "unit": "g" },
+      { "name": "Jumbo Shrimp", "quantity": 225, "unit": "g" },
+      { "name": "Mussels", "quantity": 225, "unit": "g" },
+      { "name": "Calamari rings", "quantity": 225, "unit": "g" },
+      { "name": "Lemon", "quantity": 1, "unit": "" },
+      { "name": "Salt", "quantity": 1, "unit": "pinch" },
+      { "name": "Pepper", "quantity": 1, "unit": "pinch" }
+    ],
+    instructions: [
+      "Heat oil in skillet/paella pan over medium heat. Sauté onion, peppers, and garlic.",
+      "Add tomato, bay leaf, paprika, saffron, salt, and pepper. Cook 5 min.",
+      "Add white wine and cook for 10 min.",
+      "Add chicken, 2 tbsp parsley, and rice. Cook 1 min.",
+      "Pour broth slowly. Jiggle pan to level rice. DO NOT STIR hereafter.",
+      "Bring to boil, reduce to medium-low. Cook 15-18 min (shake pan gently once/twice).",
+      "Nestle shrimp, mussels, calamari, and peas on top. Cook 5 min until liquid absorbs.",
+      "Remove from heat, cover with lid/foil and towel. Rest 10 min.",
+      "Garnish with parsley and lemon."
+    ],
+    servings: 6,
+    protein: ["chicken", "shrimp", "mussels", "calamari"],
+
+    cookingTime: 60,
+    timers: [
+      { "label": "Sauté aromatics", "duration": 5, "step": 2 },
+      { "label": "Reduce wine", "duration": 10, "step": 3 },
+      { "label": "Simmer rice", "duration": 15, "step": 6 },
+      { "label": "Cook seafood", "duration": 5, "step": 7 },
+      { "label": "Rest", "duration": 10, "step": 8 }
+    ]
+  },
 };
